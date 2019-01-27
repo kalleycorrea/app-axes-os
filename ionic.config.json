@@ -1,5 +1,7 @@
 {
   "name": "app-axes-os",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
