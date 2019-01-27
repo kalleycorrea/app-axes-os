@@ -1,0 +1,38 @@
+<!--
+<ion-header>
+  <ion-navbar>
+    <ion-title>Dados Técnicos</ion-title>
+  </ion-navbar>
+</ion-header>
+-->
+
+<ion-content>
+  <ion-fab top right>
+      <!--
+      <button ion-fab mini color="primary" [disabled]="!isChange" (click)="save()"><ion-icon name="checkmark"></ion-icon></button>
+      <button ion-fab mini color="danger" [disabled]="!isChange" (click)="cancel()"><ion-icon name="close"></ion-icon></button>
+      -->
+      <button ion-fab mini hidden></button><!--isto é um truque para o ion-button ter o comportamento do ion-fab-->
+      <button ion-button round outline small icon-start color="primaty" [disabled]="!isChange" (click)="save()"><ion-icon name="checkmark"></ion-icon>Salvar</button>
+      <button ion-button round outline small icon-start color="danger" [disabled]="!isChange" (click)="cancel()"><ion-icon name="close"></ion-icon>Cancelar</button>
+  </ion-fab>
+
+  <ion-list>
+    <ion-list-header>
+        <b>DADOS TÉCNICOS</b>
+    </ion-list-header>
+    <ion-item *ngFor="let campo of dadosAdicionais">
+      <ion-label floating>{{campo.Nome}}</ion-label>
+
+      <!--[placeholder]="campo.Ajuda"-->
+      <ion-input *ngIf="campo.TipoDado !== 'L'" type="text" [(ngModel)]="campo.Valor" (ionChange)="change(campo)"></ion-input>
+
+      <!--interface="popover" interface="action-sheet"-->
+      <ion-select *ngIf="campo.TipoDado === 'L'" [(ngModel)]="campo.Valor" (ionChange)="change(campo)" okText="OK" cancelText="Cancelar" interface="action-sheet">
+          <ion-option *ngFor="let option of getOptions(campo.Nome)" [value]="option">{{option}}</ion-option>
+      </ion-select>
+
+      <!--<ion-item-divider></ion-item-divider>-->
+    </ion-item>
+  </ion-list>
+</ion-content>

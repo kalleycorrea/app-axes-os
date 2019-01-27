@@ -1,0 +1,50 @@
+<!--
+<ion-header>
+  <ion-navbar>
+    <ion-title center>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+-->
+
+<ion-content>
+  <form (submit)="doLogin()">
+
+    <ion-list>
+
+      <ion-list no-lines>
+        <ion-item>
+          <div class="logo" text-center padding margin>
+            <img src='../../assets/img/icon.png' />
+            <p class="caption">Axes Ordem de Serviço</p>
+          </div>
+        </ion-item>
+      </ion-list>
+      <!--
+      <ion-item>
+        <ion-label fixed>Email</ion-label>
+        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+      </ion-item>
+      -->
+
+      <!--
+      Want to use a Username instead of an Email? Here you go:
+      -->
+      <ion-item>
+        <ion-label floating>Usuário</ion-label>
+        <!--<ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>-->
+        <ion-input type="text" [(ngModel)]="account.usuario" name="username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <!--<ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>-->
+        <ion-input type="password" [(ngModel)]="account.senha" name="password"></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block>Entrar</button>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>

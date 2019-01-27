@@ -1,0 +1,27 @@
+<!--
+<ion-header>
+  <ion-navbar>
+    <ion-title>Ocorrências</ion-title>
+  </ion-navbar>
+</ion-header>
+-->
+
+<ion-content>
+  <ion-fab top right>
+    <button ion-fab color="primary" (click)="addItem()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  <ion-list>
+    <ion-list-header>
+        <b>OCORRÊNCIAS</b>
+    </ion-list-header>
+    <ion-item text-wrap *ngFor="let item of ocorrencias;">
+      <h3><!--<p -->
+        <ion-icon name="calendar"></ion-icon>
+        &nbsp; {{item.Data}}
+        &nbsp;&nbsp; {{item.Usuario}}
+      </h3>
+      <div [innerHTML]="item.Descricao"></div>
+      <!--<span style="font-size: 11px">{{item.Descricao}}</span>-->
+    </ion-item>
+  </ion-list>
+</ion-content>

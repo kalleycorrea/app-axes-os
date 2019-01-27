@@ -1,0 +1,114 @@
+<!--
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ item.NumAtendimento }} > {{item.Apelido}}</ion-title>
+  </ion-navbar>
+</ion-header>
+-->
+
+<ion-content>
+  <!--
+  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
+  </div>
+  -->
+  <!--
+  <div class="item-detail" padding>
+    <h2>{{item.Cliente}}</h2>
+    <p>{{item.Topico}}</p>
+  </div>
+  -->
+  <ion-card>
+    <ion-card-header>
+      <b>Dados Cliente</b>
+    </ion-card-header>
+    <ion-card-content>
+      <h2>{{item.Cliente}}</h2>
+      <p>{{item.Apelido}}</p>
+      <p>Código Cliente: {{item.CodCliente}}</p>
+      <!-- <p><span style="font-weight: bold;">Código Cliente: </span>{{item.CodCliente}}</p> -->
+      <p>Contrato: {{item.Contrato}}</p>
+      <p>Plano: {{item.Plano}}</p>
+      <p>Endereço: {{item.Endereco}} N. {{item.Numero}}</p>
+      <p>Bairro: {{item.Bairro}}</p>
+      <p>Cidade: {{item.Cidade}}</p>
+      <p>Complemento: {{item.Complemento}}</p>
+      <p>CEP: {{item.CEP}}</p>
+      <p>Grupo: {{item.GrupoCliente}}</p>
+      <p>Situação: {{item.DescSituacao}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <b>Ordem de Serviço</b>
+    </ion-card-header>
+    <ion-card-content>
+      <!--<p>Situação da OS: {{item.DescSituacaoOS}}</p>-->
+      <ion-item no-padding no-margin> <!--no-padding no-margin-->
+        <ion-label>Status</ion-label> <!--fixed no-padding no-margin-->
+        <ion-select [(ngModel)]="item.SituacaoOS" (ionChange)="onSelectedSituacaoOS()"
+          okText="OK" cancelText="Cancelar" interface="action-sheet"> <!--item-end no-padding no-margin-->
+          <!--<ion-option value=" ">Não Criada</ion-option>-->
+          <ion-option value="F">Na Fila</ion-option>
+          <ion-option value="A">A Caminho</ion-option>
+          <ion-option value="E">Em Execução</ion-option>
+          <ion-option value="P">Pausada</ion-option>
+          <ion-option value="B">Abortada</ion-option>
+          <ion-option value="C">Concluída</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <b>Dados Atendimento</b>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Tópico: {{item.Topico}}</p>
+      <p>Protocolo: {{item.Protocolo}}</p>
+      <p>Data Abertura: {{item.Abertura}}</p>
+      <p>Usuário Abertura: {{item.Usu_Abertura}}</p>
+      <p *ngIf="item.Usuario_BX">Usuário Encerramento: {{item.Usuario_BX}}</p>
+      <p>Prioridade: {{item.Prioridade}}</p>
+      <p>SLA: <ion-badge color="danger">{{item.SLA}}</ion-badge></p>
+      <!--
+      <ion-item no-padding no-margin><p>Tóipico: {{item.Topico}}</p></ion-item>
+      <ion-item no-padding no-margin><p>Protocolo: {{item.Protocolo}}</p></ion-item>
+      <ion-item no-padding no-margin><p>Prioridade: {{item.Prioridade}}</p></ion-item>
+      <ion-item no-padding no-margin><p>SLA: <ion-badge color="danger">{{item.SLA}}</ion-badge></p></ion-item>
+      -->
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <b>Assunto</b>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item text-wrap no-padding no-margin>
+        <p>{{item.Assunto}}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="item.Solucao">
+    <ion-card-header>
+      <b>Solução</b>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item text-wrap no-padding no-margin>
+        <p>{{item.Solucao}}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!--
+  <ion-list>
+        <ion-label stacked>Nome</ion-label>
+        <ion-input type="text" disabled=true name="cliente" [(ngModel)]="item.Cliente"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button block (click)="save()" color="primary">Salvar</button>
+    -->
+</ion-content>

@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Atendimentos
+      <!--<ion-badge item-end color="primary">{{currentItems.length}}</ion-badge>-->
+    </ion-title>
+    <!--
+    <ion-buttons end>
+      <button ion-button icon-only color="primary" (click)="addItem()">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+    -->
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <!-- <ion-item-sliding *ngFor="let item of currentItems"> -->
+    <button ion-item *ngFor="let item of currentItems; let i = index;" (click)="openItem(item)">
+      <!-- <ion-avatar item-start> -->
+      <!--style="background-color: #f53d3d"-->
+      <!-- <img [src]="item.profilePic" /> -->
+      <!-- <img src="assets/img/appicon.png" /> -->
+      <!-- <ion-icon name="star" color="primary" item-right></ion-icon> -->
+      <!--<ion-text-avatar color="primary">{{i+1}}</ion-text-avatar> -->
+      <!-- <p style="font-size:10px">Prioridade</p> -->
+      <!-- </ion-avatar> -->
+      <!--{{currentItems.length}}-->
+
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-12>
+            <h2>{{item.Cliente}}</h2>
+          </ion-col>
+          <!--col-9-->
+          <!-- <ion-col col-3><ion-badge color="secondary">{{i+1}}</ion-badge></ion-col> -->
+        </ion-row>
+      </ion-grid>
+      <p>{{item.Topico}}</p>
+      <p>Protocolo: {{item.NumAtendimento}} &nbsp;&nbsp;&nbsp; Situação OS:
+        <span style="color:gray; font-weight:bold">{{item.DescSituacaoOS}}</span>
+      </p>
+      <p *ngIf="item.Usu_Designado">Responsável: {{item.Equipe}}</p>
+      <p *ngIf="item.Grupo_Designado != 0"> Responsável: {{item.Grupo_Designado}}</p>
+      <p style="font-size: 11px">
+        <ion-icon name="calendar"></ion-icon>
+        &nbsp;&nbsp; {{item.Abertura}} &nbsp;&nbsp;
+        <ion-badge *ngIf="!(item.SLA === '' || item.SLA === 'Restam:  úteis')" color="danger">{{item.SLA}}</ion-badge>
+      </p>
+      <p style="font-size: 11px">
+        <ion-icon name="pin"></ion-icon>
+        &nbsp;&nbsp; {{item.Endereco}} N. {{item.Numero}} {{item.Bairro}} {{item.Cidade}}
+      </p>
+      <!-- <ion-icon name='logo-twitter' item-end style="color: #f53d3d"></ion-icon> -->
+      <!-- <ion-note item-end *ngIf="item.Protocolo">{{item.Protocolo}}</ion-note> -->
+      <!-- <ion-item-divider></ion-item-divider> -->
+    </button>
+    <!--
+      <ion-label><ion-icon name="construct"></ion-icon>Status</ion-label>
+      <ion-select [(ngModel)]="item.Status" okText="OK" cancelText="Cancelar" interface="action-sheet">
+          <ion-option value="0">Aguardando</ion-option>
+          <ion-option value="1">Próximo</ion-option>
+          <ion-option value="2">Em Execução</ion-option>
+          <ion-option value="3">Concluído</ion-option>
+      </ion-select>
+      -->
+    <!--
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteItem(item)">
+          Excluir
+        </button>
+      </ion-item-options>
+      -->
+    <!-- </ion-item-sliding> -->
+  </ion-list>
+</ion-content>

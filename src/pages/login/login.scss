@@ -1,0 +1,28 @@
+page-login {
+
+  div.logo {
+    //vertical-align: top;
+    //display: block;
+    //'display: flex !important;
+
+    //Align the flex items at the center of the container:
+    //display: flex;
+    //justify-content: center;
+
+    //Center the alignments for all the items of the flexible <div> element:
+    //display: flex;
+    //align-items: center;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+
+  p.caption {
+    color:gray;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+  }
+}

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Nova Ocorrência</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="cancel()">
+        <span color="primary" showWhen="ios">
+            Cancelar
+        </span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>
+        <span color="primary" showWhen="ios">
+            Concluído
+        </span>
+        <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<!--<ion-footer>-->
+<!--<ion-toolbar>-->
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="create()">
+    <ion-list>
+      <ion-item>
+        <ion-textarea rows="10" autosize autocomplete="on" autocorrect="on" placeholder="Descrição da Ocorrência" formControlName="descricao"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </form>
+<!--</ion-toolbar>-->
+<!--</ion-footer>-->
+</ion-content>

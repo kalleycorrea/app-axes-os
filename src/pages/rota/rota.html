@@ -1,0 +1,76 @@
+<!--
+<ion-header>
+  <ion-navbar>
+    <ion-title>Rota</ion-title>
+  </ion-navbar>
+</ion-header>
+-->
+
+<!--
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>LOCALIZAÇÃO CLIENTE</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="calculateRoute()">
+        <span color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="navigate" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="saveEnderecoInstalacao()" strong>
+        <span color="primary" showWhen="ios">Concluído</span>
+        <ion-icon name="pin" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-title>I'm a subheader</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="calculateRoute()">
+          <span color="primary" showWhen="ios">Cancelar</span>
+          <ion-icon name="navigate" showWhen="android,windows"></ion-icon>
+        </button>
+        <button ion-button (click)="saveEnderecoInstalacao()" strong>
+          <span color="primary" showWhen="ios">Concluído</span>
+          <ion-icon name="pin" showWhen="core,android,windows"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+-->
+
+<!--
+<ion-card>
+  <ion-card-header>
+    <b>Mapa Imagem Cliente</b>
+  </ion-card-header>
+  <ion-card-content>
+    <div>
+      <img src="{{mapaImagem}}">
+    </div>
+  </ion-card-content>
+</ion-card>
+-->
+
+<ion-content padding>
+  <ion-fab top right>
+    <!--
+    <button ion-fab mini color="vibrant" (click)="calculateRoute()"><ion-icon name="navigate"></ion-icon>Rota</button>
+    <button ion-fab mini color="primary" (click)="saveEnderecoInstalacao()"><ion-icon name="pin"></ion-icon>Salvar Local</button>
+    -->
+    <button ion-fab mini hidden></button><!--isto é um truque para o ion-button ter o comportamento do ion-fab-->
+    <button ion-button round outline small icon-start color="vibrant" (click)="initializeMap()">Rota</button>
+    <button ion-button round outline small icon-start color="primary" (click)="saveEnderecoInstalacao()">Salvar Local</button>
+  </ion-fab>
+  <ion-list>
+    <ion-list-header>
+        <b>LOCALIZAÇÃO CLIENTE</b>
+    </ion-list-header>
+    <ion-item text-wrap>
+        <div [innerText]="getEnderecoCliente()"></div>
+        <div *ngIf="item.PossuiEnderecoInstalacao === 'N'"><span style="color:red;font-weight:bold">ATENÇÃO: Salve a localização quando estiver no cliente.</span></div>
+      </ion-item>
+  </ion-list>
+  <div #map id="map"></div>
+</ion-content>

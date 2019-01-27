@@ -1,30 +1,65 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { BrowserModule } from '@angular/platform-browser';
+import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule, Storage } from '@ionic/storage';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+import { Settings, User, Api, Atendimentos } from '../providers';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+
+import { Geolocation } from '@ionic-native/geolocation';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+
+//import { HTTP_INTERCEPTORS } from '@angular/common/http';
+//import { AuthInterceptor } from '../auth/auth.interceptor';
+//import { AuthService } from '../auth/auth.service';
+
+export function provideSettings(storage: Storage) {
+  /**
+   * The Settings provider takes a set of default settings for your app.
+   *
+   * You can add new settings options at any time. Once the settings are saved,
+   * these values will not overwrite the saved values (this can be done manually if desired).
+   */
+  return new Settings(storage, {
+    option1: true,
+    option2: 'Ionitron J. Framework',
+    option3: '3',
+    option4: 'Hello'
+  });
+}
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
-    StatusBar,
+    Api,
+    Atendimentos,
+    User,
+    Camera,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    StatusBar,
+    Geolocation,
+    BackgroundGeolocation,
+    { provide: Settings, useFactory: provideSettings, deps: [Storage] },
+    // Keep this to enable Ionic's runtime error handling during development
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    //AuthService,
+    //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ]
 })
-export class AppModule {}
+export class AppModule { }
