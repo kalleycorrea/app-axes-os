@@ -13,6 +13,7 @@ export class Atendimentos {
   ocorrencias: any[] = [];
   dadosAdicionais: any[] = [];
   dadosAdicionaisVal: any[] = [];
+  anexos: any[] = [];
 
   defaultAtendimento: any = {
     "NumAtendimento": "",
@@ -155,10 +156,32 @@ export class Atendimentos {
     return seq;
   }
 
-  add(item: Atendimento) {
+  getAnexos(data: any) {
+    let seq = this.api.post('getanexos', data).share();
+
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+      this.anexos.length = 0;
+      if (res.length>0) {
+        for (let item of res) {
+          this.anexos.push(item);
+        }
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return this.anexos;
   }
 
-  delete(item: Atendimento) {
+  addAnexos(data: any) {
+    let seq = this.api.post('addanexos', data).share();
+
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
   }
 
   // Solução com Observables/Subjects para atualizar o tabBadge da page AtendimentosPage (Atendimentos)
@@ -169,4 +192,9 @@ export class Atendimentos {
     this.listSizeSubject.next(count);//next method updates the stream value
   }
 
+  add(item: Atendimento) {
+  }
+
+  delete(item: Atendimento) {
+  }
 }

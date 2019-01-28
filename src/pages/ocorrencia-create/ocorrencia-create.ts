@@ -91,4 +91,7 @@ export class OcorrenciaCreatePage {
     // e depois o ionViewDidEnter da "OcorrenciasPage" irá atualizar a lista de ocorrências
     //this.viewCtrl.dismiss(this.form.value);
   }
+
+  create() {
+  }
 }

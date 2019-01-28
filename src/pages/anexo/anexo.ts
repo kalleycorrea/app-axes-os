@@ -14,18 +14,20 @@ import { Atendimentos } from '../../providers';
 export class AnexoPage {
   item: any;
   account: { usuario: any; senha: any; tipo: any; grupo: any };
-  anexos: any[] = [
-      {
-        imagem: 'https://rbx.axes.com.br/routerbox/file/docarquivos/Screenshot_20190102-183729.png',
-        descricao: 'Comprovante enviado pelo cliente'
-      },
-      {
-        imagem: 'https://rbx.axes.com.br/routerbox/file/docarquivos/1467722999.png',
-        descricao: 'Taxa de tráfego muito acima da banda contratada'
-      }
-  ];
   novoAnexo: { imagem: string; descricao: string } = { imagem: "", descricao: "" };
   isReadyToSave: boolean;
+  private saveErrorString: string;
+  anexos: any[];
+  // anexos: any[] = [
+  //     {
+  //       imagem: 'https://rbx.axes.com.br/routerbox/file/docarquivos/Screenshot_20190102-183729.png',
+  //       descricao: 'Comprovante enviado pelo cliente'
+  //     },
+  //     {
+  //       imagem: 'https://rbx.axes.com.br/routerbox/file/docarquivos/1467722999.png',
+  //       descricao: 'Taxa de tráfego muito acima da banda contratada'
+  //     }
+  // ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public viewCtrl: ViewController, formBuilder: FormBuilder,
@@ -34,10 +36,16 @@ export class AnexoPage {
       this.item = navParams.get('item');
       this.account = navParams.get('account');
       this.isReadyToSave = false;
+      this.saveErrorString = "Não foi possível salvar os dados. Por favor tente novamente.";
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad AnexoPage');
+    let data: { usuario: any; senha: any; numAtendimento: any; } = {
+      usuario: this.account['usuario'],
+      senha: this.account['senha'],
+      numAtendimento: this.item['NumAtendimento']
+    };
+    this.anexos = this.atendimentos.getAnexos(data);
   }
 
   getPicture() {
@@ -71,9 +79,41 @@ export class AnexoPage {
   }
 
   save() {
-    if (this.isReadyToSave) {
-      return;
-    }
+    let data: { usuario: any; senha: any; numAtendimento: any; base64Image: any; nomeArquivo: any; descricao: any } = {
+      usuario: this.account['usuario'],
+      senha: this.account['senha'],
+      numAtendimento: this.item.NumAtendimento,
+      base64Image: this.novoAnexo.imagem,
+      nomeArquivo: this.novoAnexo.descricao + '.jpg',
+      descricao: this.novoAnexo.descricao
+    };
+
+    this.atendimentos.addAnexos(data).subscribe(
+      resp => {
+        // success
+        let toast = this.toastCtrl.create({
+          message: "Dados Salvos",
+          duration: 2000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+        this.anexos.push(this.novoAnexo);
+        this.novoAnexo.imagem = "";
+        this.novoAnexo.descricao = "";
+        this.isReadyToSave = false;
+      },
+      err => {
+        // Unable to save
+        let toast = this.toastCtrl.create({
+          message: this.saveErrorString,
+          duration: 3000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      }
+    );
   }
 
   cancel() {
