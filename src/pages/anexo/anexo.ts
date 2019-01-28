@@ -12,7 +12,6 @@ import { Atendimentos } from '../../providers';
   templateUrl: 'anexo.html',
 })
 export class AnexoPage {
-  @ViewChild('fileInput') fileInput;
   item: any;
   account: { usuario: any; senha: any; tipo: any; grupo: any };
   anexos: any[] = [
@@ -25,23 +24,16 @@ export class AnexoPage {
         descricao: 'Taxa de tráfego muito acima da banda contratada'
       }
   ];
-  form: FormGroup;
+  novoAnexo: { imagem: string; descricao: string } = { imagem: "", descricao: "" };
   isReadyToSave: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
-    formBuilder: FormBuilder, public camera: Camera, public toastCtrl: ToastController, public atendimentos: Atendimentos) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public viewCtrl: ViewController, formBuilder: FormBuilder,
+    public camera: Camera, public toastCtrl: ToastController, public atendimentos: Atendimentos) {
+
       this.item = navParams.get('item');
       this.account = navParams.get('account');
-
-      this.form = formBuilder.group({
-        photo: ['', Validators.required],
-        descricao: ['', Validators.required]
-      });
-
-      // Watch the form for changes, and
-      this.form.valueChanges.subscribe((v) => {
-        this.isReadyToSave = this.form.valid;
-      });
+      this.isReadyToSave = false;
   }
 
   ionViewDidLoad() {
@@ -51,56 +43,73 @@ export class AnexoPage {
   getPicture() {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      //targetWidth: 96,
+      //targetHeight: 96,
+      correctOrientation: true
     };
 
-    const options2: CameraOptions = {
-      destinationType: this.camera.DestinationType.DATA_URL,
-      targetWidth: 96,
-      targetHeight: 96
-    }
-
     if (Camera['installed']()) {
-      this.camera.getPicture(options2).then((data) => {
-        this.form.patchValue({ 'photo': 'data:image/jpeg;base64,' + data });
+      this.camera.getPicture(options).then((imageData) => {
+        this.novoAnexo.imagem = 'data:image/jpeg;base64,' + imageData;
       }, (err) => {
         alert('Não é possível tirar foto');
       })
     } else {
-      this.fileInput.nativeElement.click();
+      alert('Não é possível tirar foto');
     }
   }
 
-  processWebImage(event) {
-    let reader = new FileReader();
-    reader.onload = (readerEvent) => {
-
-      let imageData = (readerEvent.target as any).result;
-      this.form.patchValue({ 'photo': imageData });
-    };
-
-    reader.readAsDataURL(event.target.files[0]);
+  changeDescricao() {
+    if (this.novoAnexo.imagem !== '' && this.novoAnexo.descricao.trim() !== '') {
+      this.isReadyToSave = true;
+    } else {
+      this.isReadyToSave = false;
+    }
   }
 
-  getProfileImageStyle() {
-    return 'url(' + this.form.controls['photo'].value + ')'
-  }
-
-  /**
-   * The user cancelled, so we dismiss without sending data back.
-   */
-  cancel() {
-    this.viewCtrl.dismiss();
-  }
-
-  /**
-   * The user is done and wants to create the item, so return it
-   * back to the presenter.
-   */
   save() {
-    if (!this.form.valid) { return; }
-    //this.viewCtrl.dismiss(this.form.value);
+    if (this.isReadyToSave) {
+      return;
+    }
   }
+
+  cancel() {
+    this.novoAnexo.imagem = "";
+    this.novoAnexo.descricao = "";
+    this.isReadyToSave = false;
+  }
+
+  // getPicture() {
+  //   if (Camera['installed']()) {
+  //     this.camera.getPicture({
+  //       destinationType: this.camera.DestinationType.DATA_URL,
+  //       targetWidth: 96,
+  //       targetHeight: 96
+  //     }).then((data) => {
+  //       this.form.patchValue({ 'profilePic': 'data:image/jpg;base64,' + data });
+  //     }, (err) => {
+  //       alert('Unable to take photo');
+  //     })
+  //   } else {
+  //     this.fileInput.nativeElement.click();
+  //   }
+  // }
+
+  // processWebImage(event) {
+  //   let reader = new FileReader();
+  //   reader.onload = (readerEvent) => {
+
+  //     let imageData = (readerEvent.target as any).result;
+  //     this.form.patchValue({ 'profilePic': imageData });
+  //   };
+
+  //   reader.readAsDataURL(event.target.files[0]);
+  // }
+
+  // getProfileImageStyle() {
+  //   return 'url(' + this.form.controls['profilePic'].value + ')'
+  // }
 }

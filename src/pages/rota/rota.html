@@ -53,23 +53,23 @@
 </ion-card>
 -->
 
-<ion-content padding>
+<ion-content>
   <ion-fab top right>
     <!--
     <button ion-fab mini color="vibrant" (click)="calculateRoute()"><ion-icon name="navigate"></ion-icon>Rota</button>
     <button ion-fab mini color="primary" (click)="saveEnderecoInstalacao()"><ion-icon name="pin"></ion-icon>Salvar Local</button>
     -->
     <button ion-fab mini hidden></button><!--isto é um truque para o ion-button ter o comportamento do ion-fab-->
-    <button ion-button round outline small icon-start color="vibrant" (click)="initializeMap()">Rota</button>
-    <button ion-button round outline small icon-start color="primary" (click)="saveEnderecoInstalacao()">Salvar Local</button>
+    <button ion-button round outline small icon-start color="secondary" (click)="initializeMap()"><ion-icon name="navigate"></ion-icon></button>
+    <button ion-button round outline small icon-start color="primary" (click)="saveEnderecoInstalacao()"><ion-icon name="checkmark"></ion-icon></button>
   </ion-fab>
   <ion-list>
     <ion-list-header>
         <b>LOCALIZAÇÃO CLIENTE</b>
     </ion-list-header>
     <ion-item text-wrap>
-        <div [innerText]="getEnderecoCliente()"></div>
-        <div *ngIf="item.PossuiEnderecoInstalacao === 'N'"><span style="color:red;font-weight:bold">ATENÇÃO: Salve a localização quando estiver no cliente.</span></div>
+        <div [innerText]="getEnderecoCliente()" style="font-size:small"></div>
+        <div *ngIf="item.PossuiEnderecoInstalacao === 'N'"><span style="color:red;font-weight:bold;font-size:small"><ion-icon name="warning"></ion-icon> Salve a localização quando estiver no cliente.</span></div>
       </ion-item>
   </ion-list>
   <div #map id="map"></div>

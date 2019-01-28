@@ -5,36 +5,26 @@
       <button ion-fab mini color="danger" [disabled]="!isChange" (click)="cancel()"><ion-icon name="close"></ion-icon></button>
       -->
       <button ion-fab hidden></button><!--isto é um truque para o ion-button ter o comportamento do ion-fab-->
-      <button ion-button round outline small icon-start color="primaty" [hidden]="!isReadyToSave" (click)="save()"><ion-icon name="checkmark"></ion-icon>Salvar</button>
-      <button ion-button round outline small icon-start color="danger" [hidden]="!isReadyToSave" (click)="cancel()"><ion-icon name="close"></ion-icon>Cancelar</button>
+      <button ion-button round outline small icon-start color="primaty" [hidden]="novoAnexo.imagem == ''" [disabled]="!isReadyToSave" (click)="save()"><ion-icon name="checkmark"></ion-icon></button>
+      <button ion-button round outline small icon-start color="danger" [hidden]="novoAnexo.imagem == ''" [disabled]="!isReadyToSave" (click)="cancel()"><ion-icon name="close"></ion-icon></button>
   </ion-fab>
 
   <ion-fab top center>
-      <button ion-fab color="primary" [hidden]="isReadyToSave" (click)="getPicture()"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab color="primary" [hidden]="novoAnexo.imagem" (click)="getPicture()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
   <ion-list>
     <ion-list-header>
         <b>ANEXOS</b>
     </ion-list-header>
-    <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">
-      <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
-      <!--<div class="profile-image-wrapper" (click)="getPicture()">-->
-        <!--
-        <div class="profile-image-placeholder" *ngIf="!this.form.controls.photo.value">
-          <ion-icon name="add"></ion-icon>
-          <div>
-              Adicionar Imagem
-          </div>
-        </div>
-        -->
-        <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.photo.value"></div>
-      <!--</div>-->
-      <ion-item text-wrap [hidden]="!isReadyToSave">
-        <ion-input type="text" maxlength="50" placeholder="Descrição Obrigatória" formControlName="descricao"></ion-input>
-      </ion-item>
-
-    </form>
+    <ion-item *ngIf="novoAnexo.imagem" text-wrap>
+      <ion-input type="text" [(ngModel)]="novoAnexo.descricao" maxlength="50" placeholder="Descrição Obrigatória" (ionChange)="changeDescricao()"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="novoAnexo.imagem">
+      <ion-card>
+        <img [src]="novoAnexo.imagem"/>
+      </ion-card>
+    </ion-item>
   </ion-list>
 
   <ion-list>
