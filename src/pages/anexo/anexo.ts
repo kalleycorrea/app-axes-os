@@ -79,12 +79,15 @@ export class AnexoPage {
   }
 
   save() {
+    let currentDate: String = new Date().toISOString();
+    currentDate = currentDate.replace(/-/g,"").replace(/:/g,"");
+
     let data: { usuario: any; senha: any; numAtendimento: any; base64Image: any; nomeArquivo: any; descricao: any } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
       numAtendimento: this.item.NumAtendimento,
-      base64Image: this.novoAnexo.imagem,
-      nomeArquivo: this.novoAnexo.descricao + '.jpg',
+      base64Image: this.novoAnexo.imagem.replace("data:image/jpeg;base64,", ""),
+      nomeArquivo: currentDate + '.jpg',
       descricao: this.novoAnexo.descricao
     };
 
