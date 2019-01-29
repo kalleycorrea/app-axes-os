@@ -1,6 +1,116 @@
 # app-axes-os
 App Axes para Gestão das Ordens de Serviço
 
+Nome:
+Axes Infra
+Axes OS
+Axes Force
+Axes War
+Axes Go
+
+# FUNCIONALIDADES
+Módulo Gestor
+Listagem das Equipes
+Listagem das OS (Em execução e encerradas)
+Designação de Atendimentos
+Estimativa de Tempo
+Localização em Tempo Real da Equipe
+
+Módulo Técnico
+Listagem das OS em Execução
+Estimativa de Tempo
+Checklist do Atendimento
+Anexar Fotos ao Atendimento
+Assinatura do Cliente Direto no Aplicativo
+Detalhes Técnicos do Cliente
+Atualização dos Dados Técnicos do Cliente
+Atualização da Localização do Cliente (Coordenadas Geográficas)
+Encerramento de Atendimento
+Funcionamento Offline
+Pesquisa de Satisfação
+
+::GITHUB::
+https://github.com/kalleycorrea/app-axes-infra
+
+
+::GOOGLE CLOUD PLATFORM::
+Console Cloud
+https://console.cloud.google.com/home/dashboard
+Console APIs e Serviços
+https://console.developers.google.com/apis/dashboard
+https://console.cloud.google.com/apis/dashboard
+
+Nível gratuito do Google Cloud Platform
+	- uma avaliação gratuita por 12 meses com crédito de US$ 300
+	- o programa Sempre gratuito
+	https://cloud.google.com/free/
+Limites de uso do Sempre gratuito
+	https://cloud.google.com/free/docs/always-free-usage-limits
+Gerenciar Contas de Faturamento
+	https://console.cloud.google.com/billing
+Definir alertas de orçamento
+	https://cloud.google.com/billing/docs/how-to/budgets
+Definir Cotas Por Projeto/Serviço
+	https://console.cloud.google.com/iam-admin/quotas
+	Understanding YouTube quota limits: total per day vs. per 100 seconds?
+	https://stackoverflow.com/questions/41835710/understanding-youtube-quota-limits-total-per-day-vs-per-100-seconds
+Perguntas frequentes - Nível gratuito do Google Cloud Platform (ERRO Maps JavaScript API: Cota Excedida)
+	https://cloud.google.com/free/docs/frequently-asked-questions?_ga=2.19342008.-120857473.1548020458
+Plano Premium
+	https://developers.google.com/maps/premium/overview
+	https://developers.google.com/maps/premium/usage-limits
+	
+API_KEY:
+Kalley -> App-Axes-Infra: AIzaSyBhi_X0Xr2yOfdXrCP_qvIWiBSvaLCbZUQ (foi usada no app axes infra "index.html" até 20/01/2019)
+Kalley -> Site Axes: AIzaSyDBG2hMZAZMcqFtjMXBWH43r550XRtR38U (foi usada no Site Axes até 20/01/2019)
+Kalley -> My Project: AIzaSyAP2rN8DHBb6jUVB1gN_bi84qI_vBnj8xc (limites maiores, pois possui conta de faturamento, está inativa, preciso fazer upgrade para conta paga)
+axestelecom -> App Axes Infra: AIzaSyDZ_AN1_M-9woJt4d4OV8h_N5G_7rX-ibw (usando no app rota.ts)
+
+ERRO Maps JavaScript API: Cota Excedida
+https://developers.google.com/maps/documentation/javascript/error-messages?utm_source=maps_js&utm_medium=degraded&utm_campaign=billing#api-key-and-billing-errors
+https://developers.google.com/maps/documentation/javascript/usage-and-billing
+https://cloud.google.com/maps-platform/user-guide/account-changes/
+
+
+Abas
+	Atendimentos -> Designação
+		Detalhes do Atendimento e do Cliente
+		Ocorrências
+		Atualizar Dados Técnicos
+		Rota -> Atualizar coordenadas geográficas
+		Anexar Fotos
+		Assinatura -> Pesquisa de Satisfação
+		Check List -> Encerramento | Designação
+	Histórico
+	Equipes
+	Mapa
+
+Pesquisa:
+	@nome do cliente
+	#tópico
+	[0..9] número do atendimento
+	[0..9/] data de abertura
+	
+cliente: 3776 (Reydivan)
+contrato: 5934
+atendimento: 100903
+
+
+- Renomear a classe Items para Atendimentos
+- Renomear o aplicativo
+- Salvar o App no GitHub
+- Salvar localmente os dados do usuário para usar no login e requisição
+- Refresh pra atualizar a listagem de atendimentos
+- Notificação quando o tecnico for designado para um atendimento
+- Ícones do app (bruno kalvner)
+- Nomes da equipe na listagem de atendimentos
+- Conferir a key do google maps se tá na conta da axes
+- Dados Adicionais - MTBF
+- Dados Adicionais - Para todos os contratos
+- Verificar o funcionamento da tabela AtendimentoOS quando se cria a OS (Situação de 'Não Criada' para 'Na Fila' ou 'A Caminho' ou 'Concluída' ou 'Em Execução')
+
+
+
 # IONIC
 
 OFFICIAL DOCUMENTATION
