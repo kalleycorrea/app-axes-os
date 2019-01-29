@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 import { Camera } from '@ionic-native/camera';
 import { CameraOptions } from '@ionic-native/camera';
 
@@ -17,7 +18,7 @@ export class AnexoPage {
   novoAnexo: { imagem: string; descricao: string } = { imagem: "", descricao: "" };
   isReadyToSave: boolean;
   private saveErrorString: string;
-  anexos: any[];
+  anexos: any[] = [];
   // anexos: any[] = [
   //     {
   //       imagem: 'https://rbx.axes.com.br/routerbox/file/docarquivos/Screenshot_20190102-183729.png',
@@ -31,6 +32,7 @@ export class AnexoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public viewCtrl: ViewController, formBuilder: FormBuilder,
+    public datepipe: DatePipe,
     public camera: Camera, public toastCtrl: ToastController, public atendimentos: Atendimentos) {
 
       this.item = navParams.get('item');
@@ -46,6 +48,9 @@ export class AnexoPage {
       numAtendimento: this.item['NumAtendimento']
     };
     this.anexos = this.atendimentos.getAnexos(data);
+
+    //let currentDate = this.datepipe.transform(new Date(), 'yyyyMMddHHmmss');
+    //console.log(currentDate);
   }
 
   getPicture() {
@@ -54,8 +59,10 @@ export class AnexoPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      //targetWidth: 96,
-      //targetHeight: 96,
+      // redimensionar a imagem -> retornar miniaturas (Thumbnails)
+      targetWidth: 640,
+      targetHeight: 640,
+      allowEdit: true,
       correctOrientation: true
     };
 
@@ -79,15 +86,15 @@ export class AnexoPage {
   }
 
   save() {
-    let currentDate: String = new Date().toISOString();
-    currentDate = currentDate.replace(/-/g,"").replace(/:/g,"");
+
+    let currentDate = this.datepipe.transform(new Date(), 'yyyyMMddHHmmss');
 
     let data: { usuario: any; senha: any; numAtendimento: any; base64Image: any; nomeArquivo: any; descricao: any } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
       numAtendimento: this.item.NumAtendimento,
       base64Image: this.novoAnexo.imagem.replace("data:image/jpeg;base64,", ""),
-      nomeArquivo: currentDate + '.jpg',
+      nomeArquivo: this.item.NumAtendimento.toString() + '-' + currentDate + '.jpg',
       descricao: this.novoAnexo.descricao
     };
 
@@ -101,10 +108,12 @@ export class AnexoPage {
           cssClass: "toastCustomStyles"
         });
         toast.present();
-        this.anexos.push(this.novoAnexo);
+        //this.anexos.push(this.novoAnexo);
+        this.anexos.length = 0;
         this.novoAnexo.imagem = "";
         this.novoAnexo.descricao = "";
         this.isReadyToSave = false;
+        this.anexos = this.atendimentos.getAnexos(data);
       },
       err => {
         // Unable to save

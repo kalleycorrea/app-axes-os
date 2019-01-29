@@ -8,6 +8,7 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { Settings, User, Api, Atendimentos } from '../providers';
+import { DatePipe } from '@angular/common';
 import { MyApp } from './app.component';
 
 import { Geolocation } from '@ionic-native/geolocation';
@@ -55,6 +56,7 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     Geolocation,
     BackgroundGeolocation,
+    DatePipe,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
