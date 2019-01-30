@@ -184,6 +184,17 @@ export class Atendimentos {
     return seq;
   }
 
+  addAssinatura(data: any) {
+    let seq = this.api.post('addassinatura', data).share();
+
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
+  }
+
   // Solução com Observables/Subjects para atualizar o tabBadge da page AtendimentosPage (Atendimentos)
   get listSize(){
     return this._listSize;

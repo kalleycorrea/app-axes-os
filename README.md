@@ -401,7 +401,20 @@ ATENÇÃO: Antes de instalar um pacote nativo "@ionic-native/<nome-do-pacote>" r
 	npm install --save ionic-text-avatar
 	
 	Erro: Template parse errors: 'ion-text-avatar' is not a known element #1 -> https://github.com/Airblader/ionic-text-avatar/issues/1
-	
+    Solução: I work with lazy loading and then I have to add to page.module.ts what you described for app.module.ts.
+
+-Signature Pad
+  https://github.com/szimek/signature_pad
+  https://github.com/wulfsolter/angular2-signaturepad
+  npm install angular2-signaturepad --save
+
+  Exemplos: 
+    https://devdactic.com/signature-drawpad-ionic-2/
+    https://www.youtube.com/watch?v=KpBEyvGA0OE
+  Erro: 'signature-pad' is not a known element:
+    1. If 'signature-pad' is an Angular component, then verify that it is part of this module.
+    2. If 'signature-pad' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+    Solução: Isso é por causa do "lazy loading". Então importar pelo page.module.ts e não por app.module.ts
 	
 Erro: Cannot find module '@angular/core'. in my ionic app
 	I solved this by delete node_modules folder from my project and run 'npm install' again.

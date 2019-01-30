@@ -94,7 +94,7 @@
         <variable name="ACCOUNT_TYPE" value="$PACKAGE_NAME.account" />
         <variable name="CONTENT_AUTHORITY" value="$PACKAGE_NAME" />
     </plugin>
-    <allow-navigation href="http://192.168.0.7:8100" sessionid="09f2f8ae" />
+    <allow-navigation href="http://192.168.0.7:8100" sessionid="b4310f1b" />
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.1.4" />
 </widget>

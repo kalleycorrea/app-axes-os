@@ -41,16 +41,14 @@ export class AnexoPage {
       this.saveErrorString = "Não foi possível salvar os dados. Por favor tente novamente.";
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    this.anexos.length = 0;
     let data: { usuario: any; senha: any; numAtendimento: any; } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
       numAtendimento: this.item['NumAtendimento']
     };
     this.anexos = this.atendimentos.getAnexos(data);
-
-    //let currentDate = this.datepipe.transform(new Date(), 'yyyyMMddHHmmss');
-    //console.log(currentDate);
   }
 
   getPicture() {

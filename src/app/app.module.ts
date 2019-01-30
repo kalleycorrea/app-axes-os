@@ -14,9 +14,9 @@ import { MyApp } from './app.component';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 
-//import { HTTP_INTERCEPTORS } from '@angular/common/http';
-//import { AuthInterceptor } from '../auth/auth.interceptor';
-//import { AuthService } from '../auth/auth.service';
+// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { AuthInterceptor } from '../auth/auth.interceptor';
+// import { AuthService } from '../auth/auth.service';
 
 export function provideSettings(storage: Storage) {
   /**
