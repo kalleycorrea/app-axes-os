@@ -7,22 +7,91 @@
   </ion-navbar>
 </ion-header>
 -->
-<ion-content>
-  <!--
-  <ion-fab top right>
-    <button ion-fab hidden></button> // isto é um truque para o ion-button ter o comportamento do ion-fab
-    <button ion-button round outline small icon-start color="primaty" [disabled]="signature == ''" (click)="savePad()"><ion-icon name="checkmark"></ion-icon></button>
-    <button ion-button round outline small icon-start color="danger" [disabled]="signature == ''" (click)="clearPad()"><ion-icon name="close"></ion-icon></button>
-  </ion-fab>
-  -->
-  <div class="title">Por favor, escreva a sua assinatura</div>
-  <ion-row [ngClass]="{'drawing-active': isDrawing}">
-    <ion-col></ion-col>
-    <ion-col>
-      <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
-    </ion-col>
-    <ion-col></ion-col>
-  </ion-row>
-  <button ion-button full round icon-start color="danger" (click)="clearPad()"><ion-icon name="close"></ion-icon>Limpar</button>
-  <button ion-button full round icon-start color="primary" (click)="savePad()"><ion-icon name="checkmark"></ion-icon>Salvar</button>
+
+<ion-content padding style="background-color: #f5f5ff">
+
+    <!-- Assinatura -->
+  <div *ngIf="!(showRating1 || showRating2)">
+    <h5 style="color: #757575">Assinatura do Cliente</h5>
+    <!--<div class="title">Por favor, escreva a sua assinatura</div>-->
+    <ion-fab top right>
+      <button ion-fab hidden></button>
+      <button ion-button round outline small icon-start color="primary" [disabled]="!(isDrawing || lengthSignature > 0)" (click)="savePad()"><ion-icon name="checkmark"></ion-icon></button>
+      <button ion-button round outline small icon-start color="danger" [disabled]="!(isDrawing || lengthSignature > 0)" (click)="clearPad()"><ion-icon name="close"></ion-icon></button>
+    </ion-fab>
+
+    <signature-pad [options]="signaturePadOptions"  id="signatureCanvas" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+
+    <!--
+    <div [ngClass]="{'drawing-active': isDrawing}" style="border-style: solid;border-color: gray;border-width: thin">
+        <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+    </div>
+    -->
+
+    <!--
+    <ion-row [ngClass]="{'drawing-active': isDrawing}">
+      <ion-col></ion-col>
+      <ion-col>
+        <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    -->
+
+    <!--
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <button ion-button full round icon-start color="danger" (click)="clearPad()"><ion-icon name="close"></ion-icon>Apagar</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full round icon-start color="primary" (click)="savePad()"><ion-icon name="checkmark"></ion-icon>Confirmar</button>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    -->
+  </div>
+
+  <!-- Rating Atendimento -->
+  <div *ngIf="showRating1" no-padding>
+    <h4 style="color: #262626">Avaliação do Atendimento</h4>
+    <h5 style="color:#595959">Sua opinião é importantíssima para nós, ajude-nos em nossa melhoria contínua.</h5>
+    <h4 style="color:#595959">Qual a sua avaliação sobre esse atendimento?</h4>
+    <br>
+    <div class="center">
+      <ionic3-star-rating
+        activeIcon = "ios-star"
+        defaultIcon = "ios-star-outline"
+        activeColor = "yellow"
+        defaultColor = "red"
+        readonly="false"
+        [rating]="rating1">
+      </ionic3-star-rating>
+      <p>{{descRating1}}</p>
+    </div>
+    <ion-textarea [(ngModel)]="commentRating1" rows="3" maxlength="300" style="border-style: solid;border-color: gray;border-width: thin" autosize autocomplete="on" autocorrect="on" placeholder="Algum comentário sobre esse atendimento?"></ion-textarea>
+    <button ion-button full round color="primary" (click)="showNextRating()">Próxima</button>
+  </div>
+
+    <!-- Rating Produto -->
+  <div *ngIf="showRating2" no-padding>
+    <h4 style="color: #262626">Avaliação do Atendimento</h4>
+    <h4 style="color:#595959">Qual a sua avaliação sobre o seu produto {{item.Plano}}?</h4>
+    <br>
+    <div class="center">
+      <ionic3-star-rating
+        activeIcon = "ios-star"
+        defaultIcon = "ios-star-outline"
+        activeColor = "yellow"
+        defaultColor = "red"
+        readonly="false"
+        [rating]="rating2">
+      </ionic3-star-rating>
+      <p>{{descRating2}}</p>
+    </div>
+    <ion-textarea [(ngModel)]="commentRating2" rows="3" maxlength="300" style="border-style: solid;border-color: gray;border-width: thin" autosize autocomplete="on" autocorrect="on" placeholder="Algum comentário sobre o seu produto?"></ion-textarea>
+    <button ion-button block round outline icon-start color="dark" (click)="backRating()">Voltar</button>
+    <button ion-button full round icon-start color="primary" (click)="saveRating()"><ion-icon name="checkmark"></ion-icon>Concluir</button>
+  </div>
+
 </ion-content>

@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 // import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { AuthInterceptor } from '../auth/auth.interceptor';
@@ -57,6 +58,7 @@ export function provideSettings(storage: Storage) {
     Geolocation,
     BackgroundGeolocation,
     DatePipe,
+    ScreenOrientation,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },

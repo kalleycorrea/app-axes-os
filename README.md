@@ -96,17 +96,14 @@ contrato: 5934
 atendimento: 100903
 
 
-- Renomear a classe Items para Atendimentos
-- Renomear o aplicativo
-- Salvar o App no GitHub
 - Salvar localmente os dados do usuário para usar no login e requisição
 - Refresh pra atualizar a listagem de atendimentos
 - Notificação quando o tecnico for designado para um atendimento
+- Alinhamento da Tab Pages Detalhes
 - Ícones do app (bruno kalvner)
 - Nomes da equipe na listagem de atendimentos
-- Conferir a key do google maps se tá na conta da axes
 - Dados Adicionais - MTBF
-- Dados Adicionais - Para todos os contratos
+- Dados Adicionais - Poder atualizar todos os contratos do cliente, não somente o contrato do atendimento.
 - Verificar o funcionamento da tabela AtendimentoOS quando se cria a OS (Situação de 'Não Criada' para 'Na Fila' ou 'A Caminho' ou 'Concluída' ou 'Em Execução')
 
 
@@ -411,11 +408,45 @@ ATENÇÃO: Antes de instalar um pacote nativo "@ionic-native/<nome-do-pacote>" r
   Exemplos: 
     https://devdactic.com/signature-drawpad-ionic-2/
     https://www.youtube.com/watch?v=KpBEyvGA0OE
+  
+  Resize:
+    https://www.9lessons.info/2017/04/ionic-3-and-angular-4-working-with.html (Resize implementado com base nesse)
+    https://github.com/szimek/signature_pad/issues/268
+    https://forum.ionicframework.com/t/ionic-2-signature-pad-resize-image/93624
+    https://stackoverflow.com/questions/44454463/ionic2-signature-pad-resize-image
+    Google: angular2 signaturepad resizeCanvas
+      https://github.com/wulfsolter/angular2-signaturepad/issues/4
+      https://github.com/szimek/signature_pad/issues/291
+    Google: angular2 signaturepad resize after rotation device
+      https://github.com/szimek/signature_pad/issues/91
+    Google: angular2 signaturepad resize based in screen orientation
+    Google: ionic whats event rotation device?
+      https://forum.ionicframework.com/t/detect-the-screen-orientation-to-a-device/108637/5
+
   Erro: 'signature-pad' is not a known element:
     1. If 'signature-pad' is an Angular component, then verify that it is part of this module.
     2. If 'signature-pad' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
     Solução: Isso é por causa do "lazy loading". Então importar pelo page.module.ts e não por app.module.ts
-	
+
+-Ionic3 Star Rating
+  https://github.com/melwinVincent/ionic3-star-rating
+  https://www.npmjs.com/package/ionic3-star-rating
+  npm install ionic3-star-rating
+  Exemplo:
+    https://stackblitz.com/edit/ionic3-star-rating
+
+- Screen Orientation
+  https://github.com/apache/cordova-plugin-screen-orientation
+  https://github.com/ionic-team/ionic-native
+  https://www.npmjs.com/package/@ionic-native/screen-orientation (Versões)
+
+  ionic cordova plugin add cordova-plugin-screen-orientation
+  npm install --save @ionic-native/screen-orientation
+  npm install --save @ionic-native/screen-orientation@4.20.0 (usei esse)
+  Exemplos:
+    https://www.ghadeer.io/ionic-3-screen-orientation/
+
+
 Erro: Cannot find module '@angular/core'. in my ionic app
 	I solved this by delete node_modules folder from my project and run 'npm install' again.
 
@@ -641,7 +672,13 @@ TypeScript -> Merge two object arrays with Angular 2 and TypeScript?
 		this.results = [ ...this.results, ...data.results];
 	
 Gestures: tap, press, pan, swipe, rotate, and pinch events.
-https://ionicframework.com/docs/components/#gestures
+https://ionicframework.com/docs/v3/components/#gestures
+
+DOM events
+https://en.wikipedia.org/wiki/DOM_events
+
+Unique Device ID
+https://ionicframework.com/docs/v3/native/unique-device-id/
 
 
 https://stackoverflow.com/questions/25221080/css-how-to-change-backgound-colour-for-item-avatar-in-ionicframework
