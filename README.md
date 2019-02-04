@@ -96,6 +96,7 @@ contrato: 5934
 atendimento: 100903
 
 
+- Usuário Capturar Atendimento
 - Salvar localmente os dados do usuário para usar no login e requisição
 - Refresh pra atualizar a listagem de atendimentos
 - Notificação quando o tecnico for designado para um atendimento

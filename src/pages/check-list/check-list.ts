@@ -15,8 +15,8 @@ export class CheckListPage {
   grupoUsuarios: any[];
   usuarios: any[];
   atendimentoCausas: any[];
-  grupoDesignacao: any;
-  usuarioDesignacao: any;
+  grupoDesignado: any;
+  usuarioDesignado: any;
   causa: any;
   solucao: any;
   showSegment: any;
@@ -45,7 +45,7 @@ export class CheckListPage {
       senha: this.account['senha'],
       numAtendimento: this.item['NumAtendimento'],
       tipoAtendimento: this.item['Tipo'],
-      grupo: (this.grupoDesignacao) ? this.grupoDesignacao : '',
+      grupo: (this.grupoDesignado) ? this.grupoDesignado : '',
     };
     Promise.all([
       this.checkList = this.atendimentos.getCheckList(this.data),
@@ -66,7 +66,7 @@ export class CheckListPage {
       senha: this.account['senha'],
       numAtendimento: this.item['NumAtendimento'],
       tipoAtendimento: this.item['Tipo'],
-      grupo: (this.grupoDesignacao) ? this.grupoDesignacao : '',
+      grupo: (this.grupoDesignado) ? this.grupoDesignado : '',
     };
     this.usuarios = this.atendimentos.getUsuarios(this.data);
   }
@@ -109,18 +109,18 @@ export class CheckListPage {
   }
 
   saveDesignacao() {
-    if ((this.grupoDesignacao==undefined || this.grupoDesignacao=='') &&
-    (this.usuarioDesignacao==undefined || this.usuarioDesignacao=='')) {
+    if ((this.grupoDesignado==undefined || this.grupoDesignado=='') &&
+    (this.usuarioDesignado==undefined || this.usuarioDesignado=='')) {
       alert('Selecione o Grupo e/ou Usuário para designar o atendimento');
       return;
     }
 
-    let data: { usuario: any; senha: any; numAtendimento: any; grupoDesignacao: any; usuarioDesignacao: any } = {
+    let data: { usuario: any; senha: any; numAtendimento: any; grupoDesignado: any; usuarioDesignado: any } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
       numAtendimento: this.item.NumAtendimento,
-      grupoDesignacao: this.grupoDesignacao,
-      usuarioDesignacao: this.usuarioDesignacao
+      grupoDesignado: this.grupoDesignado,
+      usuarioDesignado: this.usuarioDesignado
     };
 
     this.atendimentos.saveDesignacao(data).subscribe(
