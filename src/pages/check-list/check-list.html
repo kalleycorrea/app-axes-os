@@ -1,17 +1,67 @@
-<!--
-  Generated template for the CheckListPage page.
+<ion-content no-padding>
+  <p style="padding-left: 16px; color: #757575"><b>ENCERRAMENTO</b></p>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!--
-<ion-header>
-  <ion-navbar>
-    <ion-title>check-list</ion-title>
-  </ion-navbar>
-</ion-header>
--->
+  <div no-padding>
+    <ion-segment [(ngModel)]="showSegment" color="vibrant">
+      <ion-segment-button value="checklist">
+        <b>CHECK LIST</b>
+      </ion-segment-button>
+      <ion-segment-button value="designar">
+        <b>DESIGNAR</b>
+      </ion-segment-button>
+      <ion-segment-button value="encerrar">
+        <b>ENCERRAR</b>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-<ion-content padding>
 
+  <div no-padding no-margin [ngSwitch]="showSegment">
+    <!-- CHECK LIST -->
+    <ion-list no-lines *ngSwitchCase="'checklist'">
+      <p style="padding-left: 20px" *ngIf="checkList">Marque a tarefa quando concluir</p>
+      <ion-item *ngFor="let task of checkList">
+        <ion-label>{{task.Descricao}}</ion-label>
+        <ion-checkbox [(ngModel)]="task.Checked" (ionChange)="saveCheckList()" color="secondary"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <!-- DESIGNAÇÃO -->
+    <ion-list no-lines *ngSwitchCase="'designar'">
+      <p style="padding-left: 20px">Atribua esse atendimento para outro colaborador</p>
+      <ion-item>
+        <ion-label floating>Grupo</ion-label>
+        <ion-select [(ngModel)]="grupoDesignacao" (ionChange)="changeGrupo()" okText="OK" cancelText="Cancelar" interface="action-sheet">
+          <ion-option *ngFor="let grupo of grupoUsuarios" [value]="grupo.id">{{grupo.Nome}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Usuário</ion-label>
+        <ion-select [(ngModel)]="usuarioDesignacao" okText="OK" cancelText="Cancelar" interface="action-sheet">
+          <ion-option *ngFor="let usuario of usuarios" [value]="usuario.Nome">{{usuario.Nome}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <button ion-button full round default color="primary" (click)="saveDesignacao()">Salvar</button>
+      </ion-item>
+    </ion-list>
+
+    <!-- ENCERRAMENTO -->
+    <ion-list no-lines *ngSwitchCase="'encerrar'">
+      <ion-item>
+        <ion-label floating>Causa</ion-label>
+        <ion-select [(ngModel)]="causa" okText="OK" cancelText="Cancelar" interface="action-sheet">
+          <ion-option *ngFor="let item of atendimentoCausas" [value]="item.Codigo">{{item.Descricao}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Solução</ion-label>
+        <ion-textarea [(ngModel)]="solucao" rows="10" style="border-style: solid;border-color: gray;border-width: thin" autosize autocomplete="on" autocorrect="on" placeholder=""></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <button ion-button full round default color="primary" (click)="saveEncerramento()">Salvar</button>
+      </ion-item>
+    </ion-list>
+
+  </div>
 </ion-content>

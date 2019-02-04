@@ -58,16 +58,11 @@ export class AssinaturaPage {
   }
 
   ionViewDidLoad() {
-    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-    this.screenOrientation.onChange()
-      .subscribe(() => alert('Done'));
-  }
-
-  ionViewDidLeave(){
-    // this.screenOrientation.unlock();
+    // this.screenOrientation.onChange().subscribe(() => this.canvasResize());
   }
 
   ionViewDidEnter() {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     //this.signaturePad.clear();
     this.lengthSignature = 0;
     this.showRating1 = false;
@@ -81,8 +76,13 @@ export class AssinaturaPage {
   }
 
   ngAfterViewInit() {
+    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
     this.signaturePad.clear();
     this.canvasResize();
+  }
+
+  ionViewDidLeave(){
+    this.screenOrientation.unlock();
   }
 
   canvasResize() {

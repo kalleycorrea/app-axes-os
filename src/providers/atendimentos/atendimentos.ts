@@ -14,6 +14,10 @@ export class Atendimentos {
   dadosAdicionais: any[] = [];
   dadosAdicionaisVal: any[] = [];
   anexos: any[] = [];
+  checkList: any[] = [];
+  grupoUsuarios: any[] = [];
+  usuarios: any[] = [];
+  atendimentoCausas: any[] = [];
 
   defaultAtendimento: any = {
     "NumAtendimento": "",
@@ -61,7 +65,6 @@ export class Atendimentos {
     //return this.api.get('/', account);
     //let seq = this.api.get('getatendimentos', account).share();
     let seq = this.api.post('getatendimentos', account).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
       this.atendimentos.length = 0;
@@ -80,7 +83,6 @@ export class Atendimentos {
 
   updateSituacaoOS(data: any) {
     let seq = this.api.post('updatesituacaoos', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
     }, err => {
@@ -91,7 +93,6 @@ export class Atendimentos {
 
   getOcorrencias(data: any) {
     let seq = this.api.post('getocorrencias', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
       this.ocorrencias.length = 0;
@@ -108,7 +109,6 @@ export class Atendimentos {
 
   addOcorrencia(data: any) {
     let seq = this.api.post('addocorrencia', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
     }, err => {
@@ -119,7 +119,6 @@ export class Atendimentos {
 
   getDadosAdicionais(data: any) {
     let seq = this.api.post('getdadosadicionais', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
       this.dadosAdicionais.length = 0;
@@ -136,7 +135,6 @@ export class Atendimentos {
 
   saveDadosAdicionais(data: any) {
     let seq = this.api.post('savedadosadicionais', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
     }, err => {
@@ -147,7 +145,6 @@ export class Atendimentos {
 
   saveEnderecoInstalacao(data: any) {
     let seq = this.api.post('saveenderecoinstalacao', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
     }, err => {
@@ -158,7 +155,6 @@ export class Atendimentos {
 
   getAnexos(data: any) {
     let seq = this.api.post('getanexos', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
       this.anexos.length = 0;
@@ -175,7 +171,6 @@ export class Atendimentos {
 
   addAnexos(data: any) {
     let seq = this.api.post('addanexos', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
     }, err => {
@@ -186,7 +181,6 @@ export class Atendimentos {
 
   addAssinatura(data: any) {
     let seq = this.api.post('addassinatura', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
     }, err => {
@@ -197,13 +191,88 @@ export class Atendimentos {
 
   addRating(data: any) {
     let seq = this.api.post('addrating', data).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response
     }, err => {
       console.error('ERROR', err);
     });
     return seq;
+  }
+
+  getCheckList(data: any) {
+    let seq = this.api.post('getchecklist', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+      this.checkList.length = 0;
+      if (res.length>0) {
+        // set Checked
+        let arrayMarcados = res[0]['Marcados'].split(";");
+        for (let item of res) {
+          if (arrayMarcados.includes(item['Id'])) {
+            item['Checked'] = true;
+          }
+          this.checkList.push(item);
+        }
+        // set Checked
+        // let arrayMarcados = this.checkList[0]['Marcados'].split(";");
+        // for (var i = 0; i < this.checkList.length; i++) {
+        //   if (arrayMarcados.includes(this.checkList[i]['Id'])) {
+        //     this.checkList[i]['Checked'] = true;
+        //   }
+        // }
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return this.checkList;
+  }
+
+  getGrupoUsuarios(data: any) {
+    let seq = this.api.post('getgrupousuarios', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+      this.grupoUsuarios.length = 0;
+      if (res.length>0) {
+        for (let item of res) {
+          this.grupoUsuarios.push(item);
+        }
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return this.grupoUsuarios;
+  }
+
+  getUsuarios(data: any) {
+    let seq = this.api.post('getusuarios', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+      this.usuarios.length = 0;
+      if (res.length>0) {
+        for (let item of res) {
+          this.usuarios.push(item);
+        }
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return this.usuarios;
+  }
+
+  getAtendimentoCausas(data: any) {
+    let seq = this.api.post('getatendimentocausas', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+      this.atendimentoCausas.length = 0;
+      if (res.length>0) {
+        for (let item of res) {
+          this.atendimentoCausas.push(item);
+        }
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return this.atendimentoCausas;
   }
 
   // Solução com Observables/Subjects para atualizar o tabBadge da page AtendimentosPage (Atendimentos)

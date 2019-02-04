@@ -421,7 +421,7 @@ ATENÇÃO: Antes de instalar um pacote nativo "@ionic-native/<nome-do-pacote>" r
       https://github.com/szimek/signature_pad/issues/91
     Google: angular2 signaturepad resize based in screen orientation
     Google: ionic whats event rotation device?
-      https://forum.ionicframework.com/t/detect-the-screen-orientation-to-a-device/108637/5
+      https://forum.ionicframework.com/t/detect-the-screen-orientation-to-a-device/108637
 
   Erro: 'signature-pad' is not a known element:
     1. If 'signature-pad' is an Angular component, then verify that it is part of this module.
@@ -659,6 +659,7 @@ Ion-textarea resize height dynamically
 TypeScript -> Iterators and Generators (for, forEach)
 	https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html
 	https://www.tutorialspoint.com/typescript/typescript_array_foreach.htm
+  https://basarat.gitbooks.io/typescript/docs/for...of.html
 
 TypeScript -> Interface para array de objetos associativos em TypeScript
 	https://stackoverflow.com/questions/38213926/interface-for-associative-object-array-in-typescript
@@ -876,3 +877,11 @@ Criando Page Login
 https://www.youtube.com/watch?v=diP5gHOtJW8&list=PLswa9HeoJUq_Dphg3w1TwqBMgruzRCwIO&index=29
 Processando Login
 https://www.youtube.com/watch?v=IL3nimQHuB8&list=PLswa9HeoJUq_Dphg3w1TwqBMgruzRCwIO&index=30
+
+Typescript Sleep
+https://stackoverflow.com/questions/37764665/typescript-sleep
+  setTimeout()
+
+Angular2 wait for multiple promises to finish
+https://stackoverflow.com/questions/37841721/angular2-wait-for-multiple-promises-to-finish
+  Promise.all()
