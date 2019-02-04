@@ -72,14 +72,121 @@ export class CheckListPage {
   }
 
   saveCheckList() {
+    let strChecklist: string = '';
+    let descChecklist: string = '';
+    for (let item of this.checkList) {
+      if (item.Checked == true) {
+        strChecklist = strChecklist + item.Id + ';'
+        descChecklist = descChecklist + item.Descricao + '; '
+      }
+    }
+    strChecklist = strChecklist.substr(0, strChecklist.length-1);
+    descChecklist = descChecklist.substr(0, descChecklist.length-2);
 
+    let data: { usuario: any; senha: any; numAtendimento: any; strChecklist: any; descChecklist: any } = {
+      usuario: this.account['usuario'],
+      senha: this.account['senha'],
+      numAtendimento: this.item.NumAtendimento,
+      strChecklist: strChecklist,
+      descChecklist: descChecklist
+    };
+
+    this.atendimentos.saveCheckList(data).subscribe(
+      resp => {
+        // success
+      },
+      err => {
+        // Unable to save
+        let toast = this.toastCtrl.create({
+          message: this.saveErrorString,
+          duration: 3000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      }
+    );
   }
 
   saveDesignacao() {
+    if ((this.grupoDesignacao==undefined || this.grupoDesignacao=='') &&
+    (this.usuarioDesignacao==undefined || this.usuarioDesignacao=='')) {
+      alert('Selecione o Grupo e/ou Usuário para designar o atendimento');
+      return;
+    }
 
+    let data: { usuario: any; senha: any; numAtendimento: any; grupoDesignacao: any; usuarioDesignacao: any } = {
+      usuario: this.account['usuario'],
+      senha: this.account['senha'],
+      numAtendimento: this.item.NumAtendimento,
+      grupoDesignacao: this.grupoDesignacao,
+      usuarioDesignacao: this.usuarioDesignacao
+    };
+
+    this.atendimentos.saveDesignacao(data).subscribe(
+      resp => {
+        // success
+        let toast = this.toastCtrl.create({
+          message: "Dados Salvos",
+          duration: 2000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      },
+      err => {
+        // Unable to save
+        let toast = this.toastCtrl.create({
+          message: this.saveErrorString,
+          duration: 3000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      }
+    );
   }
 
   saveEncerramento() {
+    if (this.causa==undefined || this.causa=='') {
+      alert('Selecione a CAUSA desse atendimento');
+      return;
+    }
 
+    if (this.solucao==undefined || this.solucao=='') {
+      alert('Informe a SOLUÇÃO desse atendimento');
+      return;
+    }
+
+    let data: { usuario: any; senha: any; numAtendimento: any; causa: any; solucao: any } = {
+      usuario: this.account['usuario'],
+      senha: this.account['senha'],
+      numAtendimento: this.item.NumAtendimento,
+      causa: this.causa,
+      solucao: this.solucao
+    };
+
+    this.atendimentos.saveEncerramento(data).subscribe(
+      resp => {
+        // success
+        let toast = this.toastCtrl.create({
+          message: "Dados Salvos",
+          duration: 2000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      },
+      err => {
+        // Unable to save
+        let toast = this.toastCtrl.create({
+          message: this.saveErrorString,
+          duration: 3000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      }
+    );
   }
 }

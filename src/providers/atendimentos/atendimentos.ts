@@ -233,6 +233,9 @@ export class Atendimentos {
       // If the API returned a successful response
       this.grupoUsuarios.length = 0;
       if (res.length>0) {
+        // o primeiro item da lista é uma opção em branco
+        let itemVazio: { id: any; Nome: any } = {id: '', Nome: ''};
+        this.grupoUsuarios.push(itemVazio);
         for (let item of res) {
           this.grupoUsuarios.push(item);
         }
@@ -249,6 +252,9 @@ export class Atendimentos {
       // If the API returned a successful response
       this.usuarios.length = 0;
       if (res.length>0) {
+        // o primeiro item da lista é uma opção em branco
+        let itemVazio: { Nome: any; perfil: any; idgrupo:any } = {Nome: '', perfil: '', idgrupo: ''};
+        this.usuarios.push(itemVazio);
         for (let item of res) {
           this.usuarios.push(item);
         }
@@ -265,6 +271,9 @@ export class Atendimentos {
       // If the API returned a successful response
       this.atendimentoCausas.length = 0;
       if (res.length>0) {
+        // o primeiro item da lista é uma opção em branco
+        let itemVazio: { Codigo: any; Descricao: any; Grupo:any } = {Codigo: '', Descricao: '', Grupo: ''};
+        this.atendimentoCausas.push(itemVazio);
         for (let item of res) {
           this.atendimentoCausas.push(item);
         }
@@ -273,6 +282,36 @@ export class Atendimentos {
       console.error('ERROR', err);
     });
     return this.atendimentoCausas;
+  }
+
+  saveCheckList(data: any) {
+    let seq = this.api.post('savechecklist', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
+  }
+
+  saveDesignacao(data: any) {
+    let seq = this.api.post('savedesignacao', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
+  }
+
+  saveEncerramento(data: any) {
+    let seq = this.api.post('saveencerramento', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
   }
 
   // Solução com Observables/Subjects para atualizar o tabBadge da page AtendimentosPage (Atendimentos)

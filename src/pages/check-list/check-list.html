@@ -22,7 +22,10 @@
       <p style="padding-left: 20px" *ngIf="checkList">Marque a tarefa quando concluir</p>
       <ion-item *ngFor="let task of checkList">
         <ion-label>{{task.Descricao}}</ion-label>
-        <ion-checkbox [(ngModel)]="task.Checked" (ionChange)="saveCheckList()" color="secondary"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="task.Checked" color="secondary"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <button ion-button full round default color="primary" (click)="saveCheckList()">Salvar</button>
       </ion-item>
     </ion-list>
 
