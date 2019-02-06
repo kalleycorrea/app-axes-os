@@ -3,7 +3,7 @@
     <name>Axes OS</name>
     <description>App Axes para Gestão das Ordens de Serviço.</description>
     <author email="kalleycorrea@gmail.com" href="http://www.kalley.com.br">Kalley Correa</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.0.7:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -94,7 +94,8 @@
         <variable name="ACCOUNT_TYPE" value="$PACKAGE_NAME.account" />
         <variable name="CONTENT_AUTHORITY" value="$PACKAGE_NAME" />
     </plugin>
+    <plugin name="cordova-plugin-screen-orientation" spec="3.0.1" />
+    <allow-navigation href="http://192.168.0.7:8100" sessionid="9051dff0" />
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.1.4" />
-    <plugin name="cordova-plugin-screen-orientation" spec="3.0.1" />
 </widget>

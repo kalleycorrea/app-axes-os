@@ -27,6 +27,7 @@ export class Atendimentos {
     "SiglaCliente": "",
     "Contrato": "",
     "Plano": "",
+    "DescTopico": "",
     "Topico": "",
     "Prioridade": "",
     "Assunto": "",

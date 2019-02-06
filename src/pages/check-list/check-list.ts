@@ -115,12 +115,15 @@ export class CheckListPage {
       return;
     }
 
-    let data: { usuario: any; senha: any; numAtendimento: any; grupoDesignado: any; usuarioDesignado: any } = {
+    let data: { usuario: any; senha: any; numAtendimento: any; grupoDesignado: any; usuarioDesignado: any;
+      topico: any; situacaoOS: any; } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
       numAtendimento: this.item.NumAtendimento,
       grupoDesignado: this.grupoDesignado,
-      usuarioDesignado: this.usuarioDesignado
+      usuarioDesignado: this.usuarioDesignado,
+      topico: this.item.Topico,
+      situacaoOS: this.item.SituacaoOS
     };
 
     this.atendimentos.saveDesignacao(data).subscribe(
@@ -158,12 +161,15 @@ export class CheckListPage {
       return;
     }
 
-    let data: { usuario: any; senha: any; numAtendimento: any; causa: any; solucao: any } = {
+    let data: { usuario: any; senha: any; numAtendimento: any; causa: any; solucao: any;
+      topico: any; situacaoOS: any; } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
       numAtendimento: this.item.NumAtendimento,
       causa: this.causa,
-      solucao: this.solucao
+      solucao: this.solucao,
+      topico: this.item.Topico,
+      situacaoOS: this.item.SituacaoOS
     };
 
     this.atendimentos.saveEncerramento(data).subscribe(

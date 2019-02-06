@@ -123,7 +123,7 @@ export class RotaPage {
       draggable: (tipo == 'T') ? true : false,
     });
     if (tipo == 'C') {
-      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>>${this.item['Topico']}`;
+      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>>${this.item['DescTopico']}`;
       this.addInfoWindow(marker, infoMarker);
     }
   }
@@ -147,7 +147,7 @@ export class RotaPage {
       draggable: (tipo == 'T') ? true : false,
     });
     if (tipo == 'C') {
-      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>>${this.item['Topico']}`;
+      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>>${this.item['DescTopico']}`;
       this.addInfoWindow(marker, infoMarker);
     }
   }
@@ -173,7 +173,7 @@ export class RotaPage {
       draggable: (tipo == 'T') ? true : false,
     });
     if (tipo == 'C') {
-      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>>${this.item['Topico']}`;
+      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>>${this.item['DescTopico']}`;
       this.addInfoWindow(marker, infoMarker);
     }
   }
