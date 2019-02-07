@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Equipes
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="primary" (click)="addItem()">
+        <ion-icon name="person-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      refreshingSpinner="ios"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-spinner name="ios" *ngIf="equipesList==0"></ion-spinner>
+
+  <ion-list *ngIf="equipesList != 0">
+    <ion-item-sliding *ngFor="let equipe of equipesList; let i = index;">
+      <button ion-item (click)="openItem(equipe)">
+        <h2>{{equipe.name}}</h2>
+        <p>{{equipe.about}}</p>
+      </button>
+
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteItem(equipe)">
+          Excluir
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

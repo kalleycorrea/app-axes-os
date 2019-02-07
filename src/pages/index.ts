@@ -7,8 +7,9 @@ export const SignupPage = 'SignupPage';
 // The initial root pages for our tabs
 export const Tab1Root = 'AtendimentosPage';
 export const Tab2Root = 'SearchPage';
-export const Tab3Root = 'SettingsPage';
+export const Tab3Root = 'EquipesPage';
 export const Tab4Root = 'MapaPage';
+export const Tab5Root = 'SettingsPage';
 
 export const DetailPage = 'TabsDetailPage';
 // Root pages for TabsDetailPage

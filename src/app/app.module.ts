@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { Settings, User, Api, Atendimentos } from '../providers';
+import { Settings, User, Api, Atendimentos, Equipes } from '../providers';
 import { DatePipe } from '@angular/common';
 import { MyApp } from './app.component';
 
@@ -52,6 +52,7 @@ export function provideSettings(storage: Storage) {
     Api,
     Atendimentos,
     User,
+    Equipes,
     Camera,
     SplashScreen,
     StatusBar,
