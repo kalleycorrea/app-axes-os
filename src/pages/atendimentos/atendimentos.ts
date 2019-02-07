@@ -38,8 +38,14 @@ export class AtendimentosPage {
       "grupo": this.user._user[0]['idgrupo']
     };
     //this.account.usuario = this.user._user[0]['usuario']; //outra forma de atualizar o objeto
+    //this.currentItems = this.atendimentos.getAtendimentos(account);
 
-    //this.currentItems = this.atendimentos.query(account);
+    // var temp = this;
+    // setTimeout(function() {
+    //   temp.atendimentos.getAtendimentos(temp.account).then(result => {
+    //     temp.currentItems =  result;
+    //   });
+    // }, 3000);
   }
 
   ionViewDidLoad() {
@@ -49,8 +55,31 @@ export class AtendimentosPage {
   }
 
   ionViewDidEnter() {
-    this.currentItems = this.atendimentos.getAtendimentos(this.account);
+    // this.currentItems = this.atendimentos.getAtendimentos(this.account);
+
+    // var temp = this;
+    // setTimeout(function() {
+    //   temp.atendimentos.getAtendimentos(temp.account).then(result => {
+    //     temp.currentItems =  result;
+    //   });
+    // }, 3000);
+
+    this.atendimentos.getAtendimentos(this.account).then(result => {
+      this.currentItems =  result;
+    });
+
     //this.updateTabBadgeAtendimentos();
+  }
+
+  doRefresh(refresher) {
+    this.atendimentos.getAtendimentos(this.account).then((data) => {
+      this.currentItems =  data;
+      if(refresher != 0)
+        //refresher.complete();
+        setTimeout(() => {
+          refresher.complete();
+        }, 2000);
+    });
   }
 
   // deleteItem(atendimento) {

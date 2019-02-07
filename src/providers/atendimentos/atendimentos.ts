@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/map';
 
 import { Api } from '../api/api';
 import { Atendimento } from '../../models/atendimento';
@@ -79,7 +80,8 @@ export class Atendimentos {
     }, err => {
       console.error('ERROR', err);
     });
-    return this.atendimentos;
+    // return this.atendimentos;
+    return Promise.resolve(this.atendimentos);
   }
 
   updateSituacaoOS(data: any) {

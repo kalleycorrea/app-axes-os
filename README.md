@@ -638,20 +638,33 @@ Google: ionic ViewChild
 Ionic3 - how to pass selected value to event using ion-select and ion-option?
 https://stackoverflow.com/questions/47587603/ionic3-how-to-pass-selected-value-to-event-using-ion-select-and-ion-option
 
-Botão Fabs aberto por padrão 
-Exemplo de uso @ViewChild
+@ViewChild -> Exemplo 1
+Botão Fabs aberto por padrão (Toggle -> Alternância)
+Acessando um elemento Ionic (FabContainer) do .html (template/view)
 	https://forum.ionicframework.com/t/fabs-button-open-by-default/108915/4 (Solução -> this.fab.toggleList())
 		https://stackblitz.com/edit/ionic-fab-tab-open?file=pages%2Fhome%2Fhome.ts
-	.ts:
+	.TS:
 		import { Component , ViewChild } from '@angular/core';
 		import { FabContainer } from 'ionic-angular';
 		//declaração
 		@ViewChild('fab')fab : FabContainer;
 		//exemplo de uso ionViewDidEnter()
 		this.fab.toggleList();
-	.html:
+	.HTML:
 		<!-- identificador #fab -->
 		<ion-fab top right edge #fab>
+
+@ViewChild -> Exemplo 2
+Acessando um elemento nativo (Div) do .html (template/view)
+  .TS:
+    import { Component, ViewChild, ElementRef } from '@angular/core';
+    //declaração
+    @ViewChild('map') mapElement: ElementRef;
+    // Passando a div 'map' como parâmetro
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  .HTML:
+    <ion-content> <div #map id="map"></div> </ion-content>
+
 
 Ion-textarea resize height dynamically
 	https://forum.ionicframework.com/t/solved-ion-textarea-resize-height-dynamically/80885/2

@@ -15,7 +15,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      refreshingSpinner="ios"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-spinner name="ios" *ngIf="currentItems==0"></ion-spinner>
+  <ion-list *ngIf="currentItems != 0">
     <!-- <ion-item-sliding *ngFor="let item of currentItems"> -->
     <button ion-item *ngFor="let item of currentItems; let i = index;" (click)="openItem(item)">
       <!-- <ion-avatar item-start> -->
