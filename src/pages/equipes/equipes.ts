@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 
 import { User, Equipes } from '../../providers';
+import { EquipeFilterPipe } from './../../pipes/equipe-filter/equipe-filter';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,8 @@ import { User, Equipes } from '../../providers';
 export class EquipesPage {
 
   equipesList: any[];
+  usuarios: any[];
+  currentUsuarios: any[] = [];
   account: { usuario: any; senha: any; tipo: any; grupo: any } = {
     usuario: '',
     senha: '',
@@ -40,7 +43,11 @@ export class EquipesPage {
 
   ionViewDidEnter() {
     this.equipes.getEquipes(this.account).then(result => {
-      this.equipesList =  result;
+      this.equipesList = result;
+    });
+
+    this.equipes.getUsuariosEquipe(this.account).then(result => {
+      this.usuarios = result;
     });
   }
 
@@ -53,6 +60,17 @@ export class EquipesPage {
           refresher.complete();
         }, 2000);
     });
+  }
+
+  getUsuarios(idEquipe: any) {
+    let finder = this.usuarios.filter(usu => usu.equipe == idEquipe);
+
+    this.currentUsuarios.length = 0;
+    if (finder.length>0) {
+      for (let item of finder) {
+        this.currentUsuarios.push(item);
+      }
+    }
   }
 
   addItem() {

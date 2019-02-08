@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="royalblue">
     <ion-title>
       Equipes
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only color="primary" (click)="addItem()">
-        <ion-icon name="person-add"></ion-icon>
+        <ion-icon name="person-add" color="light"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -25,12 +25,17 @@
   <ion-list *ngIf="equipesList != 0">
     <ion-item-sliding *ngFor="let equipe of equipesList; let i = index;">
       <button ion-item (click)="openItem(equipe)">
-        <h2>{{equipe.name}}</h2>
-        <p>{{equipe.about}}</p>
+        <h2>{{equipe.nome}}</h2>
+        <p *ngFor="let u of usuarios | equipeFilter:equipe.id">{{u.usuario}}</p>
+        <ul>
+          <li *ngFor="let u of usuarios | equipeFilter:equipe.id" [innerText]="u.usuario">
+          </li>
+        </ul>
       </button>
 
       <ion-item-options>
         <button ion-button color="danger" (click)="deleteItem(equipe)">
+          <ion-icon name="trash"></ion-icon>
           Excluir
         </button>
       </ion-item-options>

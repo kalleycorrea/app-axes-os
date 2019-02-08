@@ -14,6 +14,7 @@ import { Api } from '../api/api';
 export class Equipes {
 
   equipes: any[] = [];
+  usuariosEquipe: any[] = [];
 
   constructor(public api: Api) {}
 
@@ -32,6 +33,23 @@ export class Equipes {
     });
     // return this.equipes;
     return Promise.resolve(this.equipes);
+  }
+
+  getUsuariosEquipe(account: any) {
+    let seq = this.api.post('getusuariosequipe', account).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+      this.usuariosEquipe.length = 0;
+      if (res.length>0) {
+        for (let item of res) {
+          this.usuariosEquipe.push(item);
+        }
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
+    // return this.usuariosEquipe;
+    return Promise.resolve(this.usuariosEquipe);
   }
 
   add(equipe: any) {

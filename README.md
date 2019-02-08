@@ -308,6 +308,8 @@ criar pagina
 	ionic g page nome-da-pagina
 criar provider ()
 	ionic g provider nome-do-provider
+criar pipe
+  ionic g pipe nome-do-pipe
 
 	
 ADD PACOTES E PLUGINS NO PROJETO
@@ -455,6 +457,15 @@ Erro: index.js:181 Uncaught TypeError: Object(...) is not a function Cordova
 	https://forum.ionicframework.com/t/ionic-4-beta-object-is-not-a-function/138152
 	https://forum.ionicframework.com/t/camera-in-ionic-v4/137740/7
 	https://forum.ionicframework.com/t/ionic-4-native-plugin-problem/136670/3
+
+PIPES
+  See https://angular.io/api/core/Pipe for more info on Angular Pipes.
+  How to apply filters to *ngFor?
+    https://stackoverflow.com/questions/34164413/how-to-apply-filters-to-ngfor
+    https://embed.plnkr.co/l1oTNT/
+  Exemplos de implementação:
+    http://plnkr.co/edit/rLa1EcZC8uKw6MA2EXld?p=info
+    https://forum.ionicframework.com/t/filtering-a-loop/78285/2
 
 	
 LOCAL APK IONIC:
