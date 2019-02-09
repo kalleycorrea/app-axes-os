@@ -33,7 +33,7 @@ export class TabsPage {
     )
     {
       this.tab1Title = 'Atendimentos';
-      this.tab2Title = 'Buscar';
+      this.tab2Title = 'Pesquisar';
       this.tab3Title = 'Equipes';
       this.tab4Title = 'Mapa';
       this.tab5Title = 'Configurações';

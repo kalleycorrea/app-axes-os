@@ -7,8 +7,8 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class Api {
   //url: string = 'https://example.com/api/v1';
-  url: string = 'http://localhost/api-axes-slim';
-  //url: string = 'http://192.168.0.7/api-axes-slim';
+  //url: string = 'http://localhost/api-axes-slim';
+  url: string = 'http://192.168.0.7/api-axes-slim';
   //url: string = "http://192.168.20.179/api-axes-slim";
   //url: string = 'http://192.168.43.109/api-axes-slim';
 

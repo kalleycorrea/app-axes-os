@@ -1,18 +1,37 @@
-<!--
-  Generated template for the EquipeCreatePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>equipe-create</ion-title>
+  <ion-navbar color="royalblue">
+    <ion-title *ngIf="equipe">Alterar Equipe</ion-title>
+    <ion-title *ngIf="!equipe">Criar Equipe</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let u of usuarios">
+      <ion-grid no-padding>
+        <ion-row>
+          <!--col-12 é o valor máximo-->
+          <ion-col col-8><h2>{{u.usuario}}</h2></ion-col>
+          <ion-col col-4 style="text-align: center"><ion-note>Atendimentos</ion-note></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-8>
+            <p style="color: dimgray; font-weight: bold">{{u.perfil}}</p>
+          </ion-col>
+          <ion-col col-4 style="text-align: center">
+            <ion-badge *ngIf="u.quantAtendimentos !== ''" color="vibrant">{{u.quantAtendimentos}}</ion-badge>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteUsuario(u)">
+          <ion-icon name="trash"></ion-icon>
+          Excluir
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>

@@ -1,14 +1,14 @@
 <ion-header>
 
-  <ion-navbar color="steelblue">
-    <ion-title>Pesquisa</ion-title>
+  <ion-navbar color="royalblue">
+    <ion-title>Pesquisar Atendimentos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" placeholder="Ex: @Nome do cliente, #Tópico, Número, Data dd/MM/aaaa"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="@cliente #tópico $técnico número"></ion-searchbar>
   <ion-list>
     <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">
       <ion-avatar item-start>

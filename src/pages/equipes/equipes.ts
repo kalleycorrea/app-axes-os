@@ -13,7 +13,6 @@ export class EquipesPage {
 
   equipesList: any[];
   usuarios: any[];
-  currentUsuarios: any[] = [];
   account: { usuario: any; senha: any; tipo: any; grupo: any } = {
     usuario: '',
     senha: '',
@@ -62,18 +61,7 @@ export class EquipesPage {
     });
   }
 
-  getUsuarios(idEquipe: any) {
-    let finder = this.usuarios.filter(usu => usu.equipe == idEquipe);
-
-    this.currentUsuarios.length = 0;
-    if (finder.length>0) {
-      for (let item of finder) {
-        this.currentUsuarios.push(item);
-      }
-    }
-  }
-
-  addItem() {
+  addEquipe() {
     let addModal = this.modalCtrl.create('EquipeCreatePage');
     addModal.onDidDismiss(equipe => {
       if (equipe) {
@@ -83,17 +71,18 @@ export class EquipesPage {
     addModal.present();
   }
 
-  deleteItem(equipe) {
+  deleteEquipe(equipe) {
     this.equipes.delete(equipe);
   }
 
   /**
    * Navega para a página de criação de Equipe
    */
-  openItem(equipe: any) {
+  openEquipe(equipe: any) {
     this.navCtrl.push('EquipeCreatePage', {
       equipe: equipe,
-      account: this.account
+      account: this.account,
+      usuarios: this.usuarios.filter(usuario => usuario.equipe == equipe.id)
     });
   }
 }

@@ -515,6 +515,7 @@ https://www.joshmorony.com/building-mobile-apps-with-ionic-2/
 
 
 NAVIGATION
+for more info on Ionic pages and navigation
 https://ionicframework.com/docs/components/#navigation
 
 Navigating Lifecycle Events
