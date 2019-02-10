@@ -6,32 +6,39 @@
 </ion-header>
 
 <ion-content>
+  <!-- <ion-list>
+    <ion-item *ngFor="let user of usuarios">
+      <p>{{user.usuario}}</p>
+    </ion-item>
+  </ion-list> -->
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let u of usuarios">
+<ion-list>
+  <ion-item-sliding *ngFor="let user of usuarios">
+    <button ion-item>
       <ion-grid no-padding>
-        <ion-row>
-          <!--col-12 é o valor máximo-->
-          <ion-col col-8><h2>{{u.usuario}}</h2></ion-col>
-          <ion-col col-4 style="text-align: center"><ion-note>Atendimentos</ion-note></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-8>
-            <p style="color: dimgray; font-weight: bold">{{u.perfil}}</p>
-          </ion-col>
-          <ion-col col-4 style="text-align: center">
-            <ion-badge *ngIf="u.quantAtendimentos !== ''" color="vibrant">{{u.quantAtendimentos}}</ion-badge>
-          </ion-col>
-        </ion-row>
+      <ion-row>
+        <!--col-12 é o valor máximo-->
+        <ion-col col-8><h2>{{user.usuario}}</h2></ion-col>
+        <ion-col col-4 style="text-align: center"><ion-note>Atendimentos</ion-note></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-8>
+        <p style="color: dimgray; font-weight: bold">{{user.perfil}}</p>
+        </ion-col>
+        <ion-col col-4 style="text-align: center">
+        <ion-badge *ngIf="user.quantAtendimentos !== ''" color="vibrant">{{user.quantAtendimentos}}</ion-badge>
+        </ion-col>
+      </ion-row>
       </ion-grid>
+    </button>
 
-      <ion-item-options>
-        <button ion-button color="danger" (click)="deleteUsuario(u)">
-          <ion-icon name="trash"></ion-icon>
-          Excluir
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+    <ion-item-options>
+    <button ion-button color="danger" (click)="deleteUsuario(user)">
+      <ion-icon name="trash"></ion-icon>
+      Excluir
+    </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
 
 </ion-content>

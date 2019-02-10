@@ -9,7 +9,7 @@ import { Equipes } from '../../providers';
 })
 export class EquipeCreatePage {
   equipe: any;
-  usuarios: any[];
+  usuarios: any;
   account: { usuario: any; senha: any; tipo: any; grupo: any };
   private saveErrorString: string;
 
