@@ -4,8 +4,8 @@
       Equipes
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="primary" (click)="addEquipe()">
-        <ion-icon name="person-add" color="light"></ion-icon>
+      <button ion-button icon-only color="primary" (click)="showNewEquipe()">
+        <ion-icon name="add" color="light"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -22,8 +22,19 @@
 
   <ion-spinner name="ios" *ngIf="equipesList==0"></ion-spinner>
 
+  <ion-fab top right>
+    <button ion-fab hidden></button><!--isto é um truque para o ion-button ter o comportamento do ion-fab-->
+    <button ion-button round outline small icon-start color="primaty" [hidden]="!showDivAdd" [disabled]="!isReadyToSave" (click)="addEquipe()"><ion-icon name="checkmark"></ion-icon></button>
+    <button ion-button round outline small icon-start color="danger" [hidden]="!showDivAdd" (click)="cancel()"><ion-icon name="close"></ion-icon></button>
+  </ion-fab>
+
+  <div *ngIf="showDivAdd" padding marging>
+    <ion-label stacked color="primary">Nome da Equipe</ion-label>
+    <ion-input #inputnome type="text" [(ngModel)]="nomeEquipe" maxlength="20" (ionChange)="changeNome()" autocomplete="on" autocorrect="on" style="border-style: solid;border-color: gray;border-width: thin"></ion-input>
+  </div>
+
   <ion-list *ngIf="equipesList != 0">
-    <ion-item-sliding *ngFor="let equipe of equipesList; let i = index;">
+    <ion-item-sliding *ngFor="let equipe of equipesList">
       <button ion-item (click)="openEquipe(equipe)">
         <!--
         <p *ngFor="let u of usuarios | equipeFilter:equipe.id">{{u.usuario}}: {{u.perfil}}

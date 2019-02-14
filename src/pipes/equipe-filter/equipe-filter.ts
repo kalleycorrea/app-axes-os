@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { isUndefined } from 'ionic-angular/umd/util/util';
 
 @Pipe({
   name: 'equipeFilter',

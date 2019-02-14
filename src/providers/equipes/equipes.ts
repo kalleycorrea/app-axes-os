@@ -15,6 +15,7 @@ export class Equipes {
 
   equipes: any[] = [];
   usuariosEquipe: any[] = [];
+  usuariosSemEquipe: any[] = [];
 
   constructor(public api: Api) {}
 
@@ -52,11 +53,62 @@ export class Equipes {
     return Promise.resolve(this.usuariosEquipe);
   }
 
-  add(equipe: any) {
-    this.equipes.push(equipe);
+  addEquipe(data: any) {
+    let seq = this.api.post('addequipe', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
   }
 
-  delete(equipe: any) {
-    this.equipes.splice(this.equipes.indexOf(equipe), 1);
+  deleteEquipe(data: any) {
+    let seq = this.api.post('deleteequipe', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
+  }
+
+  getUsuariosSemEquipe(data: any) {
+    let seq = this.api.post('getusuariossemequipe', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+      this.usuariosSemEquipe.length = 0;
+      if (res.length>0) {
+        // o primeiro item da lista é uma opção em branco
+        let itemVazio: { Nome: any } = {Nome: ''};
+        this.usuariosSemEquipe.push(itemVazio);
+        for (let item of res) {
+          this.usuariosSemEquipe.push(item);
+        }
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return this.usuariosSemEquipe;
+  }
+
+  addUsuarioEquipe(data: any) {
+    let seq = this.api.post('addusuarioequipe', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
+  }
+
+  deleteUsuarioEquipe(data: any) {
+    let seq = this.api.post('deleteusuarioequipe', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
   }
 }

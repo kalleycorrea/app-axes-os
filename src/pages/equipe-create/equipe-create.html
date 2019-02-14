@@ -2,43 +2,55 @@
   <ion-navbar color="royalblue">
     <ion-title *ngIf="equipe">Alterar Equipe</ion-title>
     <ion-title *ngIf="!equipe">Criar Equipe</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="primary" (click)="showNewUsuario()">
+        <ion-icon name="person-add" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <!-- <ion-list>
-    <ion-item *ngFor="let user of usuarios">
-      <p>{{user.usuario}}</p>
-    </ion-item>
-  </ion-list> -->
+  <ion-fab top right>
+    <button ion-fab hidden></button><!--isto é um truque para o ion-button ter o comportamento do ion-fab-->
+    <button ion-button round outline small icon-start color="primaty" [hidden]="!showDivAdd" [disabled]="!isReadyToSave" (click)="addUsuarioEquipe()"><ion-icon name="checkmark"></ion-icon></button>
+    <button ion-button round outline small icon-start color="danger" [hidden]="!showDivAdd" (click)="cancel()"><ion-icon name="close"></ion-icon></button>
+  </ion-fab>
 
-<ion-list>
-  <ion-item-sliding *ngFor="let user of usuarios">
-    <button ion-item>
-      <ion-grid no-padding>
-      <ion-row>
-        <!--col-12 é o valor máximo-->
-        <ion-col col-8><h2>{{user.usuario}}</h2></ion-col>
-        <ion-col col-4 style="text-align: center"><ion-note>Atendimentos</ion-note></ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-8>
-        <p style="color: dimgray; font-weight: bold">{{user.perfil}}</p>
-        </ion-col>
-        <ion-col col-4 style="text-align: center">
-        <ion-badge *ngIf="user.quantAtendimentos !== ''" color="vibrant">{{user.quantAtendimentos}}</ion-badge>
-        </ion-col>
-      </ion-row>
-      </ion-grid>
-    </button>
+  <div *ngIf="showDivAdd" padding marging>
+    <ion-label floating>Usuário</ion-label>
+    <ion-select [(ngModel)]="usuarioSelected" (ionChange)="changeUsuario()" okText="OK" cancelText="Cancelar" interface="action-sheet">
+      <ion-option *ngFor="let usuario of usuariosSelect" [value]="usuario.Nome">{{usuario.Nome}}</ion-option>
+    </ion-select>
+  </div>
 
-    <ion-item-options>
-    <button ion-button color="danger" (click)="deleteUsuario(user)">
-      <ion-icon name="trash"></ion-icon>
-      Excluir
-    </button>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
+  <ion-list *ngIf="usuarios">
+    <ion-item-sliding *ngFor="let user of usuarios">
+      <button ion-item>
+        <ion-grid no-padding>
+        <ion-row>
+          <!--col-12 é o valor máximo-->
+          <ion-col col-8><h2>{{user.usuario}}</h2></ion-col>
+          <ion-col col-4 style="text-align: center"><ion-note>Atendimentos</ion-note></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-8>
+          <p style="color: dimgray; font-weight: bold">{{user.perfil}}</p>
+          </ion-col>
+          <ion-col col-4 style="text-align: center">
+          <ion-badge *ngIf="user.quantAtendimentos !== ''" color="vibrant">{{user.quantAtendimentos}}</ion-badge>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+      </button>
+
+      <ion-item-options>
+      <button ion-button color="danger" (click)="deleteUsuarioEquipe(user)">
+        <ion-icon name="trash"></ion-icon>
+        Excluir
+      </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>

@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 
 import { User, Equipes } from '../../providers';
-import { EquipeFilterPipe } from './../../pipes/equipe-filter/equipe-filter';
 
 @IonicPage()
 @Component({
@@ -19,7 +18,11 @@ export class EquipesPage {
     tipo: '',
     grupo: ''
   };
+  nomeEquipe: string='';
+  showDivAdd: boolean = false;
+  isReadyToSave: boolean = false;
   private saveErrorString: string;
+  @ViewChild('inputnome') inputNomeEquipe;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public user: User, public equipes: Equipes,
@@ -31,14 +34,15 @@ export class EquipesPage {
       "tipo": this.user._user[0]['tipo'],
       "grupo": this.user._user[0]['idgrupo']
     };
+    this.nomeEquipe = '';
+    this.showDivAdd = false;
+    this.isReadyToSave = false;
     this.saveErrorString = "Não foi possível salvar os dados. Por favor tente novamente.";
   }
 
-  ionViewDidLoad() {
-  }
+  ionViewDidLoad() {}
 
-  ionViewWillEnter() {
-  }
+  ionViewWillEnter() {}
 
   ionViewDidEnter() {
     this.equipes.getEquipes(this.account).then(result => {
@@ -61,18 +65,103 @@ export class EquipesPage {
     });
   }
 
+  showNewEquipe() {
+    this.showDivAdd = true;
+    this.nomeEquipe = '';
+    this.isReadyToSave = false;
+    // this.inputNomeEquipe.setFocus();
+  }
+
+  cancel() {
+    this.nomeEquipe = '';
+    this.isReadyToSave = false;
+    this.showDivAdd = false;
+  }
+
+  changeNome() {
+    if (this.nomeEquipe.trim() !== '') {
+      this.isReadyToSave = true;
+    } else {
+      this.isReadyToSave = false;
+    }
+  }
+
   addEquipe() {
-    let addModal = this.modalCtrl.create('EquipeCreatePage');
-    addModal.onDidDismiss(equipe => {
-      if (equipe) {
-        this.equipes.add(equipe);
+    let data: { usuario: any; senha: any; nomeEquipe: any } = {
+      usuario: this.account['usuario'],
+      senha: this.account['senha'],
+      nomeEquipe: this.nomeEquipe,
+    };
+
+    this.equipes.addEquipe(data).subscribe(
+      resp => {
+        // success
+        let toast = this.toastCtrl.create({
+          message: "Equipe Criada",
+          duration: 2000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+
+        this.nomeEquipe ='';
+        this.showDivAdd = false;
+        this.isReadyToSave = false;
+        this.equipesList.length = 0;
+        this.equipes.getEquipes(this.account).then(result => {
+          this.equipesList = result;
+        });
+      },
+      err => {
+        // Unable to save
+        let toast = this.toastCtrl.create({
+          message: this.saveErrorString,
+          duration: 3000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
       }
-    })
-    addModal.present();
+    );
   }
 
   deleteEquipe(equipe) {
-    this.equipes.delete(equipe);
+    let data: { usuario: any; senha: any; idEquipe: any } = {
+      usuario: this.account['usuario'],
+      senha: this.account['senha'],
+      idEquipe: equipe.id,
+    };
+
+    this.equipes.deleteEquipe(data).subscribe(
+      resp => {
+        // success
+        let toast = this.toastCtrl.create({
+          message: "Equipe Removida",
+          duration: 2000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+
+        this.nomeEquipe ='';
+        this.showDivAdd = false;
+        this.isReadyToSave = false;
+        this.equipesList.length = 0;
+        this.equipes.getEquipes(this.account).then(result => {
+          this.equipesList = result;
+        });
+      },
+      err => {
+        // Unable to save
+        let toast = this.toastCtrl.create({
+          message: this.saveErrorString,
+          duration: 3000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      }
+    );
   }
 
   /**
