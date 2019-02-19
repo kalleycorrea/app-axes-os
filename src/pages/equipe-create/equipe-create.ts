@@ -33,12 +33,12 @@ export class EquipeCreatePage {
   ionViewDidLoad() {}
 
   ionViewDidEnter() {
-    let data = {
-      usuario: this.account['usuario'],
-      senha: this.account['senha'],
-      // grupo: '1,4',
-    };
-    this.usuariosSelect = this.equipes.getUsuariosSemEquipe(data);
+    // let data = {
+    //   usuario: this.account['usuario'],
+    //   senha: this.account['senha'],
+    //   // grupo: '1,4',
+    // };
+    //this.usuariosSelect = this.equipes.getUsuariosSemEquipe(data);
     // this.usuarios.forEach(user => {
     //   this.usuariosSelect.splice(this.usuariosSelect['Nome'].indexOf(user.usuario), 1);
     // });
@@ -48,6 +48,11 @@ export class EquipeCreatePage {
     this.showDivAdd = true;
     this.usuarioSelected = '';
     this.isReadyToSave = false;
+    let data = {
+      usuario: this.account['usuario'],
+      senha: this.account['senha']
+    };
+    this.usuariosSelect = this.equipes.getUsuariosSemEquipe(data);
   }
 
   cancel() {

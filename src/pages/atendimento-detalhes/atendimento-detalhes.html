@@ -69,6 +69,8 @@
       <p>Protocolo: {{item.Protocolo}}</p>
       <p>Data Abertura: {{item.Abertura}}</p>
       <p>Usuário Abertura: {{item.Usu_Abertura}}</p>
+      <p *ngIf="item.Usu_Designado">Designado para: {{item.Usu_Designado}}</p>
+      <p *ngIf="item.Grupo_Designado != 0"> Designado para: {{item.DescGrupoDesignado}}</p>
       <p *ngIf="item.Usuario_BX">Usuário Encerramento: {{item.Usuario_BX}}</p>
       <p>Prioridade: {{item.Prioridade}}</p>
       <p>SLA: <ion-badge color="danger">{{item.SLA}}</ion-badge></p>

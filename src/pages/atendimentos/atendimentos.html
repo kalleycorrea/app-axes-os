@@ -51,8 +51,8 @@
       <p>Protocolo: {{item.NumAtendimento}} &nbsp;&nbsp;&nbsp; Situação OS:
         <span style="color:gray; font-weight:bold">{{item.DescSituacaoOS}}</span>
       </p>
-      <p *ngIf="item.Usu_Designado">Responsável: {{item.Equipe}}</p>
-      <p *ngIf="item.Grupo_Designado != 0"> Responsável: {{item.Grupo_Designado}}</p>
+      <p *ngIf="item.Usu_Designado">Designado para: {{item.Usu_Designado}}</p>
+      <p *ngIf="item.Grupo_Designado != 0"> Designado para: {{item.DescGrupoDesignado}}</p>
       <p style="font-size: 11px">
         <ion-icon name="calendar"></ion-icon>
         &nbsp;&nbsp; {{item.Abertura}} &nbsp;&nbsp;

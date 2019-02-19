@@ -3,7 +3,7 @@
     <name>Axes OS</name>
     <description>App Axes para Gestão das Ordens de Serviço.</description>
     <author email="kalleycorrea@gmail.com" href="http://www.kalley.com.br">Kalley Correa</author>
-    <content original-src="index.html" src="http://192.168.0.7:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

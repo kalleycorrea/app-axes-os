@@ -18,10 +18,15 @@
   </ion-fab>
 
   <div *ngIf="showDivAdd" padding marging>
-    <ion-label floating>Usuário</ion-label>
-    <ion-select [(ngModel)]="usuarioSelected" (ionChange)="changeUsuario()" okText="OK" cancelText="Cancelar" interface="action-sheet">
-      <ion-option *ngFor="let usuario of usuariosSelect" [value]="usuario.Nome">{{usuario.Nome}}</ion-option>
-    </ion-select>
+    <ion-list no-lines>
+      <ion-item>
+        <ion-label floating>Usuário</ion-label>
+        <ion-select [(ngModel)]="usuarioSelected" (ionChange)="changeUsuario()" okText="OK" cancelText="Cancelar" interface="action-sheet">
+          <ion-option *ngFor="let usuario of usuariosSelect" [value]="usuario.Nome">{{usuario.Nome}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item-divider></ion-item-divider>
+    </ion-list>
   </div>
 
   <ion-list *ngIf="usuarios">

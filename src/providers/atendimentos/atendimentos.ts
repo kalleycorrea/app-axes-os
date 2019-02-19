@@ -47,6 +47,7 @@ export class Atendimentos {
     "MapsLng": "",
     "Usu_Designado": "",
     "Grupo_Designado": "",
+    "DescGrupoDesignado": "",
     "Situacao": "",
     "DescSituacao": "",
     "SituacaoOS": "0",
