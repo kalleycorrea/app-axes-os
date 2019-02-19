@@ -162,14 +162,15 @@ export class CheckListPage {
     }
 
     let data: { usuario: any; senha: any; numAtendimento: any; causa: any; solucao: any;
-      topico: any; situacaoOS: any; } = {
+      topico: any; situacaoOS: any; usuarioDesignado: any } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
       numAtendimento: this.item.NumAtendimento,
       causa: this.causa,
       solucao: this.solucao,
       topico: this.item.Topico,
-      situacaoOS: this.item.SituacaoOS
+      situacaoOS: this.item.SituacaoOS,
+      usuarioDesignado: (this.item.Usu_Designado==undefined || this.item.Usu_Designado=='' || this.item.Usu_Designado==0) ? this.account['usuario'] : this.item.Usu_Designado
     };
 
     this.atendimentos.saveEncerramento(data).subscribe(

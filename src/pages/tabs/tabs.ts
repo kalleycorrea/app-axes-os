@@ -3,7 +3,7 @@ import { IonicPage, NavController, Events } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 
 import { Tab1Root, Tab2Root, Tab3Root, Tab4Root, Tab5Root } from '../';
-import { Atendimentos } from '../../providers';
+import { Atendimentos, User } from '../../providers';
 
 @IonicPage()
 @Component({
@@ -23,15 +23,18 @@ export class TabsPage {
   tab4Title = " ";
   tab5Title = " ";
 
+  tipoUsuario = '';
+
   //public atendimentosCount: number = 0; //usada para o events
 
   // Solução com Observables/Subjects para atualizar o tabBadge da page AtendimentosPage (Atendimentos)
   atendimentosCount$: Observable<number>;
 
-  constructor(public navCtrl: NavController, public atendimentos: Atendimentos
+  constructor(public navCtrl: NavController, public atendimentos: Atendimentos, public user: User
     //public events: Events,
     )
     {
+      this.tipoUsuario = this.user._user[0]['tipo'];
       this.tab1Title = 'Atendimentos';
       this.tab2Title = 'Pesquisar';
       this.tab3Title = 'Equipes';
