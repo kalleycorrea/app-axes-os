@@ -15,11 +15,12 @@ export class AtendimentosPage {
   //rootPage = MainPage;
   currentItems: Atendimento[];
 
-  account: { usuario: any; senha: any; tipo: any; grupo: any } = {
+  account: { usuario: any; senha: any; tipo: any; grupo: any; filtroBusca: any } = {
     usuario: '',
     senha: '',
     tipo: '',
-    grupo: ''
+    grupo: '',
+    filtroBusca: ''
   };
 
   constructor(public navCtrl: NavController,
@@ -35,7 +36,8 @@ export class AtendimentosPage {
       "usuario": this.user._user[0]['usuario'],
       "senha": this.user._user[0]['senha'],
       "tipo": this.user._user[0]['tipo'],
-      "grupo": this.user._user[0]['idgrupo']
+      "grupo": this.user._user[0]['idgrupo'],
+      "filtroBusca": ''
     };
     //this.account.usuario = this.user._user[0]['usuario']; //outra forma de atualizar o objeto
     //this.currentItems = this.atendimentos.getAtendimentos(account);
@@ -89,7 +91,7 @@ export class AtendimentosPage {
   /**
    * Navega para a página de detalhes do atendimento
    */
-  openItem(atendimento: Atendimento) {
+  openAtendimento(atendimento: Atendimento) {
     //this.navCtrl.push('AtendimentoDetalhesPage', {
     //  atendimento: atendimento
     //});
@@ -98,6 +100,21 @@ export class AtendimentosPage {
       item: atendimento,
       account: this.account
     });
+  }
+
+  searchAtendimento(ev) {
+    let val = ev.target.value;
+    if (!val || !val.trim()) {
+      this.account.filtroBusca = '';
+      this.atendimentos.getAtendimentos(this.account).then(result => {
+        this.currentItems =  result;
+      });
+    } else {
+      this.account.filtroBusca = val;
+      this.atendimentos.getAtendimentos(this.account).then(result => {
+        this.currentItems =  result;
+      });
+    }
   }
 
   //public updateTabBadgeAtendimentos(): void {

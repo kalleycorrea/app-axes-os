@@ -34,13 +34,13 @@
       <p style="padding-left: 20px">Atribua esse atendimento para outro colaborador</p>
       <ion-item>
         <ion-label floating>Grupo</ion-label>
-        <ion-select [(ngModel)]="grupoDesignado" (ionChange)="changeGrupo()" okText="OK" cancelText="Cancelar" interface="action-sheet">
+        <ion-select [(ngModel)]="item.Grupo_Designado" (ionChange)="changeGrupo()" okText="OK" cancelText="Cancelar" interface="action-sheet">
           <ion-option *ngFor="let grupo of grupoUsuarios" [value]="grupo.id">{{grupo.Nome}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label floating>Usuário</ion-label>
-        <ion-select [(ngModel)]="usuarioDesignado" okText="OK" cancelText="Cancelar" interface="action-sheet">
+        <ion-select [(ngModel)]="item.Usu_Designado" okText="OK" cancelText="Cancelar" interface="action-sheet">
           <ion-option *ngFor="let usuario of usuarios" [value]="usuario.Nome">{{usuario.Nome}}</ion-option>
         </ion-select>
       </ion-item>

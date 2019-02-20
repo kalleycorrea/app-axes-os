@@ -15,6 +15,7 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-searchbar (ionInput)="searchAtendimento($event)" placeholder="@cliente #tópico $técnico número"></ion-searchbar>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -27,7 +28,7 @@
 
   <ion-list *ngIf="currentItems != 0">
     <!-- <ion-item-sliding *ngFor="let item of currentItems"> -->
-    <button ion-item *ngFor="let item of currentItems; let i = index;" (click)="openItem(item)">
+    <button ion-item *ngFor="let item of currentItems; let i = index;" (click)="openAtendimento(item)">
       <!-- <ion-avatar item-start> -->
       <!--style="background-color: #f53d3d"-->
       <!-- <img [src]="item.profilePic" /> -->

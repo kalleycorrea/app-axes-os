@@ -15,8 +15,9 @@ export class CheckListPage {
   grupoUsuarios: any[];
   usuarios: any[];
   atendimentoCausas: any[];
-  grupoDesignado: any;
-  usuarioDesignado: any;
+  //grupoDesignado: any;
+  //usuarioDesignado: any;
+  UltimoUsuarioDesignado: any;
   causa: any;
   solucao: any;
   showSegment: any;
@@ -29,6 +30,7 @@ export class CheckListPage {
       this.item = navParams.get('item');
       this.account = navParams.get('account');
       this.saveErrorString = "Não foi possível salvar os dados. Por favor tente novamente.";
+      this.UltimoUsuarioDesignado = this.item.Usu_Designado;
 
       this.data = {
         usuario: this.account['usuario'],
@@ -45,7 +47,7 @@ export class CheckListPage {
       senha: this.account['senha'],
       numAtendimento: this.item['NumAtendimento'],
       tipoAtendimento: this.item['Tipo'],
-      grupo: (this.grupoDesignado) ? this.grupoDesignado : '',
+      grupo: (this.item.Grupo_Designado) ? this.item.Grupo_Designado : '',
     };
     Promise.all([
       this.checkList = this.atendimentos.getCheckList(this.data),
@@ -66,7 +68,7 @@ export class CheckListPage {
       senha: this.account['senha'],
       numAtendimento: this.item['NumAtendimento'],
       tipoAtendimento: this.item['Tipo'],
-      grupo: (this.grupoDesignado) ? this.grupoDesignado : '',
+      grupo: (this.item.Grupo_Designado) ? this.item.Grupo_Designado : '',
     };
     this.usuarios = this.atendimentos.getUsuarios(this.data);
   }
@@ -109,19 +111,20 @@ export class CheckListPage {
   }
 
   saveDesignacao() {
-    if ((this.grupoDesignado==undefined || this.grupoDesignado=='') &&
-    (this.usuarioDesignado==undefined || this.usuarioDesignado=='')) {
+    if ((this.item.Grupo_Designado==undefined || this.item.Grupo_Designado=='') &&
+    (this.item.Usu_Designado==undefined || this.item.Usu_Designado=='')) {
       alert('Selecione o Grupo e/ou Usuário para designar o atendimento');
       return;
     }
 
     let data: { usuario: any; senha: any; numAtendimento: any; grupoDesignado: any; usuarioDesignado: any;
-      topico: any; situacaoOS: any; } = {
+      UltimoUsuarioDesignado: any; topico: any; situacaoOS: any; } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
       numAtendimento: this.item.NumAtendimento,
-      grupoDesignado: this.grupoDesignado,
-      usuarioDesignado: this.usuarioDesignado,
+      grupoDesignado: this.item.Grupo_Designado,
+      usuarioDesignado: this.item.Usu_Designado,
+      UltimoUsuarioDesignado: this.UltimoUsuarioDesignado,
       topico: this.item.Topico,
       situacaoOS: this.item.SituacaoOS
     };
@@ -130,7 +133,7 @@ export class CheckListPage {
       resp => {
         // success
         let toast = this.toastCtrl.create({
-          message: "Dados Salvos",
+          message: "Concluído",
           duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
@@ -177,7 +180,7 @@ export class CheckListPage {
       resp => {
         // success
         let toast = this.toastCtrl.create({
-          message: "Dados Salvos",
+          message: "Concluído",
           duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
