@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, ToastController } from "ionic-angular";
 
 import { User } from "../../providers";
+// import { LocationTracker } from "../../providers";
 import { MainPage, SignupPage } from "../";
 
 @IonicPage()
@@ -26,8 +27,11 @@ export class LoginPage {
 
   private loginErrorString: string;
 
-  constructor(public navCtrl: NavController, public user: User,public toastCtrl: ToastController) {
-    this.loginErrorString = "Não foi possível entrar na sua conta. Por favor confirme os seus dados e tente novamente.";
+  constructor(public navCtrl: NavController,
+    public user: User,
+    // public locationTracker: LocationTracker,
+    public toastCtrl: ToastController) {
+      this.loginErrorString = "Não foi possível entrar na sua conta. Por favor confirme os seus dados e tente novamente.";
   }
 
   // Attempt to login in through our User service
@@ -36,6 +40,7 @@ export class LoginPage {
       resp => {
         //this.navCtrl.pop();
         this.navCtrl.setRoot(MainPage);
+        //this.startTracking()
         //this.navCtrl.push(MainPage);
         //if (this.user._user['setpassword'] == 'N'){
         //  this.navCtrl.push(MainPage);
@@ -56,4 +61,8 @@ export class LoginPage {
       }
     );
   }
+
+  // startTracking(){
+  //   this.locationTracker.startTracking(this.user._user[0]);
+  // }
 }

@@ -390,8 +390,8 @@ ATENÇÃO: Antes de instalar um pacote nativo "@ionic-native/<nome-do-pacote>" r
 	https://www.npmjs.com/package/@ionic-native/background-geolocation (Versões)
 	
 	ionic cordova plugin add cordova-plugin-mauron85-background-geolocation
-	npm install @ionic-native/background-geolocation
-				@ionic-native/background-geolocation@4.20.0 (usei esse)
+  ionic cordova plugin add cordova-plugin-mauron85-background-geolocation@^2.3.6
+	npm install --save @ionic-native/background-geolocation@^3.12.1
 	Exemplos:
 		https://www.joshmorony.com/adding-background-geolocation-to-an-ionic-2-application/
 

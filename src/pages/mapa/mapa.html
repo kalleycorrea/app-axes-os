@@ -14,5 +14,9 @@
 
 
 <ion-content padding>
-
+  <div padding>
+    <button ion-button color="primary" block (click)="startTracking()">Localização</button>
+    <p *ngIf="locationTracker.lat != 0">Latitude: {{locationTracker.lat}}</p>
+    <p *ngIf="locationTracker.lng != 0">Longitude: {{locationTracker.lng}}</p>
+  </div>
 </ion-content>

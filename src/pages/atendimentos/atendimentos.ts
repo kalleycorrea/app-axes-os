@@ -15,11 +15,12 @@ export class AtendimentosPage {
   //rootPage = MainPage;
   currentItems: Atendimento[];
 
-  account: { usuario: any; senha: any; tipo: any; grupo: any; filtroBusca: any } = {
+  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; filtroBusca: any } = {
     usuario: '',
     senha: '',
     tipo: '',
     grupo: '',
+    equipe: '',
     filtroBusca: ''
   };
 
@@ -27,7 +28,8 @@ export class AtendimentosPage {
     public atendimentos: Atendimentos,
     public user: User,
     //public events: Events,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController
+    ) {
 
     //if (typeof var_array !== 'undefined' && var_array.length > 0)
     // the array is defined and has at least one element
@@ -37,6 +39,7 @@ export class AtendimentosPage {
       "senha": this.user._user[0]['senha'],
       "tipo": this.user._user[0]['tipo'],
       "grupo": this.user._user[0]['idgrupo'],
+      "equipe": this.user._user[0]['equipe'],
       "filtroBusca": ''
     };
     //this.account.usuario = this.user._user[0]['usuario']; //outra forma de atualizar o objeto
@@ -104,13 +107,13 @@ export class AtendimentosPage {
 
   searchAtendimento(ev) {
     let val = ev.target.value;
-    if (!val || !val.trim()) {
-      this.account.filtroBusca = '';
+    if (val && val.trim() != '' && val.length > 3) {
+      this.account.filtroBusca = val;
       this.atendimentos.getAtendimentos(this.account).then(result => {
         this.currentItems =  result;
       });
-    } else {
-      this.account.filtroBusca = val;
+    } else if (!val || val.trim() == '') {
+      this.account.filtroBusca = '';
       this.atendimentos.getAtendimentos(this.account).then(result => {
         this.currentItems =  result;
       });

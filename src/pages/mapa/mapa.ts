@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the MapaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { User, LocationTracker } from "../../providers";
 
 @IonicPage()
 @Component({
@@ -15,11 +9,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MapaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  latitude: number = 0 ;
+  longitude: number = 0;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public user: User,
+    public locationTracker: LocationTracker) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MapaPage');
+    // console.log('ionViewDidLoad MapaPage');
   }
 
+  startTracking(){
+    // this.locationTracker.startTracking(this.user._user[0]).then(result => {
+    //   //this.currentItems =  result;
+    //   this.latitude = result.latitude;
+    //   this.longitude = result.longitude;
+    // });
+
+    this.locationTracker.startTracking(this.user._user[0]);
+    // setTimeout(() => {}, 4000);
+    // this.latitude = this.locationTracker.lat;
+    // this.longitude = this.locationTracker.lng;
+    return;
+  }
 }

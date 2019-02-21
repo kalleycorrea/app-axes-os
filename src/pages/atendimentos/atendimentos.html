@@ -4,6 +4,12 @@
       Meus Atendimentos
       <!--<ion-badge item-end color="primary">{{currentItems.length}}</ion-badge>-->
     </ion-title>
+
+    <!--
+    <ion-searchbar [(ngModel)]="descricao" (ionInput)="buscar()" (ionCancel)="cancel()">
+    </ion-searchbar>
+    -->
+
     <!--
     <ion-buttons end>
       <button ion-button icon-only color="primary" (click)="addItem()">
@@ -16,7 +22,6 @@
 
 <ion-content padding>
   <ion-searchbar (ionInput)="searchAtendimento($event)" placeholder="@cliente #tópico $técnico número"></ion-searchbar>
-
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       refreshingSpinner="ios"
