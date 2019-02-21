@@ -107,6 +107,39 @@ atendimento: 100903
 - Dados Adicionais - Poder atualizar todos os contratos do cliente, não somente o contrato do atendimento.
 - Verificar o funcionamento da tabela AtendimentoOS quando se cria a OS (Situação de 'Não Criada' para 'Na Fila' ou 'A Caminho' ou 'Concluída' ou 'Em Execução')
 
+Ionic 3 Routing and Navigation Tutorial & Examples
+https://www.techiediaries.com/ionic-2-navigation/
+
+https://stackoverflow.com/questions/37296999/ionic-2-disabling-back-button-for-a-specific-view
+https://forum.ionicframework.com/t/how-to-hide-tabs-when-pushing-a-new-page/56399
+https://forum.ionicframework.com/t/how-to-hide-tabs-bar/95112
+https://forum.ionicframework.com/t/ionic-hide-tabs/37998/26
+
+ion-searchbar
+https://github.com/ionic-team/ionic/issues/7539
+https://pt.stackoverflow.com/questions/307544/alinhar-elementos-ion-navbar-ionic
+
+backgroundGeolocation.configure(...).subscribe is not a function
+https://forum.ionicframework.com/t/background-geolocation-isnt-a-observable/154804/12
+
+jossephalvarez/backgroundGeo
+https://github.com/jossephalvarez/backgroundGeo/tree/master/src
+https://github.com/jossephalvarez/ionic-background-LocalNotifications-ionic-3.9.2
+
+
+<ion-icon name="arrow-round-forward"></ion-icon>
+<ion-icon name="arrow-round-down"></ion-icon>
+<ion-icon name="arrow-down"></ion-icon>
+<ion-icon name="download"></ion-icon>
+<ion-icon name="photos"></ion-icon>
+<ion-icon name="images"></ion-icon>
+
+incluir o telefone/celular nos detaçhes do cliente
+verificar o encerramento e designação, para salvar as ações no nome do usuário designado atual
+salvar estatisticas no bd dev
+Capturar na lista de atendimentos e na lista da pesquisa
+Designar na lista de atendimentos e na lista da pesquisa quando o usuário for GESTOR
+
 
 
 # IONIC
@@ -287,6 +320,7 @@ adicionar as plataformas do aplicativo
 	
 executar o aplicativo
 	ionic serve -c (navegador)
+  ionic serve --devapp (Executar no DevApp)
 	ionic cordova run --help
 		ionic cordova run android -l (device)
 			Atenção: Criar uma variável de ambiente SLAVE_AAPT_TIMEOUT = 180 para evitar erro de timeout
@@ -388,12 +422,25 @@ ATENÇÃO: Antes de instalar um pacote nativo "@ionic-native/<nome-do-pacote>" r
 	https://ionicframework.com/docs/v3/native/background-geolocation/
 	https://github.com/mauron85/cordova-plugin-background-geolocation
 	https://www.npmjs.com/package/@ionic-native/background-geolocation (Versões)
+  https://www.npmjs.com/package/cordova-plugin-mauron85-background-geolocation (Versões)
 	
 	ionic cordova plugin add cordova-plugin-mauron85-background-geolocation
   ionic cordova plugin add cordova-plugin-mauron85-background-geolocation@^2.3.6
+  ionic cordova plugin add cordova-plugin-mauron85-background-geolocation@alpha
+  npm install --save @ionic-native/background-geolocation
 	npm install --save @ionic-native/background-geolocation@^3.12.1
+  npm install --save @ionic-native/background-geolocation@4
+  npm install --save @ionic-native/background-geolocation@3 (versão 3.14.0)
 	Exemplos:
 		https://www.joshmorony.com/adding-background-geolocation-to-an-ionic-2-application/
+
+-Background Mode
+  ionic cordova plugin add cordova-plugin-background-mode (versão 0.7.2)
+  npm install --save @ionic-native/background-mode@4 (versão 4.20.0)
+
+-Local Notifications
+  ionic cordova plugin add cordova-plugin-local-notification (versão 0.9.0-beta.2)
+  npm install --save @ionic-native/local-notifications@4.7.0
 
 -ionic-text-avatar
 	Material Design text avatar for Ionic's ion-avatar

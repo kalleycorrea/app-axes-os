@@ -28,6 +28,9 @@
       <!-- <p><span style="font-weight: bold;">Código Cliente: </span>{{item.CodCliente}}</p> -->
       <p>Contrato: {{item.Contrato}}</p>
       <p>Plano: {{item.Plano}}</p>
+      <p *ngIf="item.TelCelular">Celular:&nbsp;<a href="tel:{{item.TelCelular}}">{{item.TelCelular}}</a></p>
+      <p *ngIf="item.TelComercial">Tel Comercial:&nbsp;<a href="tel:{{item.TelComercial}}">{{item.TelComercial}}</a></p>
+      <p *ngIf="item.TelResidencial">Tel Residencial:&nbsp;<a href="tel:{{item.TelResidencial}}">{{item.TelResidencial}}</a></p>
       <p>Endereço: {{item.Endereco}} N. {{item.Numero}}</p>
       <p>Bairro: {{item.Bairro}}</p>
       <p>Cidade: {{item.Cidade}}</p>

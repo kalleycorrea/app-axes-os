@@ -22,8 +22,8 @@ export class LocationTracker {
   }
 
   startTracking(account: any) {
-    // Background Tracking
 
+    // Background Tracking
     const config: BackgroundGeolocationConfig = {
       desiredAccuracy: 0,
       stationaryRadius: 20,
@@ -56,21 +56,6 @@ export class LocationTracker {
 
     // this.backgroundGeolocation.configure(config).then((location) => {
     //   console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);
-
-    //   // Run update inside of Angular's zone
-    //   this.zone.run(() => {
-    //     this.lat = location.latitude;
-    //     this.lng = location.longitude;
-
-    //     let data: { usuario: any; senha: any; equipe: any; latitude: any; longitude: any } = {
-    //       usuario: account['usuario'],
-    //       senha: account['senha'],
-    //       equipe: account['equipe'],
-    //       latitude: location.latitude,
-    //       longitude: location.longitude
-    //     };
-    //     this.updateLocation(data);
-
     //   });
     // }).catch((err) => {
     //   console.log('BackgroundGeolocation error');
@@ -87,6 +72,7 @@ export class LocationTracker {
     };
 
     this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
+      console.log('Foreground Tracking');
       console.log(position);
       // Run update inside of Angular's zone
       this.zone.run(() => {
