@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-
 import { Atendimentos } from '../../providers';
 
 declare var google;
@@ -14,7 +13,7 @@ declare var google;
 export class RotaPage {
   @ViewChild('map') mapElement: ElementRef;
   item: any;
-  account: { usuario: any; senha: any; tipo: any; grupo: any };
+  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; filtroBusca: any };
   mapaImagem: string;
   directionsService = new google.maps.DirectionsService();
   // suppressMarkers: Remove os dois marcadores criados automaticamente na criação da rota
@@ -31,11 +30,11 @@ export class RotaPage {
   }
 
   ionViewDidLoad() {
-    //this.initializeMap();
+    //this.loadMap();
   }
 
   ionViewDidEnter() {
-    this.initializeMap();
+    this.loadMap();
 
     //this.mapaImagem = this.getMapaImagem();
 
@@ -70,7 +69,7 @@ export class RotaPage {
     + '&key=AIzaSyDZ_AN1_M-9woJt4d4OV8h_N5G_7rX-ibw';
   }
 
-  initializeMap() {
+  loadMap() {
     this.getStartPosition();
     this.destinationPosition = new google.maps.LatLng(this.item['MapsLat'], this.item['MapsLng']);
     this.originPosition = this.startPosition;
@@ -123,7 +122,7 @@ export class RotaPage {
       draggable: (tipo == 'T') ? true : false,
     });
     if (tipo == 'C') {
-      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>>${this.item['DescTopico']}`;
+      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>${this.item['DescTopico']}`;
       this.addInfoWindow(marker, infoMarker);
     }
   }
@@ -147,7 +146,7 @@ export class RotaPage {
       draggable: (tipo == 'T') ? true : false,
     });
     if (tipo == 'C') {
-      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>>${this.item['DescTopico']}`;
+      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>${this.item['DescTopico']}`;
       this.addInfoWindow(marker, infoMarker);
     }
   }
@@ -173,11 +172,10 @@ export class RotaPage {
       draggable: (tipo == 'T') ? true : false,
     });
     if (tipo == 'C') {
-      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>>${this.item['DescTopico']}`;
+      let infoMarker = `<h4>${this.item['Apelido']}</h4><br>${this.item['DescTopico']}`;
       this.addInfoWindow(marker, infoMarker);
     }
   }
-
 
   addInfoWindow(marker: any, content: any) {
     let infoWindow = new google.maps.InfoWindow({

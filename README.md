@@ -834,6 +834,8 @@ http://www.fabricadecodigo.com/google-maps-e-geolocalizacao-com-ionic/	***muito 
 	Google Maps encontrar coordenadas facilmente	http://www.mapcoordinates.net/pt
 		const position = new google.maps.LatLng(-3.08365143, -60.06089347); //Minha Casa
 		const position = new google.maps.LatLng(-3.08907235, -60.06175697); //Sede Axes
+    Marker
+      https://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker
 
 		
 Ionic 2 & 3: How to Use Google Maps & Geolocation	

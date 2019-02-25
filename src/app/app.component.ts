@@ -32,21 +32,23 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    // { title: 'Tabs', component: 'TabsPage' },
-    // { title: 'Login', component: 'LoginPage' },
-    // { title: 'Atendimentos', component: 'AtendimentosPage' },
+    { title: 'Tabs', component: 'TabsPage' },
+    { title: 'Login', component: 'LoginPage' },
+    { title: 'Atendimentos', component: 'AtendimentosPage' },
     { title: 'Configurações', component: 'SettingsPage' },
-    // { title: 'Buscar', component: 'SearchPage' }
-  ]
+    { title: 'Buscar', component: 'SearchPage' }
+  ];
 
-  constructor(platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      //console.log("teste");
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+  constructor(platform: Platform, settings: Settings, private config: Config,
+    private statusBar: StatusBar, private splashScreen: SplashScreen) {
+
+      platform.ready().then(() => {
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        //console.log("teste");
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+      });
   }
 
   openPage(page) {

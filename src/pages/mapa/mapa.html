@@ -14,9 +14,22 @@
 
 
 <ion-content padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      refreshingSpinner="ios"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-spinner name="ios" *ngIf="atendimentosList==0"></ion-spinner>
+
   <div padding>
     <button ion-button color="primary" block (click)="startTracking()">Localização</button>
     <p *ngIf="locationTracker.lat != 0">Latitude: {{locationTracker.lat}}</p>
     <p *ngIf="locationTracker.lng != 0">Longitude: {{locationTracker.lng}}</p>
   </div>
+
+  <div #map id="map" padding></div>
+
 </ion-content>

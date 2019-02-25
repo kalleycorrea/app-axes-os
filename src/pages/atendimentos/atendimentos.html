@@ -2,7 +2,7 @@
   <ion-navbar color="royalblue">
     <ion-title>
       Meus Atendimentos
-      <!--<ion-badge item-end color="primary">{{currentItems.length}}</ion-badge>-->
+      <!--<ion-badge item-end color="primary">{{atendimentosList.length}}</ion-badge>-->
     </ion-title>
 
     <!--
@@ -29,11 +29,11 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-spinner name="ios" *ngIf="currentItems==0"></ion-spinner>
+  <ion-spinner name="ios" *ngIf="atendimentosList==0"></ion-spinner>
 
-  <ion-list *ngIf="currentItems != 0">
-    <!-- <ion-item-sliding *ngFor="let item of currentItems"> -->
-    <button ion-item *ngFor="let item of currentItems; let i = index;" (click)="openAtendimento(item)">
+  <ion-list *ngIf="atendimentosList != 0">
+    <!-- <ion-item-sliding *ngFor="let item of atendimentosList"> -->
+    <button ion-item *ngFor="let item of atendimentosList; let i = index;" (click)="openAtendimento(item)">
       <!-- <ion-avatar item-start> -->
       <!--style="background-color: #f53d3d"-->
       <!-- <img [src]="item.profilePic" /> -->
@@ -42,7 +42,7 @@
       <!--<ion-text-avatar color="primary">{{i+1}}</ion-text-avatar> -->
       <!-- <p style="font-size:10px">Prioridade</p> -->
       <!-- </ion-avatar> -->
-      <!--{{currentItems.length}}-->
+      <!--{{atendimentosList.length}}-->
 
       <ion-grid no-padding>
         <ion-row>

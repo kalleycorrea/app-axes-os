@@ -13,14 +13,15 @@ import { MainPage, DetailPage } from '../../pages';
 })
 export class AtendimentosPage {
   //rootPage = MainPage;
-  currentItems: Atendimento[];
+  atendimentosList: Atendimento[];
 
-  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; filtroBusca: any } = {
+  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; nomeequipe: any; filtroBusca: any } = {
     usuario: '',
     senha: '',
     tipo: '',
     grupo: '',
     equipe: '',
+    nomeequipe: '',
     filtroBusca: ''
   };
 
@@ -40,15 +41,16 @@ export class AtendimentosPage {
       "tipo": this.user._user[0]['tipo'],
       "grupo": this.user._user[0]['idgrupo'],
       "equipe": this.user._user[0]['equipe'],
+      "nomeequipe": this.user._user[0]['nomeequipe'],
       "filtroBusca": ''
     };
     //this.account.usuario = this.user._user[0]['usuario']; //outra forma de atualizar o objeto
-    //this.currentItems = this.atendimentos.getAtendimentos(account);
+    //this.atendimentosList = this.atendimentos.getAtendimentos(account);
 
     // var temp = this;
     // setTimeout(function() {
     //   temp.atendimentos.getAtendimentos(temp.account).then(result => {
-    //     temp.currentItems =  result;
+    //     temp.atendimentosList =  result;
     //   });
     // }, 3000);
   }
@@ -60,17 +62,17 @@ export class AtendimentosPage {
   }
 
   ionViewDidEnter() {
-    // this.currentItems = this.atendimentos.getAtendimentos(this.account);
+    // this.atendimentosList = this.atendimentos.getAtendimentos(this.account);
 
     // var temp = this;
     // setTimeout(function() {
     //   temp.atendimentos.getAtendimentos(temp.account).then(result => {
-    //     temp.currentItems =  result;
+    //     temp.atendimentosList =  result;
     //   });
     // }, 3000);
 
     this.atendimentos.getAtendimentos(this.account).then(result => {
-      this.currentItems =  result;
+      this.atendimentosList =  result;
     });
 
     //this.updateTabBadgeAtendimentos();
@@ -78,7 +80,7 @@ export class AtendimentosPage {
 
   doRefresh(refresher) {
     this.atendimentos.getAtendimentos(this.account).then((data) => {
-      this.currentItems =  data;
+      this.atendimentosList =  data;
       if(refresher != 0)
         //refresher.complete();
         setTimeout(() => {
@@ -110,17 +112,17 @@ export class AtendimentosPage {
     if (val && val.trim() != '' && val.length > 3) {
       this.account.filtroBusca = val;
       this.atendimentos.getAtendimentos(this.account).then(result => {
-        this.currentItems =  result;
+        this.atendimentosList =  result;
       });
     } else if (!val || val.trim() == '') {
       this.account.filtroBusca = '';
       this.atendimentos.getAtendimentos(this.account).then(result => {
-        this.currentItems =  result;
+        this.atendimentosList =  result;
       });
     }
   }
 
   //public updateTabBadgeAtendimentos(): void {
-  //  this.events.publish('updatedTabBadge:atendimentos', this.currentItems.length);
+  //  this.events.publish('updatedTabBadge:atendimentos', this.atendimentosList.length);
   //}
 }

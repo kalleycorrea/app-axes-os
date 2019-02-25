@@ -24,45 +24,45 @@ export class LocationTracker {
   startTracking(account: any) {
 
     // Background Tracking
-    const config: BackgroundGeolocationConfig = {
-      desiredAccuracy: 0,
-      stationaryRadius: 20,
-      distanceFilter: 10,
-      debug: false,
-      interval: 5000
-    };
+    // const config: BackgroundGeolocationConfig = {
+    //   desiredAccuracy: 0,
+    //   stationaryRadius: 20,
+    //   distanceFilter: 10,
+    //   debug: false,
+    //   interval: 5000
+    // };
 
-    this.backgroundGeolocation.configure(config).subscribe((location) => {
+    // this.backgroundGeolocation.configure(config).subscribe((location) => {
 
-      console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);
-
-      // Run update inside of Angular's zone
-      this.zone.run(() => {
-        this.lat = location.latitude;
-        this.lng = location.longitude;
-        let data: { usuario: any; senha: any; equipe: any; latitude: any; longitude: any } = {
-          usuario: account['usuario'],
-          senha: account['senha'],
-          equipe: account['equipe'],
-          latitude: location.latitude,
-          longitude: location.longitude
-        };
-        this.updateLocation(data);
-      });
-
-    }, (err) => {
-      console.log(err);
-    });
-
-    // this.backgroundGeolocation.configure(config).then((location) => {
     //   console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);
+
+    //   // Run update inside of Angular's zone
+    //   this.zone.run(() => {
+    //     this.lat = location.latitude;
+    //     this.lng = location.longitude;
+    //     let data: { usuario: any; senha: any; equipe: any; latitude: any; longitude: any } = {
+    //       usuario: account['usuario'],
+    //       senha: account['senha'],
+    //       equipe: account['equipe'],
+    //       latitude: location.latitude,
+    //       longitude: location.longitude
+    //     };
+    //     this.updateLocation(data);
     //   });
-    // }).catch((err) => {
-    //   console.log('BackgroundGeolocation error');
+
+    // }, (err) => {
+    //   console.log(err);
     // });
 
-    // Turn ON the background-geolocation system.
-    this.backgroundGeolocation.start();
+    // // this.backgroundGeolocation.configure(config).then((location) => {
+    // //   console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);
+    // //   });
+    // // }).catch((err) => {
+    // //   console.log('BackgroundGeolocation error');
+    // // });
+
+    // // Turn ON the background-geolocation system.
+    // this.backgroundGeolocation.start();
 
 
     // Foreground Tracking
@@ -76,9 +76,9 @@ export class LocationTracker {
       console.log(position);
       // Run update inside of Angular's zone
       this.zone.run(() => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-        //position.timestamp
+        // this.lat = position.coords.latitude;
+        // this.lng = position.coords.longitude;
+        // position.timestamp
         let data: { usuario: any; senha: any; equipe: any; latitude: any; longitude: any } = {
           usuario: account['usuario'],
           senha: account['senha'],
@@ -89,6 +89,7 @@ export class LocationTracker {
         this.updateLocation(data);
       });
     });
+
     //return Promise.resolve({latitude: this.lat, longitude: this.lat});
   }
 
@@ -104,7 +105,7 @@ export class LocationTracker {
 
   stopTracking() {
     console.log('stopTracking');
-    this.backgroundGeolocation.finish();
+    // this.backgroundGeolocation.finish();
     this.watch.unsubscribe();
   }
 }

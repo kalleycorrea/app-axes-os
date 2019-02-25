@@ -12,11 +12,14 @@ export class EquipesPage {
 
   equipesList: any[];
   usuarios: any[];
-  account: { usuario: any; senha: any; tipo: any; grupo: any } = {
+  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; nomeequipe: any; filtroBusca: any } = {
     usuario: '',
     senha: '',
     tipo: '',
-    grupo: ''
+    grupo: '',
+    equipe: '',
+    nomeequipe: '',
+    filtroBusca: ''
   };
   nomeEquipe: string='';
   showDivAdd: boolean = false;
@@ -32,7 +35,10 @@ export class EquipesPage {
       "usuario": this.user._user[0]['usuario'],
       "senha": this.user._user[0]['senha'],
       "tipo": this.user._user[0]['tipo'],
-      "grupo": this.user._user[0]['idgrupo']
+      "grupo": this.user._user[0]['idgrupo'],
+      "equipe": this.user._user[0]['equipe'],
+      "nomeequipe": this.user._user[0]['nomeequipe'],
+      "filtroBusca": ''
     };
     this.nomeEquipe = '';
     this.showDivAdd = false;

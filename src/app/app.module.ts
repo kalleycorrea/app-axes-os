@@ -1,19 +1,19 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule, Storage } from '@ionic/storage';
 import { BrowserModule } from '@angular/platform-browser';
-import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { IonicStorageModule, Storage } from '@ionic/storage';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { Camera } from '@ionic-native/camera';
+import { BackgroundMode } from '@ionic-native/background-mode';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { Geolocation } from '@ionic-native/geolocation';
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 import { Settings, User, Api, Atendimentos, Equipes, LocationTracker } from '../providers';
 import { DatePipe } from '@angular/common';
 import { MyApp } from './app.component';
-
-import { Geolocation } from '@ionic-native/geolocation';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
-import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 // import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { AuthInterceptor } from '../auth/auth.interceptor';
@@ -49,18 +49,19 @@ export function provideSettings(storage: Storage) {
     MyApp
   ],
   providers: [
+    SplashScreen,
+    StatusBar,
+    Camera,
+    BackgroundMode,
+    BackgroundGeolocation,
+    Geolocation,
+    LocationTracker,
+    ScreenOrientation,
+    DatePipe,
     Api,
     Atendimentos,
     User,
     Equipes,
-    Camera,
-    SplashScreen,
-    StatusBar,
-    Geolocation,
-    BackgroundGeolocation,
-    LocationTracker,
-    DatePipe,
-    ScreenOrientation,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
