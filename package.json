@@ -20,11 +20,11 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
-    "@ionic-native/background-geolocation": "^3.14.0",
+    "@ionic-native/background-geolocation": "^3.12.1",
     "@ionic-native/background-mode": "^4.20.0",
     "@ionic-native/camera": "^4.3.3",
     "@ionic-native/core": "~4.18.0",
-    "@ionic-native/geolocation": "^4.20.0",
+    "@ionic-native/geolocation": "^4.6.0",
     "@ionic-native/local-notifications": "^4.7.0",
     "@ionic-native/screen-orientation": "^4.20.0",
     "@ionic-native/splash-screen": "~4.18.0",
@@ -69,8 +69,12 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-camera": {},
-      "cordova-plugin-geolocation": {},
       "cordova-plugin-screen-orientation": {},
+      "cordova-plugin-background-mode": {},
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      },
       "cordova-plugin-mauron85-background-geolocation": {
         "GOOGLE_PLAY_SERVICES_VERSION": "11+",
         "ANDROID_SUPPORT_LIBRARY_VERSION": "23+",
@@ -80,9 +84,7 @@
         "ACCOUNT_LABEL": "@string/app_name",
         "ACCOUNT_TYPE": "$PACKAGE_NAME.account",
         "CONTENT_AUTHORITY": "$PACKAGE_NAME"
-      },
-      "cordova-plugin-background-mode": {},
-      "cordova-plugin-local-notification": {}
+      }
     },
     "platforms": [
       "browser",

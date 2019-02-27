@@ -72,76 +72,6 @@ https://developers.google.com/maps/documentation/javascript/usage-and-billing
 https://cloud.google.com/maps-platform/user-guide/account-changes/
 
 
-Abas
-	Atendimentos -> Designação
-		Detalhes do Atendimento e do Cliente
-		Ocorrências
-		Atualizar Dados Técnicos
-		Rota -> Atualizar coordenadas geográficas
-		Anexar Fotos
-		Assinatura -> Pesquisa de Satisfação
-		Check List -> Encerramento | Designação
-	Histórico
-	Equipes
-	Mapa
-
-Pesquisa:
-	@nome do cliente
-	#tópico
-	[0..9] número do atendimento
-	[0..9/] data de abertura
-	
-cliente: 3776 (Reydivan)
-contrato: 5934
-atendimento: 100903
-
-
-- Usuário Capturar Atendimento
-- Salvar localmente os dados do usuário para usar no login e requisição
-- Refresh pra atualizar a listagem de atendimentos
-- Notificação quando o tecnico for designado para um atendimento
-- Alinhamento da Tab Pages Detalhes
-- Ícones do app (bruno kalvner)
-- Nomes da equipe na listagem de atendimentos
-- Dados Adicionais - MTBF
-- Dados Adicionais - Poder atualizar todos os contratos do cliente, não somente o contrato do atendimento.
-- Verificar o funcionamento da tabela AtendimentoOS quando se cria a OS (Situação de 'Não Criada' para 'Na Fila' ou 'A Caminho' ou 'Concluída' ou 'Em Execução')
-
-Ionic 3 Routing and Navigation Tutorial & Examples
-https://www.techiediaries.com/ionic-2-navigation/
-
-https://stackoverflow.com/questions/37296999/ionic-2-disabling-back-button-for-a-specific-view
-https://forum.ionicframework.com/t/how-to-hide-tabs-when-pushing-a-new-page/56399
-https://forum.ionicframework.com/t/how-to-hide-tabs-bar/95112
-https://forum.ionicframework.com/t/ionic-hide-tabs/37998/26
-
-ion-searchbar
-https://github.com/ionic-team/ionic/issues/7539
-https://pt.stackoverflow.com/questions/307544/alinhar-elementos-ion-navbar-ionic
-
-backgroundGeolocation.configure(...).subscribe is not a function
-https://forum.ionicframework.com/t/background-geolocation-isnt-a-observable/154804/12
-
-jossephalvarez/backgroundGeo
-https://github.com/jossephalvarez/backgroundGeo/tree/master/src
-https://github.com/jossephalvarez/ionic-background-LocalNotifications-ionic-3.9.2
-
-
-<ion-icon name="arrow-round-forward"></ion-icon>
-<ion-icon name="arrow-round-down"></ion-icon>
-<ion-icon name="arrow-down"></ion-icon>
-<ion-icon name="download"></ion-icon>
-<ion-icon name="photos"></ion-icon>
-<ion-icon name="images"></ion-icon>
-
-incluir o telefone/celular nos detaçhes do cliente
-verificar o encerramento e designação, para salvar as ações no nome do usuário designado atual
-salvar estatisticas no bd dev
-Capturar na lista de atendimentos e na lista da pesquisa
-Designar na lista de atendimentos e na lista da pesquisa quando o usuário for GESTOR
-
-
-
 # IONIC
 
 OFFICIAL DOCUMENTATION
@@ -325,12 +255,34 @@ executar o aplicativo
 		ionic cordova run android -l (device)
 			Atenção: Criar uma variável de ambiente SLAVE_AAPT_TIMEOUT = 180 para evitar erro de timeout
 			adb devices -> List of devices attached
+      local apk: C:\Projetos\app-axes-os\platforms\android\app\build\outputs\apk\debug
+      To deploy and debug apps on an Android device
+        https://ionicframework.com/docs/building/running
 		ionic cordova run browser (navegador com recursos nativos)
 	ionic cordova emulate --help (executar no emulador)
 	
 gerar a versão executável do aplicativo
 	ionic build --help
-	ionic build android
+  ionic build --platform=android --prod
+  ionic cordova build android --prod --release (ok)
+  local apk: C:\Projetos\app-axes-os\platforms\android\app\build\outputs\apk\release\
+
+  Publishing your app
+  https://ionicframework.com/docs/v1/guide/publishing.html
+
+  Abrir keytool.exe no CMD
+    "C:\Program Files\Java\jdk1.8.0_191\bin\keytool.exe" -genkey -v -keystore key-app-axesos.keystore -alias app-axesos -keyalg RSA -keysize 2048 -validity 10000
+
+  Abrir jarsigner.exe no CMD
+  "C:\Program Files\Java\jdk1.8.0_191\bin\jarsigner.exe" -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore key-app-axesos.keystore app-release-unsigned.apk app-axesos
+
+  Abrir jarsigner.exe
+  "C:\Users\kalley.AXXESS\AppData\Local\Android\Sdk\build-tools\28.0.3\zipalign.exe" -v 4 app-release-unsigned.apk AxesOS.apk
+
+  How to solve the “App not installed” error on Android devices?
+  https://forum.ionicframework.com/t/how-to-solve-the-app-not-installed-error-on-android-devices/139401
+  https://www.digitbin.com/app-not-installed-fix-error/
+
 	
 Icon e Splash
 	Inclua um arquivo icon.png, icon.psd ou icon.ai na pasta resources do projeto (tamanho mínimo da imagem seja 192px x 192px)
@@ -409,10 +361,12 @@ ATENÇÃO: Antes de instalar um pacote nativo "@ionic-native/<nome-do-pacote>" r
 	https://github.com/apache/cordova-plugin-geolocation
 	https://www.npmjs.com/package/@ionic-native/geolocation (Versões)
 	
-	ionic cordova plugin add cordova-plugin-geolocation
-	npm install @ionic-native/geolocation
-				@ionic-native/geolocation@4.3.2
-				@ionic-native/geolocation@4.20.0 (usei esse)
+	ionic cordova plugin add cordova-plugin-geolocation@^4.0.1 --variable GEOLOCATION_USAGE_DESCRIPTION="To locate you"
+  npm install --save @ionic-native/geolocation
+  npm install --save @ionic-native/geolocation@4.3.2
+  npm install --save @ionic-native/geolocation@4.20.0
+	npm install --save @ionic-native/geolocation@4.6.0
+
 	Exemplos:
 		https://www.joshmorony.com/ionic-2-how-to-use-google-maps-geolocation-video-tutorial/
 		https://www.joshmorony.com/using-google-maps-and-geolocation-in-ionic-with-capacitor/
@@ -425,12 +379,12 @@ ATENÇÃO: Antes de instalar um pacote nativo "@ionic-native/<nome-do-pacote>" r
   https://www.npmjs.com/package/cordova-plugin-mauron85-background-geolocation (Versões)
 	
 	ionic cordova plugin add cordova-plugin-mauron85-background-geolocation
-  ionic cordova plugin add cordova-plugin-mauron85-background-geolocation@^2.3.6
   ionic cordova plugin add cordova-plugin-mauron85-background-geolocation@alpha
+  ionic cordova plugin add cordova-plugin-mauron85-background-geolocation@^2.3.6
   npm install --save @ionic-native/background-geolocation
-	npm install --save @ionic-native/background-geolocation@^3.12.1
   npm install --save @ionic-native/background-geolocation@4
   npm install --save @ionic-native/background-geolocation@3 (versão 3.14.0)
+	npm install --save @ionic-native/background-geolocation@^3.12.1
 	Exemplos:
 		https://www.joshmorony.com/adding-background-geolocation-to-an-ionic-2-application/
 
@@ -514,10 +468,6 @@ PIPES
     http://plnkr.co/edit/rLa1EcZC8uKw6MA2EXld?p=info
     https://forum.ionicframework.com/t/filtering-a-loop/78285/2
 
-	
-LOCAL APK IONIC:
-	C:\Projetos\app-starter-super\platforms\android\app\build\outputs\apk\debug\app-debug.apk
-	
 
 CONTEÚDO BÁSICO INICIAL
 Como criar aplicativos com Ionic Framework	http://www.fabricadecodigo.com/como-criar-aplicativos-com-ionic-framework/
@@ -960,3 +910,87 @@ https://stackoverflow.com/questions/37764665/typescript-sleep
 Angular2 wait for multiple promises to finish
 https://stackoverflow.com/questions/37841721/angular2-wait-for-multiple-promises-to-finish
   Promise.all()
+
+
+
+
+:: PENDÊNCIAS
+
+- Usuário Capturar Atendimento
+- Salvar localmente os dados do usuário para usar no login e requisição
+- Refresh pra atualizar a listagem de atendimentos
+- Notificação quando o tecnico for designado para um atendimento
+- Alinhamento da Tab Pages Detalhes
+- Ícones do app (bruno kalvner)
+- Nomes da equipe na listagem de atendimentos
+- Dados Adicionais - MTBF
+- Dados Adicionais - Poder atualizar todos os contratos do cliente, não somente o contrato do atendimento.
+- Verificar o funcionamento da tabela AtendimentoOS quando se cria a OS (Situação de 'Não Criada' para 'Na Fila' ou 'A Caminho' ou 'Concluída' ou 'Em Execução')
+
+Ionic 3 Routing and Navigation Tutorial & Examples
+https://www.techiediaries.com/ionic-2-navigation/
+
+https://stackoverflow.com/questions/37296999/ionic-2-disabling-back-button-for-a-specific-view
+https://forum.ionicframework.com/t/how-to-hide-tabs-when-pushing-a-new-page/56399
+https://forum.ionicframework.com/t/how-to-hide-tabs-bar/95112
+https://forum.ionicframework.com/t/ionic-hide-tabs/37998/26
+
+ion-searchbar
+https://github.com/ionic-team/ionic/issues/7539
+https://pt.stackoverflow.com/questions/307544/alinhar-elementos-ion-navbar-ionic
+
+
+ion-icon name="arrow-round-forward"
+ion-icon name="arrow-round-down"
+ion-icon name="arrow-down"
+ion-icon name="download"
+ion-icon name="photos"
+ion-icon name="images"
+
+Capturar na lista de atendimentos e na lista da pesquisa
+Designar na lista de atendimentos e na lista da pesquisa quando o usuário for GESTOR
+
+
+https://ionicframework.com/docs/v3/native/background-geolocation/
+https://forum.ionicframework.com/t/background-geolocation-isnt-a-observable/154804/12
+
+*** https://github.com/jossephalvarez/backgroundGeo/blob/master/package.json
+    
+    "@ionic-native/core": "~4.18.0",
+    "cordova-plugin-geolocation": "^4.0.1",
+    "@ionic-native/geolocation": "4.6.0",
+    "cordova-plugin-mauron85-background-geolocation": "^2.3.6",
+    "@ionic-native/background-geolocation": "^3.12.1",
+
+*** https://github.com/jossephalvarez/ionic-background-LocalNotifications-ionic-3.9.2/blob/master/package.json
+    "@ionic-native/background-mode": "^4.20.0",
+    "cordova-plugin-background-mode": "0.7.2",
+
+backgroundGeolocation.configure(...).subscribe is not a function
+https://forum.ionicframework.com/t/background-geolocation-isnt-a-observable/154804/12
+
+jossephalvarez/backgroundGeo
+https://github.com/jossephalvarez/backgroundGeo/tree/master/src
+https://github.com/jossephalvarez/ionic-background-LocalNotifications-ionic-3.9.2
+
+
+jossephalvarez/ionic-background-LocalNotifications-ionic-3.9.2
+https://github.com/jossephalvarez/ionic-background-LocalNotifications-ionic-3.9.2/blob/master/src/pages/background-geo/background-geo.ts
+
+https://www.npmjs.com/package/cordova-plugin-mauron85-background-geolocation
+https://www.npmjs.com/package/@ionic-native/background-geolocation
+https://ionicframework.com/docs/v3/native/geolocation/
+
+https://ionicframework.com/docs/v3/native/background-mode/
+https://www.npmjs.com/package/cordova-plugin-background-mode
+https://www.npmjs.com/package/@ionic-native/background-mode
+https://www.schoolofnet.com/forum/topico/como-usar-o-plugin-cordova-plugin-background-mode-no-ionic-3-4217
+https://github.com/argentinaluiz/ionic3-background-mode/blob/master/src/app/app.component.ts
+
+https://ionicframework.com/docs/v3/native/local-notifications/
+https://www.npmjs.com/package/cordova-plugin-local-notification
+https://www.npmjs.com/package/@ionic-native/local-notifications
+
+
+Google: ionic refresh data automatically in external database
+https://forum.ionicframework.com/t/how-to-auto-update-data-on-ionic-page-with-out-refreshing-the-page/88843/3

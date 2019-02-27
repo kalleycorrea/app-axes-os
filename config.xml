@@ -83,11 +83,13 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
-    <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
     <plugin name="cordova-plugin-screen-orientation" spec="3.0.1" />
     <allow-navigation href="http://192.168.0.7:8100" sessionid="9051dff0" />
-    <engine name="browser" spec="5.0.4" />
-    <engine name="android" spec="7.1.4" />
+    <plugin name="cordova-plugin-background-mode" spec="0.7.2" />
+    <plugin name="cordova-plugin-local-notification" spec="0.9.0-beta.2" />
+    <plugin name="cordova-plugin-geolocation" spec="4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
     <plugin name="cordova-plugin-mauron85-background-geolocation" spec="2.3.6">
         <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11+" />
         <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="23+" />
@@ -98,6 +100,6 @@
         <variable name="ACCOUNT_TYPE" value="$PACKAGE_NAME.account" />
         <variable name="CONTENT_AUTHORITY" value="$PACKAGE_NAME" />
     </plugin>
-    <plugin name="cordova-plugin-background-mode" spec="0.7.2" />
-    <plugin name="cordova-plugin-local-notification" spec="0.9.0-beta.2" />
+    <engine name="browser" spec="5.0.4" />
+    <engine name="android" spec="7.1.4" />
 </widget>
