@@ -104,7 +104,7 @@ export class EquipesPage {
         // success
         let toast = this.toastCtrl.create({
           message: "Equipe Criada",
-          duration: 2000,
+          duration: 1500,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });
@@ -122,7 +122,7 @@ export class EquipesPage {
         // Unable to save
         let toast = this.toastCtrl.create({
           message: this.saveErrorString,
-          duration: 3000,
+          duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });
@@ -143,7 +143,7 @@ export class EquipesPage {
         // success
         let toast = this.toastCtrl.create({
           message: "Equipe Removida",
-          duration: 2000,
+          duration: 1500,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });
@@ -161,7 +161,7 @@ export class EquipesPage {
         // Unable to save
         let toast = this.toastCtrl.create({
           message: this.saveErrorString,
-          duration: 3000,
+          duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });

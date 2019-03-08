@@ -66,6 +66,20 @@ export class CheckListPage {
     // this.usuarios = this.atendimentos.getUsuarios(this.data);
   }
 
+  reloadMTBF(){
+    this.data = {
+      usuario: this.account['usuario'],
+      senha: this.account['senha'],
+      numAtendimento: this.item['NumAtendimento'],
+      tipoAtendimento: this.item['Tipo'],
+      grupo: (this.item.Grupo_Designado) ? this.item.Grupo_Designado : '',
+      topico: this.item['Topico'],
+    };
+    Promise.all([
+      this.mtbf = this.atendimentos.getMTBF(this.data),
+    ]).then();
+  }
+
   changeGrupo() {
     this.data = {
       usuario: this.account['usuario'],
@@ -90,23 +104,35 @@ export class CheckListPage {
     strChecklist = strChecklist.substr(0, strChecklist.length-1);
     descChecklist = descChecklist.substr(0, descChecklist.length-2);
 
-    let data: { usuario: any; senha: any; numAtendimento: any; strChecklist: any; descChecklist: any } = {
+    let data: { usuario: any; senha: any; numAtendimento: any; strChecklist: any; descChecklist: any;
+      mtbfObrigatorio: any; idMTBF: any; valorMTBF: any } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
       numAtendimento: this.item.NumAtendimento,
       strChecklist: strChecklist,
-      descChecklist: descChecklist
+      descChecklist: descChecklist,
+      mtbfObrigatorio: this.item.MTBFObrigatorio,
+      idMTBF: (this.item.MTBFObrigatorio == 'N') ? '' : this.mtbf.id,
+      valorMTBF: (this.item.MTBFObrigatorio == 'N') ? '' : ((this.mtbf.valor == true) ? 'S' : 'N')
     };
 
     this.atendimentos.saveCheckList(data).subscribe(
       resp => {
         // success
+        let toast = this.toastCtrl.create({
+          message: "Concluído",
+          duration: 1500,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        this.reloadMTBF();
+        toast.present();
       },
       err => {
         // Unable to save
         let toast = this.toastCtrl.create({
           message: this.saveErrorString,
-          duration: 3000,
+          duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });
@@ -139,7 +165,7 @@ export class CheckListPage {
         // success
         let toast = this.toastCtrl.create({
           message: "Concluído",
-          duration: 2000,
+          duration: 1500,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });
@@ -149,7 +175,7 @@ export class CheckListPage {
         // Unable to save
         let toast = this.toastCtrl.create({
           message: this.saveErrorString,
-          duration: 3000,
+          duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });
@@ -186,7 +212,7 @@ export class CheckListPage {
         // success
         let toast = this.toastCtrl.create({
           message: "Concluído",
-          duration: 2000,
+          duration: 1500,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });
@@ -196,7 +222,7 @@ export class CheckListPage {
         // Unable to save
         let toast = this.toastCtrl.create({
           message: this.saveErrorString,
-          duration: 3000,
+          duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });

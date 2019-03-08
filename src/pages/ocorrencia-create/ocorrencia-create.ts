@@ -78,7 +78,7 @@ export class OcorrenciaCreatePage {
         // Unable to save
         let toast = this.toastCtrl.create({
           message: this.saveErrorString,
-          duration: 3000,
+          duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });

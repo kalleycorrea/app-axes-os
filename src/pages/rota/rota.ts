@@ -253,7 +253,7 @@ export class RotaPage {
             // Show toast
             let toast = this.toastCtrl.create({
               message: "Dados Salvos",
-              duration: 2000,
+              duration: 1500,
               position: "bottom",
               cssClass: "toastCustomStyles"
             });
@@ -263,7 +263,7 @@ export class RotaPage {
             // Unable to save
             let toast = this.toastCtrl.create({
               message: "Não foi possível salvar os dados. Por favor tente novamente.",
-              duration: 3000,
+              duration: 2000,
               position: "bottom",
               cssClass: "toastCustomStyles"
             });
@@ -275,7 +275,7 @@ export class RotaPage {
         // Unable to save
         let toast = this.toastCtrl.create({
           message: "Erro ao obter a localização",
-          duration: 3000,
+          duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });

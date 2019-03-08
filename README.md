@@ -995,11 +995,12 @@ https://www.npmjs.com/package/@ionic-native/local-notifications
 Google: ionic refresh data automatically in external database
 https://forum.ionicframework.com/t/how-to-auto-update-data-on-ionic-page-with-out-refreshing-the-page/88843/3
 
-
-Tipo do Tecnico preencher corretamento quando não tiver no perfil
+OK -> MTBF
+OK -> Tipo do Tecnico preencher corretamento quando não tiver no perfil
 Pesquisa sem designação (limpar lista quando zerado)
+Spin não para quando o usuário não tem nenhum atendimento
 Geolocalização
 Dados Adicionais Obrigatório
 Dados Adicionais Não salvou
-mtbf
 publicar axestelecom
+

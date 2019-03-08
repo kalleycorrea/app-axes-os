@@ -14,7 +14,6 @@ import { MainPage, DetailPage } from '../../pages';
 export class AtendimentosPage {
   //rootPage = MainPage;
   atendimentosList: Atendimento[];
-
   account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; nomeequipe: any; filtroBusca: any } = {
     usuario: '',
     senha: '',
@@ -72,7 +71,7 @@ export class AtendimentosPage {
     // }, 3000);
 
     this.atendimentos.getAtendimentos(this.account).then(result => {
-      this.atendimentosList =  result;
+      this.atendimentosList = result;
     });
 
     //this.updateTabBadgeAtendimentos();
@@ -80,7 +79,7 @@ export class AtendimentosPage {
 
   doRefresh(refresher) {
     this.atendimentos.getAtendimentos(this.account).then((data) => {
-      this.atendimentosList =  data;
+      this.atendimentosList = data;
       if(refresher != 0)
         //refresher.complete();
         setTimeout(() => {

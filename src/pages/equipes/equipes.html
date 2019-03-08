@@ -49,7 +49,8 @@
           </ion-row>
           <ion-row *ngFor="let u of usuarios | equipeFilter:equipe.id">
             <ion-col col-8>
-              <p style="color: dimgray; font-weight: bold">{{u.perfil}}: {{u.usuario}}</p>
+              <p *ngIf="u.perfil == ''" style="color: dimgray; font-weight: bold">{{u.usuario}}</p>
+              <p *ngIf="u.perfil != ''" style="color: dimgray; font-weight: bold">{{u.perfil}}: {{u.usuario}}</p>
             </ion-col>
             <ion-col col-4 style="text-align: center">
               <ion-badge *ngIf="u.quantAtendimentos !== ''" color="vibrant">{{u.quantAtendimentos}}</ion-badge>

@@ -101,7 +101,7 @@ export class AnexoPage {
         // success
         let toast = this.toastCtrl.create({
           message: "Dados Salvos",
-          duration: 2000,
+          duration: 1500,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });
@@ -117,7 +117,7 @@ export class AnexoPage {
         // Unable to save
         let toast = this.toastCtrl.create({
           message: this.saveErrorString,
-          duration: 3000,
+          duration: 2000,
           position: "bottom",
           cssClass: "toastCustomStyles"
         });
