@@ -20,8 +20,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-searchbar (ionInput)="searchAtendimento($event)" placeholder="@cliente #tópico $técnico número"></ion-searchbar>
+<ion-content>
+  <ion-searchbar (ionInput)="searchAtendimento($event)" placeholder="@cliente #tópico $técnico"></ion-searchbar>
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       refreshingSpinner="ios"
@@ -31,7 +31,7 @@
 
   <ion-spinner name="ios" *ngIf="atendimentosList==0"></ion-spinner>
 
-  <ion-list *ngIf="atendimentosList != 0">
+  <ion-list *ngIf="atendimentosList != 0" no-padding>
     <!-- <ion-item-sliding *ngFor="let item of atendimentosList"> -->
     <button ion-item *ngFor="let item of atendimentosList; let i = index;" (click)="openAtendimento(item)">
       <!-- <ion-avatar item-start> -->
@@ -46,23 +46,29 @@
 
       <ion-grid no-padding>
         <ion-row>
+          <!--<ion-col col-3><ion-badge color="primary">{{item.NumAtendimento}}</ion-badge></ion-col>-->
           <ion-col col-12>
-            <h2>{{item.Cliente}}</h2>
+            <h2 *ngIf="!(item.SLA.indexOf('Atraso') > -1)">
+              <ion-badge color="primary">{{item.NumAtendimento}}</ion-badge> {{item.Cliente}}
+            </h2>
+            <h2 *ngIf="item.SLA.indexOf('Atraso') > -1">
+              <ion-badge color="danger">{{item.NumAtendimento}}</ion-badge> {{item.Cliente}}
+            </h2>
           </ion-col>
-          <!--col-9-->
-          <!-- <ion-col col-3><ion-badge color="secondary">{{i+1}}</ion-badge></ion-col> -->
         </ion-row>
       </ion-grid>
       <p>{{item.DescTopico}}</p>
-      <p>Protocolo: {{item.NumAtendimento}} &nbsp;&nbsp;&nbsp; Situação OS:
-        <span style="color:gray; font-weight:bold">{{item.DescSituacaoOS}}</span>
-      </p>
       <p *ngIf="item.Usu_Designado">Designado para: {{item.Usu_Designado}}</p>
       <p *ngIf="item.Grupo_Designado != 0"> Designado para: {{item.DescGrupoDesignado}}</p>
       <p style="font-size: 11px">
+        OS <span style="color:gray; font-weight:bold">{{item.DescSituacaoOS}}</span>
+        &nbsp;&nbsp;&nbsp; Atendimento <span style="color:gray; font-weight:bold">{{item.DescSituacaoAtendimento}}</span>
+      </p>
+      <p style="font-size: 11px">
         <ion-icon name="calendar"></ion-icon>
         &nbsp;&nbsp; {{item.Abertura}} &nbsp;&nbsp;
-        <ion-badge *ngIf="!(item.SLA === '' || item.SLA === 'Restam:  úteis')" color="danger">{{item.SLA}}</ion-badge>
+        <!--<ion-badge *ngIf="!(item.SLA === '' || item.SLA === 'Restam:  úteis')" color="slategray">{{item.SLA}}</ion-badge>-->
+        <span *ngIf="!(item.SLA === '' || item.SLA === 'Restam:  úteis')" style="color:gray; font-weight:bold">{{item.SLA}}</span>
       </p>
       <p style="font-size: 11px">
         <ion-icon name="pin"></ion-icon>

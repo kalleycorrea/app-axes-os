@@ -19,7 +19,11 @@
   <div no-padding no-margin [ngSwitch]="showSegment">
     <!-- CHECK LIST -->
     <ion-list no-lines *ngSwitchCase="'checklist'">
-      <p style="padding-left: 20px" *ngIf="checkList">Marque a tarefa quando concluir</p>
+      <!-- <p style="padding-left: 20px" *ngIf="checkList">Marque a tarefa quando concluir</p> -->
+      <ion-item>
+        <ion-label>MTBF</ion-label>
+        <ion-checkbox [(ngModel)]="mtbf.valor" color="secondary" [disabled]="item.MTBFObrigatorio === 'N'"></ion-checkbox>
+      </ion-item>
       <ion-item *ngFor="let task of checkList">
         <ion-label>{{task.Descricao}}</ion-label>
         <ion-checkbox [(ngModel)]="task.Checked" color="secondary"></ion-checkbox>

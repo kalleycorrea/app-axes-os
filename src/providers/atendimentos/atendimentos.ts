@@ -45,13 +45,19 @@ export class Atendimentos {
     "Estado": "",
     "MapsLat": "",
     "MapsLng": "",
+    "Usu_Abertura": "",
     "Usu_Designado": "",
+    "Usuario_BX": "",
     "Grupo_Designado": "",
     "DescGrupoDesignado": "",
+    "equipe": "",
+    "nomeequipe": "",
     "Situacao": "",
     "DescSituacao": "",
     "SituacaoOS": "0",
-    "DescSituacaoOS": ""
+    "DescSituacaoOS": "",
+    "DescSituacaoAtendimento": "",
+    "MTBFObrigatorio": ""
   };
 
   // Solução com Observables/Subjects para atualizar o tabBadge da page AtendimentosPage (Atendimentos)
@@ -229,6 +235,21 @@ export class Atendimentos {
       console.error('ERROR', err);
     });
     return this.checkList;
+  }
+
+  getMTBF(data: any) {
+    let mtbf: { id: any; valor: boolean } = { id: '', valor: false };
+    let seq = this.api.post('getmtbf', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+      if (res.length>0) {
+        mtbf.id = res[0].id;
+        mtbf.valor = (res[0].Valor == 'S') ? true: false;
+      }
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return mtbf;
   }
 
   getGrupoUsuarios(data: any) {

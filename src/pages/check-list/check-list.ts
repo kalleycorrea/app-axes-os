@@ -10,8 +10,9 @@ import { Atendimentos } from '../../providers';
 export class CheckListPage {
   item: any;
   account: { usuario: any; senha: any; tipo: any; grupo: any };
-  data: { usuario: any; senha: any; numAtendimento: any; tipoAtendimento: any; grupo: any };
+  data: { usuario: any; senha: any; numAtendimento: any; tipoAtendimento: any; grupo: any; topico: any };
   checkList: any[];
+  mtbf: { id: any; valor: boolean } = { id: '', valor: false };
   grupoUsuarios: any[];
   usuarios: any[];
   atendimentoCausas: any[];
@@ -37,7 +38,8 @@ export class CheckListPage {
         senha: this.account['senha'],
         numAtendimento: this.item['NumAtendimento'],
         tipoAtendimento: this.item['Tipo'],
-        grupo: ''
+        grupo: '',
+        topico: this.item['Topico'],
       };
   }
 
@@ -48,9 +50,11 @@ export class CheckListPage {
       numAtendimento: this.item['NumAtendimento'],
       tipoAtendimento: this.item['Tipo'],
       grupo: (this.item.Grupo_Designado) ? this.item.Grupo_Designado : '',
+      topico: this.item['Topico'],
     };
     Promise.all([
       this.checkList = this.atendimentos.getCheckList(this.data),
+      this.mtbf = this.atendimentos.getMTBF(this.data),
       this.grupoUsuarios = this.atendimentos.getGrupoUsuarios(this.data),
       this.usuarios = this.atendimentos.getUsuarios(this.data),
       this.atendimentoCausas = this.atendimentos.getAtendimentoCausas(this.data),
@@ -69,6 +73,7 @@ export class CheckListPage {
       numAtendimento: this.item['NumAtendimento'],
       tipoAtendimento: this.item['Tipo'],
       grupo: (this.item.Grupo_Designado) ? this.item.Grupo_Designado : '',
+      topico: this.item['Topico'],
     };
     this.usuarios = this.atendimentos.getUsuarios(this.data);
   }

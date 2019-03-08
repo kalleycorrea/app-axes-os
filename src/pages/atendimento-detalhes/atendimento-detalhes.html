@@ -77,6 +77,9 @@
       <p *ngIf="item.Usuario_BX">Usuário Encerramento: {{item.Usuario_BX}}</p>
       <p>Prioridade: {{item.Prioridade}}</p>
       <p>SLA: <ion-badge color="danger">{{item.SLA}}</ion-badge></p>
+      <p>
+        Atendimento <span style="color:gray; font-weight:bold">{{item.DescSituacaoAtendimento}}</span>
+      </p>
       <!--
       <ion-item no-padding no-margin><p>Tóipico: {{item.DescTopico}}</p></ion-item>
       <ion-item no-padding no-margin><p>Protocolo: {{item.Protocolo}}</p></ion-item>
