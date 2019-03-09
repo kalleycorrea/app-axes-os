@@ -6,40 +6,12 @@
 </ion-header>
 -->
 
-<ion-content padding marging>
-  <!--
-  <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + item.profilePic + ')'">
-  </div>
-  -->
-  <!--
-  <div class="item-detail" padding>
-    <h2>{{item.Cliente}}</h2>
-    <p>{{item.DescTopico}}</p>
-  </div>
-  -->
-  <ion-card>
-    <ion-card-header>
-      <b>Dados Cliente</b>
-    </ion-card-header>
-    <ion-card-content>
-      <h2>{{item.Cliente}}</h2>
-      <p>{{item.Apelido}}</p>
-      <p>Código Cliente: {{item.CodCliente}}</p>
-      <!-- <p><span style="font-weight: bold;">Código Cliente: </span>{{item.CodCliente}}</p> -->
-      <p>Contrato: {{item.Contrato}}</p>
-      <p>Plano: {{item.Plano}}</p>
-      <p *ngIf="item.TelCelular">Celular:&nbsp;<a href="tel:{{item.TelCelular}}">{{item.TelCelular}}</a></p>
-      <p *ngIf="item.TelComercial">Tel Comercial:&nbsp;<a href="tel:{{item.TelComercial}}">{{item.TelComercial}}</a></p>
-      <p *ngIf="item.TelResidencial">Tel Residencial:&nbsp;<a href="tel:{{item.TelResidencial}}">{{item.TelResidencial}}</a></p>
-      <p>Endereço: {{item.Endereco}} N. {{item.Numero}}</p>
-      <p>Bairro: {{item.Bairro}}</p>
-      <p>Cidade: {{item.Cidade}}</p>
-      <p>Complemento: {{item.Complemento}}</p>
-      <p>CEP: {{item.CEP}}</p>
-      <p>Grupo: {{item.GrupoCliente}}</p>
-      <p>Situação: {{item.DescSituacaoCliente}}</p>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+
+  <ion-fab top right>
+      <button ion-fab mini hidden></button><!--isto é um truque para o ion-button ter o comportamento do ion-fab-->
+      <button ion-button round outline small icon-start color="primaty" (click)="capturarAtendimento()"><ion-icon name="hand"></ion-icon>Capturar</button>
+  </ion-fab>
 
   <ion-card>
     <ion-card-header>
@@ -68,18 +40,28 @@
       <b>Dados Atendimento</b>
     </ion-card-header>
     <ion-card-content>
-      <p>Tópico: {{item.DescTopico}}</p>
-      <p>Protocolo: {{item.Protocolo}}</p>
+      <p style="color:gray; font-weight:bold">Tópico: {{item.DescTopico}}</p>
+      <p>Protocolo: <span style="color:gray; font-weight:bold">{{item.Protocolo}}</span></p>
       <p>Data Abertura: {{item.Abertura}}</p>
       <p>Usuário Abertura: {{item.Usu_Abertura}}</p>
       <p *ngIf="item.Usu_Designado">Designado para: {{item.Usu_Designado}}</p>
       <p *ngIf="item.Grupo_Designado != 0"> Designado para: {{item.DescGrupoDesignado}}</p>
       <p *ngIf="item.Usuario_BX">Usuário Encerramento: {{item.Usuario_BX}}</p>
       <p>Prioridade: {{item.Prioridade}}</p>
-      <p>SLA: <ion-badge color="danger">{{item.SLA}}</ion-badge></p>
-      <p>
+      <p>SLA: <ion-badge *ngIf="!(item.SLA === '' || item.SLA === 'Restam:  úteis')" color="danger">{{item.SLA}}</ion-badge></p>
+      <p *ngIf="item.SituacaoAtendimento == 'F'">
         Atendimento <span style="color:gray; font-weight:bold">{{item.DescSituacaoAtendimento}}</span>
       </p>
+      <ion-item *ngIf="item.SituacaoAtendimento != 'F'" no-padding no-margin> <!--no-padding no-margin-->
+        <ion-label style="color:#222; font-weight:normal; font-size: small">Situação do Atendimento</ion-label> <!--fixed no-padding no-margin-->
+        <ion-select [(ngModel)]="item.SituacaoAtendimento" (ionChange)="onSelectedSituacaoAtendimento()"
+          okText="OK" cancelText="Cancelar" interface="action-sheet"
+          style="color:#222; font-weight:normal; font-size: small"> <!--item-end no-padding no-margin-->
+          <ion-option value="">Não Informada</ion-option>
+          <ion-option value="A">Em Andamento</ion-option>
+          <ion-option value="E">Em Espera</ion-option>
+        </ion-select>
+      </ion-item>
       <!--
       <ion-item no-padding no-margin><p>Tóipico: {{item.DescTopico}}</p></ion-item>
       <ion-item no-padding no-margin><p>Protocolo: {{item.Protocolo}}</p></ion-item>
@@ -97,6 +79,35 @@
       <ion-item text-wrap no-padding no-margin>
         <p>{{item.Assunto}}</p>
       </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <b>Dados Cliente</b>
+    </ion-card-header>
+    <ion-card-content>
+      <h2><span style="color:gray; font-weight:bold">{{item.Cliente}}</span></h2>
+      <p>Nome Fantasia: <span style="color:gray; font-weight:bold">{{item.Apelido}}</span></p>
+      <p>Código Cliente: {{item.CodCliente}}</p>
+      <!-- <p><span style="font-weight: bold;">Código Cliente: </span>{{item.CodCliente}}</p> -->
+      <p>Contrato: {{item.Contrato}}</p>
+      <p>Plano: <span style="color:gray; font-weight:bold">{{item.Plano}}</span></p>
+      <!--
+      <p *ngIf="item.TelCelular">Celular:&nbsp;<a href="tel:{{item.TelCelular}}">{{item.TelCelular}}</a></p>
+      <p *ngIf="item.TelComercial">Tel Comercial:&nbsp;<a href="tel:{{item.TelComercial}}">{{item.TelComercial}}</a></p>
+      <p *ngIf="item.TelResidencial">Tel Residencial:&nbsp;<a href="tel:{{item.TelResidencial}}">{{item.TelResidencial}}</a></p>
+      -->
+      <p *ngIf="item.TelCelular">Celular: {{item.TelCelular}}</p>
+      <p *ngIf="item.TelComercial">Tel Comercial: {{item.TelComercial}}</p>
+      <p *ngIf="item.TelResidencial">Tel Residencial: {{item.TelResidencial}}</p>
+      <p>Endereço: {{item.Endereco}} N. {{item.Numero}}</p>
+      <p>Bairro: {{item.Bairro}}</p>
+      <p>Cidade: {{item.Cidade}}</p>
+      <p>Complemento: {{item.Complemento}}</p>
+      <p>CEP: {{item.CEP}}</p>
+      <p>Grupo: {{item.GrupoCliente}}</p>
+      <p>Situação do Contrato: {{item.DescSituacaoCliente}}</p>
     </ion-card-content>
   </ion-card>
 
@@ -119,4 +130,7 @@
     </ion-list>
     <button ion-button block (click)="save()" color="primary">Salvar</button>
     -->
+  <div style="text-align: center" padding marging>
+    <p>. . .</p>
+  </div>
 </ion-content>

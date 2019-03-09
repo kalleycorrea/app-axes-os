@@ -41,12 +41,13 @@ export class LoginPage {
         //this.navCtrl.pop();
         this.navCtrl.setRoot(MainPage);
 
-        if (this.platform.is('cordova')) {
-          this.backgroundMode.enable();
-          this.backgroundMode.on('activate').subscribe(() => {
-            this.locationTracker.startTracking(this.user._user[0]);
-          });
-        }
+        // if (this.platform.is('cordova')) {
+        //   this.backgroundMode.enable();
+        //   this.backgroundMode.on('activate').subscribe(() => {
+        //     this.locationTracker.startTracking(this.user._user[0]);
+        //   });
+        // }
+
         //this.navCtrl.push(MainPage);
         //if (this.user._user['setpassword'] == 'N'){
         //  this.navCtrl.push(MainPage);

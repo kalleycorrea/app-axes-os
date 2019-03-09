@@ -55,5 +55,62 @@ export class AtendimentoDetalhesPage {
       }
     );
   }
+
+  onSelectedSituacaoAtendimento() {
+    let data: { usuario: any; senha: any; numAtendimento: any; situacao: any } = {
+      usuario: this.account.usuario,
+      senha: this.account.senha,
+      numAtendimento: this.item.NumAtendimento,
+      situacao: this.item.SituacaoAtendimento
+    };
+
+    this.atendimentos.updateSituacaoAtendimento(data).subscribe(
+      resp => {
+        // success
+      },
+      err => {
+        // Unable to update
+        let toast = this.toastCtrl.create({
+          message: this.saveErrorString,
+          duration: 2000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      }
+    );
+  }
+
+  capturarAtendimento() {
+    let data: { usuario: any; senha: any; numAtendimento: any; situacao: any } = {
+      usuario: this.account.usuario,
+      senha: this.account.senha,
+      numAtendimento: this.item.NumAtendimento,
+      situacao: this.item.SituacaoAtendimento
+    };
+
+    this.atendimentos.capturarAtendimento(data).subscribe(
+      resp => {
+        // success
+        let toast = this.toastCtrl.create({
+          message: "Concluído",
+          duration: 1500,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      },
+      err => {
+        // Unable to update
+        let toast = this.toastCtrl.create({
+          message: this.saveErrorString,
+          duration: 2000,
+          position: "bottom",
+          cssClass: "toastCustomStyles"
+        });
+        toast.present();
+      }
+    );
+  }
 }
 

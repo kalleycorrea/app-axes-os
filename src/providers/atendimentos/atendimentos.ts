@@ -56,6 +56,7 @@ export class Atendimentos {
     "DescSituacaoCliente": "",
     "SituacaoOS": "0",
     "DescSituacaoOS": "",
+    "SituacaoAtendimento": "",
     "DescSituacaoAtendimento": "",
     "MTBFObrigatorio": ""
   };
@@ -93,6 +94,26 @@ export class Atendimentos {
 
   updateSituacaoOS(data: any) {
     let seq = this.api.post('updatesituacaoos', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
+  }
+
+  updateSituacaoAtendimento(data: any) {
+    let seq = this.api.post('updatesituacaoatendimento', data).share();
+    seq.subscribe((res: any) => {
+      // If the API returned a successful response
+    }, err => {
+      console.error('ERROR', err);
+    });
+    return seq;
+  }
+
+  capturarAtendimento(data: any) {
+    let seq = this.api.post('capturaratendimento', data).share();
     seq.subscribe((res: any) => {
       // If the API returned a successful response
     }, err => {

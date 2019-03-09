@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, Button } from 'ionic-angular';
 import { Atendimentos } from '../../providers';
+import { MainPage } from "../";
 
 @IonicPage()
 @Component({
@@ -195,6 +196,13 @@ export class CheckListPage {
       return;
     }
 
+    for (let item of this.checkList) {
+      if (!item.Checked || item.Checked == false || item.Checked == 'false') {
+        alert('Faça o CheckList antes de encerrar o atendimento');
+        return;
+      }
+    }
+
     let data: { usuario: any; senha: any; numAtendimento: any; causa: any; solucao: any;
       topico: any; situacaoOS: any; usuarioDesignado: any } = {
       usuario: this.account['usuario'],
@@ -217,6 +225,8 @@ export class CheckListPage {
           cssClass: "toastCustomStyles"
         });
         toast.present();
+        //this.navCtrl.setRoot(MainPage);
+        //this.navCtrl.pop();
       },
       err => {
         // Unable to save

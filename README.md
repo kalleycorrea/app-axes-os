@@ -998,9 +998,14 @@ https://forum.ionicframework.com/t/how-to-auto-update-data-on-ionic-page-with-ou
 OK -> MTBF
 OK -> Tipo do Tecnico preencher corretamento quando não tiver no perfil
 Pesquisa sem designação (limpar lista quando zerado)
-Spin não para quando o usuário não tem nenhum atendimento
 Geolocalização
 Dados Adicionais Obrigatório
 Dados Adicionais Não salvou
 publicar axestelecom
 
+
+capturar
+encerrar somente com os checklist marcados
+permissão para discar
+geolocalização
+senha
