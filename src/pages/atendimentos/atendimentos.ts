@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController, Events } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, Events, PopoverController } from 'ionic-angular';
 
 import { Atendimento } from '../../models/atendimento';
 import { Atendimentos } from '../../providers';
 import { User } from '../../providers';
-import { MainPage, DetailPage } from '../../pages';
+import { MainPage, DetailPage, PopoverPage } from '../../pages';
 
 @IonicPage()
 @Component({
@@ -28,7 +28,8 @@ export class AtendimentosPage {
     public atendimentos: Atendimentos,
     public user: User,
     //public events: Events,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public popoverCtrl: PopoverController
     ) {
 
     //if (typeof var_array !== 'undefined' && var_array.length > 0)
@@ -108,7 +109,7 @@ export class AtendimentosPage {
 
   searchAtendimento(ev) {
     let val = ev.target.value;
-    if (val && val.trim() != '' && val.length > 3) {
+    if ((val && val.trim() != '' && val.length > 3) || (val && val.trim() == '*') || (val && val.trim() == '?')) {
       this.account.filtroBusca = val;
       this.atendimentos.getAtendimentos(this.account).then(result => {
         this.atendimentosList =  result;
@@ -119,6 +120,14 @@ export class AtendimentosPage {
         this.atendimentosList =  result;
       });
     }
+  }
+
+  presentPopoverHelpBusca(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
+    //popover.present();
   }
 
   //public updateTabBadgeAtendimentos(): void {

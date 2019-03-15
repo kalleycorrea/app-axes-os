@@ -21,7 +21,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar (ionInput)="searchAtendimento($event)" placeholder="@cliente #tópico $técnico"></ion-searchbar>
+  <ion-grid no-padding>
+    <ion-row>
+        <ion-col col-11>
+          <ion-searchbar (ionInput)="searchAtendimento($event)" placeholder=""></ion-searchbar>
+        </ion-col>
+        <ion-col col-1>
+          <button ion-button full clear icon-only (click)="presentPopoverHelpBusca($event)">
+            <ion-icon name="help-circle" color="subtle"></ion-icon>
+          </button>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       refreshingSpinner="ios"
@@ -66,11 +78,19 @@
       </p>
       <p style="font-size: 11px">
         <ion-icon name="calendar"></ion-icon>
-        &nbsp;&nbsp; {{item.Abertura}} &nbsp;&nbsp;
+        &nbsp;&nbsp;Aberto em {{item.Abertura}} &nbsp;&nbsp;
         <!--<ion-badge *ngIf="!(item.SLA === '' || item.SLA === 'Restam:  úteis')" color="slategray">{{item.SLA}}</ion-badge>-->
         <span *ngIf="!(item.SLA === '' || item.SLA === 'Restam:  úteis')" style="color:gray; font-weight:bold">{{item.SLA}}</span>
       </p>
-      <p style="font-size: 11px">
+      <p *ngIf="item.Agendamento && item.Agendamento != ''" style="font-size: 11px; color: #f53d3d">
+        <ion-icon name="calendar" color="danger"></ion-icon>
+        &nbsp;&nbsp;Agendamento {{item.Agendamento}} &nbsp;&nbsp;
+      </p>
+      <p *ngIf="item.TipoPessoa == 'F'" style="font-size: 11px">
+        <ion-icon name="pin"></ion-icon>
+        &nbsp;&nbsp; {{item.GrupoCliente}}
+      </p>
+      <p *ngIf="item.TipoPessoa == 'J'" style="font-size: 11px">
         <ion-icon name="pin"></ion-icon>
         &nbsp;&nbsp; {{item.Endereco}} N. {{item.Numero}} {{item.Bairro}} {{item.Cidade}}
       </p>

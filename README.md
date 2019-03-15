@@ -995,8 +995,8 @@ https://www.npmjs.com/package/@ionic-native/local-notifications
 Google: ionic refresh data automatically in external database
 https://forum.ionicframework.com/t/how-to-auto-update-data-on-ionic-page-with-out-refreshing-the-page/88843/3
 
-OK -> MTBF
-OK -> Tipo do Tecnico preencher corretamento quando não tiver no perfil
+OK > MTBF
+OK > Tipo do Tecnico preencher corretamento quando não tiver no perfil
 Pesquisa sem designação (limpar lista quando zerado)
 Geolocalização
 Dados Adicionais Obrigatório
@@ -1009,3 +1009,16 @@ encerrar somente com os checklist marcados
 permissão para discar
 geolocalização
 senha
+
+OK > Informações de agendamento
+OK > Pesquisar Por Nome Fantasia
+Controle de Estoque -> Materiais que estão com o técnico
+OK > Trocar endereço na lista principal para o nome do condominio p/ PF
+OK > $tecnico = em aberto
+OK > %tecnico = fechados
+OK > Desabilitar o icone do capturar quando o atendimento já for do tecnico
+Substituir Dados Tecnicos está duplicando
+Travar a localização do tecnico no mapa pra salvar coordenadas
+sms após avaliação
+
+*Atendimento com situação '' não está contando para a quantidade de atendimentos da equipe

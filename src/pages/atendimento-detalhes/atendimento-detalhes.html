@@ -8,9 +8,9 @@
 
 <ion-content>
 
-  <ion-fab top right>
+  <ion-fab *ngIf="item.Usu_Designado != account.usuario && item.SituacaoAtendimento != 'F'" top right>
       <button ion-fab mini hidden></button><!--isto é um truque para o ion-button ter o comportamento do ion-fab-->
-      <button ion-button round outline small icon-start color="primaty" (click)="capturarAtendimento()"><ion-icon name="hand"></ion-icon>Capturar</button>
+      <button ion-button round outline small icon-start color="primaty" (click)="capturarAtendimento()">Capturar</button>
   </ion-fab>
 
   <ion-card>
