@@ -31,6 +31,10 @@ export class DadosTecnicosPage {
   }
 
   ionViewDidEnter() {
+    this.loadDadosAdicionais();
+  }
+
+  loadDadosAdicionais(){
     let data: { usuario: any; senha: any; numAtendimento: any; } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
@@ -65,10 +69,11 @@ export class DadosTecnicosPage {
 
   save() {
     this.dadosSalvar.length = 0;
-    let data: { usuario: any; senha: any; contrato: any } = {
+    let data: { usuario: any; senha: any; contrato: any; numAtendimento: any } = {
       usuario: this.account['usuario'],
       senha: this.account['senha'],
-      contrato: this.item.Contrato
+      contrato: this.item.Contrato,
+      numAtendimento: this.item.NumAtendimento
     };
 
     //let data = [...this.account, ...this.item, ...this.dadosAdicionais]; //Spread Operator
@@ -102,6 +107,7 @@ export class DadosTecnicosPage {
         });
         toast.present();
         this.dadosSalvar.length = 0;
+        this.loadDadosAdicionais();
       },
       err => {
         // Unable to save

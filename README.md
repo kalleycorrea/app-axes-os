@@ -1017,8 +1017,7 @@ OK > Trocar endereço na lista principal para o nome do condominio p/ PF
 OK > $tecnico = em aberto
 OK > %tecnico = fechados
 OK > Desabilitar o icone do capturar quando o atendimento já for do tecnico
-Substituir Dados Tecnicos está duplicando
+OK > Atendimento com situação '' não está contando para a quantidade de atendimentos da equipe
+OK > Substituir Dados Tecnicos está duplicando
 Travar a localização do tecnico no mapa pra salvar coordenadas
-sms após avaliação
-
-*Atendimento com situação '' não está contando para a quantidade de atendimentos da equipe
+SMS após avaliação
