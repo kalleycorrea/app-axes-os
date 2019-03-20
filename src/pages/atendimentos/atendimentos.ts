@@ -14,13 +14,14 @@ import { MainPage, DetailPage, PopoverPage } from '../../pages';
 export class AtendimentosPage {
   //rootPage = MainPage;
   atendimentosList: Atendimento[];
-  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; nomeequipe: any; filtroBusca: any } = {
+  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; nomeequipe: any; tecnicoequipe: any; filtroBusca: any } = {
     usuario: '',
     senha: '',
     tipo: '',
     grupo: '',
     equipe: '',
     nomeequipe: '',
+    tecnicoequipe: '',
     filtroBusca: ''
   };
 
@@ -42,6 +43,7 @@ export class AtendimentosPage {
       "grupo": this.user._user[0]['idgrupo'],
       "equipe": this.user._user[0]['equipe'],
       "nomeequipe": this.user._user[0]['nomeequipe'],
+      "tecnicoequipe": this.user._user[0]['tecnicoequipe'],
       "filtroBusca": ''
     };
     //this.account.usuario = this.user._user[0]['usuario']; //outra forma de atualizar o objeto

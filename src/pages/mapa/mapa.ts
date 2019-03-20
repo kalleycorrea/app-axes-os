@@ -14,13 +14,14 @@ export class MapaPage {
 
   atendimentosList: any[];
   equipesList: any[];
-  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; nomeequipe: any; filtroBusca: any } = {
+  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; nomeequipe: any; tecnicoequipe: any; filtroBusca: any } = {
     usuario: '',
     senha: '',
     tipo: '',
     grupo: '',
     equipe: '',
     nomeequipe: '',
+    tecnicoequipe: '',
     filtroBusca: ''
   };
   @ViewChild('map') mapElement: ElementRef;
@@ -62,6 +63,7 @@ export class MapaPage {
         "grupo": this.user._user[0]['idgrupo'],
         "equipe": this.user._user[0]['equipe'],
         "nomeequipe": this.user._user[0]['nomeequipe'],
+        "tecnicoequipe": this.user._user[0]['tecnicoequipe'],
         "filtroBusca": ''
       };
   }

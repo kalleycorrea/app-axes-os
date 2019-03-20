@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Tabs } from 'ionic-angular';
 import { Atendimentos } from '../../providers';
 
 @IonicPage()
@@ -10,8 +10,10 @@ import { Atendimentos } from '../../providers';
 export class AtendimentoDetalhesPage {
   item: any;
   itemAnterior: any;
-  account: { usuario: any; senha: any; tipo: any; grupo: any };
+  account: { usuario: any; senha: any; tipo: any; grupo: any; equipe: any; nomeequipe: any; tecnicoequipe: any; };
   private saveErrorString: string;
+  tabsDetail: Tabs;
+  tabsMainPage: Tabs;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public toastCtrl: ToastController,
@@ -24,6 +26,8 @@ export class AtendimentoDetalhesPage {
     this.itemAnterior = Object.assign({}, this.item); //cópia do objeto
     this.account = navParams.get('account');
     this.saveErrorString = "Não foi possível salvar os dados. Por favor tente novamente.";
+    this.tabsDetail = this.navCtrl.parent;
+    this.tabsMainPage = this.navCtrl.parent.parent.parent;
   }
 
   ionViewDidLoad() {
@@ -82,11 +86,12 @@ export class AtendimentoDetalhesPage {
   }
 
   capturarAtendimento() {
-    let data: { usuario: any; senha: any; numAtendimento: any; situacao: any } = {
+    let data: { usuario: any; senha: any; numAtendimento: any; topico: any; situacaoOS: any } = {
       usuario: this.account.usuario,
       senha: this.account.senha,
       numAtendimento: this.item.NumAtendimento,
-      situacao: this.item.SituacaoAtendimento
+      topico: this.item.Topico,
+      situacaoOS: this.item.SituacaoOS
     };
 
     this.atendimentos.capturarAtendimento(data).subscribe(
@@ -99,6 +104,17 @@ export class AtendimentoDetalhesPage {
           cssClass: "toastCustomStyles"
         });
         toast.present();
+        // Volta pra page 0 da tab MainPage
+        this.tabsMainPage.select(0);
+
+        // Vai pra page 1 da tab DetailPage
+        //this.tabsDetailPage.select(1);
+
+        // Vai pra page 1 da tab DetailPage
+        // const tabs = this.navCtrl.parent;
+        // tabs.select(1)
+        // .then(() => tabs.getSelected().push('OcorrenciasPage', {item: this.item, account: this.account}))
+        // .then(() => this.navCtrl.popToRoot());
       },
       err => {
         // Unable to update

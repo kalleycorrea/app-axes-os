@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, Button } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Button, Tabs } from 'ionic-angular';
 import { Atendimentos } from '../../providers';
 import { MainPage } from "../";
 
@@ -24,6 +24,7 @@ export class CheckListPage {
   solucao: any;
   showSegment: any;
   private saveErrorString: string;
+  tabsMainPage: Tabs;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public toastCtrl: ToastController,
@@ -33,6 +34,7 @@ export class CheckListPage {
       this.account = navParams.get('account');
       this.saveErrorString = "Não foi possível salvar os dados. Por favor tente novamente.";
       this.UltimoUsuarioDesignado = this.item.Usu_Designado;
+      this.tabsMainPage = this.navCtrl.parent.parent.parent;
 
       this.data = {
         usuario: this.account['usuario'],
@@ -171,6 +173,7 @@ export class CheckListPage {
           cssClass: "toastCustomStyles"
         });
         toast.present();
+        this.tabsMainPage.select(0);
       },
       err => {
         // Unable to save
@@ -225,8 +228,7 @@ export class CheckListPage {
           cssClass: "toastCustomStyles"
         });
         toast.present();
-        //this.navCtrl.setRoot(MainPage);
-        //this.navCtrl.pop();
+        this.tabsMainPage.select(0);
       },
       err => {
         // Unable to save

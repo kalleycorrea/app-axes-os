@@ -1004,8 +1004,8 @@ Dados Adicionais Não salvou
 publicar axestelecom
 
 
-capturar
-encerrar somente com os checklist marcados
+OK > capturar
+OK > encerrar somente com os checklist marcados
 permissão para discar
 geolocalização
 senha
