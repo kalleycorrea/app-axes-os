@@ -24,11 +24,11 @@
 
   <ion-spinner name="ios" *ngIf="atendimentosList==0"></ion-spinner>
 
-  <div padding>
+  <!-- <div padding>
     <button ion-button color="primary" block (click)="startTracking()">Localização</button>
     <p *ngIf="locationTracker.lat != 0">Latitude: {{locationTracker.lat}}</p>
     <p *ngIf="locationTracker.lng != 0">Longitude: {{locationTracker.lng}}</p>
-  </div>
+  </div> -->
 
   <div #map id="map" padding></div>
 

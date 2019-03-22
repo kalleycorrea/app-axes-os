@@ -285,8 +285,8 @@ gerar a versão executável do aplicativo
 
 	
 Icon e Splash
-	Inclua um arquivo icon.png, icon.psd ou icon.ai na pasta resources do projeto (tamanho mínimo da imagem seja 192px x 192px)
-	Inclua um arquivo splash.png, splash.psd ou splash.ai na pasta resources do projeto (tamanho mínimo da imagem seja 2208px x 2208px)
+	Inclua um arquivo icon.png, icon.psd ou icon.ai na pasta resources do projeto (tamanho mínimo da imagem seja 1024 × 1024 pixels)
+	Inclua um arquivo splash.png, splash.psd ou splash.ai na pasta resources do projeto (tamanho mínimo da imagem seja 2732 × 2732px)
 		ionic resources --icon
 		ionic cordova resources --help
 
@@ -336,6 +336,11 @@ ATENÇÃO: Antes de instalar um pacote nativo "@ionic-native/<nome-do-pacote>" r
 		 
 		 Mas se não referenciar no "package.json, então instale o pacote nativo informando a versão compatível com o Ionic 3.
 			npm install @ionic-native/camera@x.x.x
+
+- Android Permissions
+  Este plugin é projetado para suportar o novo mecanismo de verificação de permissões do Android.
+    ionic cordova plugin add cordova-plugin-android-permissions
+    npm install --save @ionic-native/android-permissions@4
 
 -Ionic Native https://github.com/ionic-team/ionic-native
 
@@ -1021,3 +1026,5 @@ OK > Atendimento com situação '' não está contando para a quantidade de aten
 OK > Substituir Dados Tecnicos está duplicando
 Travar a localização do tecnico no mapa pra salvar coordenadas
 SMS após avaliação
+Adicionar anexo da galeria
+Assinatura duplicada

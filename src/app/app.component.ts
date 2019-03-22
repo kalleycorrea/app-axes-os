@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Config, Nav, Platform } from 'ionic-angular';
@@ -39,7 +40,8 @@ export class MyApp {
     { title: 'Buscar', component: 'SearchPage' }
   ];
 
-  constructor(platform: Platform, settings: Settings, private config: Config,
+  constructor(private androidPermissions: AndroidPermissions,
+    platform: Platform, settings: Settings, private config: Config,
     private statusBar: StatusBar, private splashScreen: SplashScreen) {
 
       platform.ready().then(() => {
@@ -48,6 +50,18 @@ export class MyApp {
         //console.log("teste");
         this.statusBar.styleDefault();
         this.splashScreen.hide();
+        this.androidPermissions.requestPermissions([
+          this.androidPermissions.PERMISSION.CAMERA,
+          this.androidPermissions.PERMISSION.CALL_PHONE,
+          this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION,
+          this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION,
+          this.androidPermissions.PERMISSION.ACCESS_BACKGROUND_LOCATION,
+          this.androidPermissions.PERMISSION.ACCESS_LOCATION_EXTRA_COMMANDS,
+          this.androidPermissions.PERMISSION.ACCESS_MEDIA_LOCATION,
+          this.androidPermissions.PERMISSION.REQUEST_COMPANION_RUN_IN_BACKGROUND,
+          this.androidPermissions.PERMISSION.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND,
+          this.androidPermissions.PERMISSION.KILL_BACKGROUND_PROCESSES
+        ]);
       });
   }
 

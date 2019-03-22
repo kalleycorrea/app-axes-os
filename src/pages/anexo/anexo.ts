@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Camera } from '@ionic-native/camera';
 import { CameraOptions } from '@ionic-native/camera';
 
@@ -30,8 +31,9 @@ export class AnexoPage {
   //     }
   // ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public viewCtrl: ViewController, formBuilder: FormBuilder,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
+    private androidPermissions: AndroidPermissions,
+    formBuilder: FormBuilder,
     public datepipe: DatePipe,
     public camera: Camera, public toastCtrl: ToastController, public atendimentos: Atendimentos) {
 
@@ -69,7 +71,7 @@ export class AnexoPage {
         this.novoAnexo.imagem = 'data:image/jpeg;base64,' + imageData;
       }, (err) => {
         alert('Não é possível tirar foto');
-      })
+      });
     } else {
       alert('Não é possível tirar foto');
     }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -49,6 +50,7 @@ export function provideSettings(storage: Storage) {
     MyApp
   ],
   providers: [
+    AndroidPermissions,
     SplashScreen,
     StatusBar,
     Camera,
