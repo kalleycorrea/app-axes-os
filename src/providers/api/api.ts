@@ -9,9 +9,6 @@ export class Api {
   //url: string = 'https://example.com/api/v1';
   //url: string = 'http://localhost/api-axes-slim';
   //url: string = 'http://192.168.0.6/api-axes-slim';
-  //url: string = 'http://192.168.1.4/api-axes-slim';
-  //url: string = "http://192.168.20.118/api-axes-slim";
-  //url: string = 'http://192.168.43.109/api-axes-slim';
   url: string = 'http://api.axes.com.br';
 
   headerAuth: any;

@@ -1024,7 +1024,7 @@ OK > %tecnico = fechados
 OK > Desabilitar o icone do capturar quando o atendimento já for do tecnico
 OK > Atendimento com situação '' não está contando para a quantidade de atendimentos da equipe
 OK > Substituir Dados Tecnicos está duplicando
-Travar a localização do tecnico no mapa pra salvar coordenadas
-SMS após avaliação
+OK > Travar a localização do tecnico no mapa pra salvar coordenadas
 Adicionar anexo da galeria
+SMS após avaliação
 Assinatura duplicada

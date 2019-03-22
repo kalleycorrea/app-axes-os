@@ -119,7 +119,8 @@ export class RotaPage {
       title: (tipo == 'T') ? this.item['Equipe'] : this.item['Apelido'],
       icon: (tipo == 'T') ? 'assets/img/car.png' : 'assets/img/people.png',
       animation: google.maps.Animation.DROP,
-      draggable: (tipo == 'T') ? true : false,
+      //draggable: (tipo == 'T') ? true : false,
+      draggable: false,
     });
     if (tipo == 'C') {
       let infoMarker = `<h4>${this.item['Apelido']}</h4><br>${this.item['DescTopico']}`;
@@ -131,11 +132,12 @@ export class RotaPage {
     let marker = new google.maps.Marker({
       map: this.map,
       position: position,
-      label: {
-        color: 'blue',
-        fontWeight: 'bold',
-        text: (tipo == 'T') ? this.item['Equipe'] : this.item['Apelido'],
-      },
+      title: (tipo == 'T') ? this.item['Equipe'] : this.item['Apelido'],
+      // label: {
+      //   color: 'blue',
+      //   fontWeight: 'bold',
+      //   text: (tipo == 'T') ? this.item['Equipe'] : this.item['Apelido'],
+      // },
       // icon: {
       //   labelOrigin: new google.maps.Point(11, 50),
       //   size: new google.maps.Size(22, 40),
@@ -143,7 +145,8 @@ export class RotaPage {
       //   anchor: new google.maps.Point(11, 40),
       // },
       animation: google.maps.Animation.DROP,
-      draggable: (tipo == 'T') ? true : false,
+      //draggable: (tipo == 'T') ? true : false,
+      draggable: false,
     });
     if (tipo == 'C') {
       let infoMarker = `<h4>${this.item['Apelido']}</h4><br>${this.item['DescTopico']}`;
@@ -156,11 +159,12 @@ export class RotaPage {
     let marker = new google.maps.Marker({
       map: this.map,
       position: position,
-      label: {
-        color: 'blue',
-        fontWeight: 'bold',
-        text: (tipo == 'T') ? this.item['Equipe'] : this.item['Apelido'],
-      },
+      title: (tipo == 'T') ? this.item['Equipe'] : this.item['Apelido'],
+      // label: {
+      //   color: 'blue',
+      //   fontWeight: 'bold',
+      //   text: (tipo == 'T') ? this.item['Equipe'] : this.item['Apelido'],
+      // },
       icon: {
         labelOrigin: new google.maps.Point(11, 50),
         url: (tipo == 'T') ? 'assets/img/car.png' : 'assets/img/people.png',
@@ -169,7 +173,8 @@ export class RotaPage {
         anchor: new google.maps.Point(11, 40),
       },
       animation: google.maps.Animation.DROP,
-      draggable: (tipo == 'T') ? true : false,
+      //draggable: (tipo == 'T') ? true : false,
+      draggable: false,
     });
     if (tipo == 'C') {
       let infoMarker = `<h4>${this.item['Apelido']}</h4><br>${this.item['DescTopico']}`;

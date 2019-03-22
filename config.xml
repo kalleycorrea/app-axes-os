@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.axes.ordemservico" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.axes.ordemservico" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Axes OS</name>
-    <description>App Axes para Gestão das Ordens de Serviço.</description>
-    <author email="kalleycorrea@gmail.com" href="http://www.kalley.com.br">Kalley Correa</author>
+    <description>App para Gestão das Ordens de Serviço - Axes Tecnologia</description>
+    <author email="axestelecom@gmail.com" href="https://axes.com.br/">Kalley Correa</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

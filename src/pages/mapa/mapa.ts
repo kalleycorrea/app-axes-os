@@ -38,14 +38,7 @@ export class MapaPage {
     "f9900",  //orange
     "ff0066", //pink
     "737373", //grey
-    "660033", //purple
-    "0099cc",
-    "339966",
-    "669900",
-    "6600ff",
-    "996600",
-    "ff9966",
-    "993333"
+    "660033"  //purple
   ];
   nextColor: number = 0;
 
@@ -144,14 +137,14 @@ export class MapaPage {
     if (this.account.tipo == 'G'){
       if (this.equipesList.length>0) {
         for (let equipe of this.equipesList) {
-          let color = this.getColor();
+          // let color = this.getColor();
           if (this.atendimentosList.length>0) {
             let clientes = this.atendimentosList.filter(atendimento => atendimento.equipe == equipe.id);
             for (let cliente of clientes) {
-              this.addMarker(cliente, 'C', cliente.Apelido, color);
+              this.addMarker(cliente, 'C', cliente.Apelido, '0000ff');
             }
           }
-          this.addMarker(equipe, 'T', equipe.nome, color);
+          this.addMarker(equipe, 'T', equipe.nome, '0000ff');
         }
       } else {
         for (let cliente of this.atendimentosList) {
@@ -190,26 +183,36 @@ export class MapaPage {
     let marker = new google.maps.Marker({
       map: this.map,
       position: {lat: parseFloat(item.MapsLat), lng: parseFloat(item.MapsLng)},
-      label: {
-        color: '#262626', //grey
-        fontWeight: (tipo == 'T') ? 'bold' : 'normal',
-        text: titulo,
-      },
+      // title: titulo,
+      // label: {
+      //   color: '#262626', //grey
+      //   fontWeight: (tipo == 'T') ? 'bold' : 'normal',
+      //   text: titulo,
+      // },
+      icon: (tipo == 'T') ? 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' : 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      // icon: {
+      //   path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+      //   strokeColor: "red",
+      //   scale: 3
+      // },
       // icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
       // icon: pinImage,
       // shadow: pinShadow,
-      icon: {
-        labelOrigin: new google.maps.Point(50, 25),
-        url: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
-        size: new google.maps.Size(21, 34),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(11, 40),
-      },
+      // icon: {
+      //   labelOrigin: new google.maps.Point(50, 25),
+      //   url: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+      //   size: new google.maps.Size(21, 34),
+      //   origin: new google.maps.Point(0, 0),
+      //   anchor: new google.maps.Point(11, 40),
+      // },
       animation: google.maps.Animation.DROP,
       draggable: false,
     });
     if (tipo == 'C') {
       let infoMarker = `<h4>${item['Apelido']}</h4><br>${item['DescTopico']}`;
+      this.addInfoWindow(marker, infoMarker);
+    } else if (tipo == 'T') {
+      let infoMarker = `<h4>${titulo}</h4>`;
       this.addInfoWindow(marker, infoMarker);
     }
   }
